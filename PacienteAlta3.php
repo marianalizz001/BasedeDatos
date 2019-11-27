@@ -1,11 +1,3 @@
-<?php
-    if(($_SESSION['log'] == true)){
-        include ('Conexion.php');
-    }else{
-        header ('location: login.php');
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,13 +22,8 @@
 
 <body>
     <br><br>
-    <?php
-        $idUsuario = $_REQUEST['idUsuario'];
-        //echo $idUsuario;
-    ?>
-  <div class="container">
-    <form action="PacienteAltaPHP3.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
+    <div class="container">
+    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
         <p class="h4"> Nuevo Paciente - <small>Antecedentes Heredo Familiares</small></p>
         <hr>
         ¿Alguno de sus Padres, Abuelos o Hermanos padece alguno de los siguientes? SI/NO, ¿Quién?<br><br>
@@ -164,7 +151,6 @@
         <br>
     </form>
 </div>
--->
 </body>
 </html>
 <?php include("footer.php"); ?>

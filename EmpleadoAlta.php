@@ -1,10 +1,3 @@
-<?php
-    if(($_SESSION['log'] == true)){
-        include ('Conexion.php');
-    }else{
-        header ('location: login.php');
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,7 +86,7 @@
         </div>
         
         <?php
-            
+            include('Conexion.php');
             $instruccion = "SELECT nombre FROM localidades";
             if(! $resultado = $conexion -> query($instruccion)){
                 echo "Ha sucedido un problema";

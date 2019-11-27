@@ -1,3 +1,8 @@
+<?php
+    session_start(); 
+    include ('Conexion.php');
+?>
+
 <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: rgba(85, 219, 183, 0.83);">
@@ -88,7 +93,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="PacienteVer.php">Ver</a>
-          <a class="dropdown-item" href="PacienteAlta.php">Alta</a>
+          <a class="dropdown-item" href="#">Alta</a>
           <a class="dropdown-item" href="#">Baja</a>
           <a class="dropdown-item" href="#">Editar</a>
         </div>
@@ -113,7 +118,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="#">Ver</a>
-          <a class="dropdown-item" href="InventarioAlta.php">Alta</a>
+          <a class="dropdown-item" href="#">Alta</a>
           <a class="dropdown-item" href="#">Baja</a>
           <a class="dropdown-item" href="#">Editar</a>
         </div>
@@ -126,16 +131,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="#">Edad</a>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Reportes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="ReporteEmpleado.php">Empleados</a>
-          <a class="dropdown-item" href="#">Inventario</a>
         </div>
       </li>
 
@@ -161,11 +156,12 @@
         <a class="nav-link" href="logout.php"><span><i class="fas fa-sign-out-alt fa-2x" style="color: darkcyan;"></i></span></a>
       </li>
 
-      <?php }
-    ?>
+  <?php } ?>
 
    </div>
 </nav>
+
+
 <br><br>
 
 <script src="js/jquery.slim.js"></script>

@@ -1,10 +1,4 @@
-<?php
-    if(($_SESSION['log'] == true)){
-        include ('Conexion.php');
-    }else{
-        header ('location: login.php');
-    }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
