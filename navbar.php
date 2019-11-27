@@ -1,13 +1,3 @@
-<?php
-    if(($_SESSION['log'] == true)){
-        session_start(); 
-        include ('Conexion.php');
-    }else{
-        header ('location: login.php');
-    }
-?>
-
-
 <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: rgba(85, 219, 183, 0.83);">
