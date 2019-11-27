@@ -40,7 +40,7 @@
             <br><br>
             <div class="row">
                 <div class="col-6">
-                    <form action="inventario_altaPHP.php" method="post">
+                    <form action="InventarioAltaPHP.php" method="post">
                         <div class="form-group row">
                             <div class="col-6">
                                 <label for="nombre-producto" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre del Producto: </label>
