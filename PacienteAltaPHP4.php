@@ -2,27 +2,17 @@
     include("Conexion.php");
     
     $idUsuario = $_REQUEST['idUsuario'];
-    $jsonString = json_encode($_POST);
+    $var_json = json_encode($_POST);
 
-    echo $jsonString;
+    $sql = "UPDATE Detalle_paciente SET ant_fam = '.$var_json.' WHERE Usuario_idUsuario = $idUsuario";
 
-    $jsonArray = json_decode($jsonString, true);
-
-    echo $jsonArray;
-
-    echo $jsonArray['idUsuario'];
-
- /*
-    $consulta= $conexion->prepare("UPDATE Detalle_Paciente SET ant_fam=? WHERE idUsuario=?");
-    $consulta->bind_param('si', $var_json, $idUsuario);
-
- 	if($consulta->execute()){
-			header('location: PacienteAlta4.php');
- 	}else{
-		echo "ERROOOOOOOOOOOOOOOR!";
-        echo $conexion -> error;
+    if (mysqli_query($conexion, $sql)) {
+        echo "New record created successfully";
+        header('location: PacienteAlta4.php');
+    } else {
+        echo "Error: " . "<br>" . mysqli_error($conexion);
     }
 
-    */
-   
+    mysqli_close($conexion);
+
 ?>
