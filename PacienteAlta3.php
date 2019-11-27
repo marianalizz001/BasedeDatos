@@ -22,8 +22,13 @@
 
 <body>
     <br><br>
-    <div class="container">
-    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
+    <?php
+        $idUsuario = $_REQUEST['idUsuario'];
+        //echo $idUsuario;
+    ?>
+  <div class="container">
+    <form action="PacienteAltaPHP3.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Antecedentes Heredo Familiares</small></p>
         <hr>
         ¿Alguno de sus Padres, Abuelos o Hermanos padece alguno de los siguientes? SI/NO, ¿Quién?<br><br>
@@ -151,6 +156,7 @@
         <br>
     </form>
 </div>
+-->
 </body>
 </html>
 <?php include("footer.php"); ?>
