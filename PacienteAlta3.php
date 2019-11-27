@@ -21,9 +21,11 @@
   </head>
 
 <body>
+<?php $idUsuario = $_REQUEST['idUsuario']; ?>
     <br><br>
     <div class="container">
-    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
+    <form action="PacienteAltaPHP4.php" method="post">
+    <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Antecedentes Heredo Familiares</small></p>
         <hr>
         ¿Alguno de sus Padres, Abuelos o Hermanos padece alguno de los siguientes? SI/NO, ¿Quién?<br><br>
@@ -42,10 +44,10 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label>
                 <select id="alergias_quien" class="form-control" name="alergias_quien">
-                    <option selected> - - -</option>
-                    <option value="Padre">Padres</option>
-                    <option value="Padre">Abuelos</option>
-                    <option value="Padre">Hermanos</option>
+                    <option selected></option>
+                    <option value="Padres">Padres</option>
+                    <option value="Abuelos">Abuelos</option>
+                    <option value="Hermanos">Hermanos</option>
                 </select>
             </div>
         </div>
@@ -65,10 +67,10 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label>
                 <select id="enf_car_quien" class="form-control" name="enf_car_quien">
-                    <option selected> - - -</option>
+                    <option selected></option>
                     <option value="Padre">Padres</option>
-                    <option value="Padre">Abuelos</option>
-                    <option value="Padre">Hermanos</option>
+                    <option value="Abuelos">Abuelos</option>
+                    <option value="Hermanos">Hermanos</option>
                 </select>
             </div>
         </div>
@@ -88,10 +90,10 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label>
                 <select id="hip_arterial_quien" class="form-control" name="hip_arterial_quien">
-                    <option selected> - - -</option>
+                    <option selected></option>
                     <option value="Padre">Padres</option>
-                    <option value="Padre">Abuelos</option>
-                    <option value="Padre">Hermanos</option>
+                    <option value="Abuelos">Abuelos</option>
+                    <option value="Hermanos">Hermanos</option>
                 </select>
             </div>
         </div>
@@ -111,10 +113,10 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label>
                 <select id="enf_onc_quien" class="form-control" name="enf_onc_quien">
-                    <option selected> - - -</option>
+                    <option selected></option>
                     <option value="Padre">Padres</option>
-                    <option value="Padre">Abuelos</option>
-                    <option value="Padre">Hermanos</option>
+                    <option value="Abuelos">Abuelos</option>
+                    <option value="Hermanos">Hermanos</option>
                 </select>
             </div>
         </div>
@@ -134,10 +136,10 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label>
                 <select id="diabetes_quien" class="form-control" name="diabetes_quien">
-                    <option selected> - - -</option>
+                    <option selected></option>
                     <option value="Padre">Padres</option>
-                    <option value="Padre">Abuelos</option>
-                    <option value="Padre">Hermanos</option>
+                    <option value="Abuelos">Abuelos</option>
+                    <option value="Hermanos">Hermanos</option>
                 </select>
             </div>
         </div>
@@ -153,5 +155,6 @@
 </div>
 </body>
 </html>
+
 <?php include("footer.php"); ?>
 
