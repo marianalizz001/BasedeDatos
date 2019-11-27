@@ -26,235 +26,336 @@
     <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
         <p class="h4"> Nuevo Paciente - <small>Exploración Física</small></p>
         <hr>
-        <p class="h6"> *SIGNOS VITALES <small>(En caso de ser necesarios)</small></p>
-
         <div class="form-row">
-            <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
-    
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Ha sido hospitalizado o intervenido quirúrgicamente? </p><br>
+            </div>
             <div class="form-group col-sm-6 col-md-2">
-                <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Peso: </label>
-                <input type="number" class="form-control" id="referido" name="referido">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
             </div>
-
-            <div class="form-group col-sm-6 col-md-2">
-                <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Talla: </label>
-                <input type="number" class="form-control" id="ultima_consulta" name="ultima_consulta">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-2">
-                <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> F.C.: </label>
-                <input type="number" class="form-control" id="mot_consulta" name="mot_consulta">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-2">
-                <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> F.R.: </label>
-                <input type="number" class="form-control" id="mot_consulta" name="mot_consulta">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-2">
-                <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> T/A: </label>
-                <input type="number" class="form-control" id="mot_consulta" name="mot_consulta">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-2">
-                <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> Glucosa: </label>
-                <input type="number" class="form-control" id="mot_consulta" name="mot_consulta">
-            </div>
-
-        </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col" style="color: rgba(144, 12, 52);">EXAMEN ORAL</th>
-                <th scope="col">CONDICIÓN GENERAL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> Cara</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Ganglíos </td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> A.T.M.</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Región Hiodeidea y Tiroidea</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th style="color: rgba(144, 12, 52);">EXAMEN INTRAORAL</th>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td> Labios </td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Carrillos</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Encías</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Frenillos</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Paladar Duro</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Paladar Blando</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Orofaringe</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Lengua </td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Piso de Boca</td>
-                    <td>
-                    <select id="condicion" class="form-control" name="condicion">
-                        <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
-                    </select>
-                    </td>
-                </tr>
-            </tbody>
-        </table>    
-        <div class="form-row">
-            <div class="form-group col-sm-6 col-md-6">
-                <p class="h6" style="color: rgba(144, 12, 52);"> *TIPO DE DENTICIÓN</p>
-                <select id="condicion" class="form-control" name="condicion">
-                    <option selected></option>
-                    <option value="B">Temporal</option>
-                    <option value="R">Mixta</option>
-                    <option value="M">Permanente</option>
-                </select>
-            </div>
-
-            <div class="form-group col-sm-6 col-md-6">
-                <p class="h6" style="color: rgba(144, 12, 52);"> *CLASIFICACIÓN DE ANGLE</p>
-                <select id="condicion" class="form-control" name="condicion">
-                    <option selected></option>
-                    <option value="B">Clase I</option>
-                    <option value="R">Clase II</option>
-                    <option value="M">Clase III</option>
-                </select>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Se encuentra bajo algún tratamiento médico? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Alergia a alguna sustancia, anestesia o medicamento? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece enfermedades de la sangre? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Algún golpe que le haya dejado una secuela? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece hipo/hipertensión arterial?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece alguna enfermedad del corazón? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece alguna enfermedad respiratoria? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece convulsiones?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece hepatitis?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> Padece de VIH/SIDA?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece tuberculosis? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece alguna enfermedad en los riñores?  </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Padece otra enfermedad no mencionada? </p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Ha necesitado alguna transfusión sanguínea?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6 col-md-7">
+                <p class="h5"> ¿Está tomando algún medicamento?</p><br>
+            </div>
+            <div class="form-group col-sm-6 col-md-2">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <label class="form-check-label" for="exampleRadios1"> Si </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <label class="form-check-label" for="exampleRadios2"> No </label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+                <label for="quien">Especifique</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-6 col-md-12">
+                <p class="h5">*Observaciones:</p><br>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <textarea class="form-control" name="mensaje" required rows="2" style="resize: none;" ></textarea>
+            </div>
+        </div>
+        
+        <br>
         <div class="col-12 text-center">
             <input  class = "btn btn-success" type="submit" value="Siguiente" name = "btnEnviar">
         </div>

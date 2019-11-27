@@ -19,7 +19,7 @@
     $consulta2->bind_param('sssssssi',$referido, $mot_consulta, $ultima_consulta, $nombre, $apPat, $apMat,$telefono, $idUsuario);
         
     if($consulta2->execute()){
-        header('location: PacienteAlta3.php?idUsuario='.$idUsuario.'');
+        header('location: PacienteAlta3.php');
     }else{
         echo $conexion -> error;
         echo "<script language=JavaScript>alert('Hubo un error');</script>";
