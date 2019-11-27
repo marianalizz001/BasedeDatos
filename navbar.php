@@ -1,7 +1,12 @@
 <?php
-    session_start(); 
-    include ('Conexion.php');
+    if(($_SESSION['log'] == true)){
+        session_start(); 
+        include ('Conexion.php');
+    }else{
+        header ('location: login.php');
+    }
 ?>
+
 
 <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
 
@@ -134,6 +139,16 @@
         </div>
       </li>
 
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="ReporteEmpleado.php">Empleados</a>
+          <a class="dropdown-item" href="#">Inventario</a>
+        </div>
+      </li>
+
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
@@ -156,12 +171,11 @@
         <a class="nav-link" href="logout.php"><span><i class="fas fa-sign-out-alt fa-2x" style="color: darkcyan;"></i></span></a>
       </li>
 
-  <?php } ?>
+      <?php }
+    ?>
 
    </div>
 </nav>
-
-
 <br><br>
 
 <script src="js/jquery.slim.js"></script>
