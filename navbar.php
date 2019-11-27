@@ -93,7 +93,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="PacienteVer.php">Ver</a>
-          <a class="dropdown-item" href="#">Alta</a>
+          <a class="dropdown-item" href="PacienteAlta.php">Alta</a>
           <a class="dropdown-item" href="#">Baja</a>
           <a class="dropdown-item" href="#">Editar</a>
         </div>
@@ -118,7 +118,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="#">Ver</a>
-          <a class="dropdown-item" href="inventario_alta.php">Alta</a>
+          <a class="dropdown-item" href="#">Alta</a>
           <a class="dropdown-item" href="#">Baja</a>
           <a class="dropdown-item" href="#">Editar</a>
         </div>
