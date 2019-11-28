@@ -25,7 +25,9 @@
 <body>
     <br><br>
     <div class="container">
-    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
+    <form action="PacienteAltaPHP8.php" method="post" enctype="multipart/form-data">
+    <?php $idUsuario = $_REQUEST['idUsuario']; ?>
+        <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Conclusión Diagnóstica</small></p>
         <hr>
         <div class="form-row">
@@ -33,36 +35,36 @@
     
             <div class="form-group col-sm-6 col-md-3">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Estado de salud general: </label>
-                <select id="condicion" class="form-control" name="condicion">
+                <select id="condicion" class="form-control" name="salud">
                         <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
+                        <option value="Bueno">Bueno</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Malo">Malo</option>
                     </select>
             </div>
 
             <div class="form-group col-sm-6 col-md-3">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Conductual: </label>
-                <select id="condicion" class="form-control" name="condicion">
+                <select id="condicion" class="form-control" name="conducta">
                         <option selected></option>
-                        <option value="B">Bueno</option>
-                        <option value="R">Regular</option>
-                        <option value="M">Malo</option>
+                        <option value="Bueno">Bueno</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Malo">Malo</option>
                     </select>
             </div>
 
             <div class="form-group col-sm-6 col-md-3">
                 <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> Enfermedad actual: </label>
-                <input type="text" class="form-control" id="mot_consulta" name="mot_consulta">
+                <input type="text" class="form-control" id="mot_consulta" name="enfermedad_actual">
             </div>
 
             <div class="form-group col-sm-6 col-md-3">
                 <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> Pronóstico: </label>
-                <select id="condicion" class="form-control" name="condicion">
+                <select id="condicion" class="form-control" name="pronostico">
                         <option selected></option>
-                        <option value="B">Favorable</option>
-                        <option value="R">Desfavorable</option>
-                        <option value="M">Reservado</option>
+                        <option value="Favorable">Favorable</option>
+                        <option value="Desfavorable">Desfavorable</option>
+                        <option value="Reservado">Reservado</option>
                 </select>
             </div>
 

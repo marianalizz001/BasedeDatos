@@ -21,10 +21,10 @@
   </head>
 
 <body>
-<?php $idUsuario = $_REQUEST['idUsuario']; ?>
     <br><br>
     <div class="container">
-    <form action="PacienteAltaPHP4.php" method="post">
+    <form action="PacienteAltaPHP3.php" method="post">
+    <?php $idUsuario = $_REQUEST['idUsuario']; ?>
     <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Antecedentes Heredo Familiares</small></p>
         <hr>

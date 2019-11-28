@@ -7,13 +7,11 @@
     unset($_POST['idUsuario']);
     $var_json = json_encode($_POST);
 
-    // var_dump($var_json); 
-
-    $sql = "UPDATE Detalle_paciente SET ant_per_no_pat = '$var_json' WHERE Usuario_idUsuario = $idUsuario";
+    $sql = "UPDATE Detalle_paciente SET ant_per_pat = '$var_json' WHERE Usuario_idUsuario = $idUsuario";
 
     if (mysqli_query($conexion, $sql)) {
         echo "Bien";
-        header('location: PacienteAlta5.php?idUsuario='.$idUsuario.'');
+        header('location: PacienteAlta6.php?idUsuario='.$idUsuario.'');
     } else {
         echo "Error: " . "<br>" . mysqli_error($conexion);
     }

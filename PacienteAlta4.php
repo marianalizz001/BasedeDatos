@@ -23,7 +23,9 @@
 <body>
     <br><br>
     <div class="container">
-    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
+    <form action="PacienteAltaPHP4.php" method="post" enctype="multipart/form-data">
+        <?php $idUsuario = $_REQUEST['idUsuario']; ?>
+        <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Antecedentes Personales NO Patológicos</small></p>
         <hr>
         <div class="form-row">
@@ -32,17 +34,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="servicios_basicos" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="servicios_basicos" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="servicios_basicos_esp">
             </div>
         </div>
 
@@ -52,17 +54,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="bano_personal_esp">
             </div>
         </div>
 
@@ -72,17 +74,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="cepillar_dientes_esp">
             </div>
         </div>
 
@@ -92,17 +94,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="enguaje_bucal_esp">
             </div>
         </div>
 
@@ -112,17 +114,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="hilo_dental_esp">
             </div>
         </div>
 
@@ -132,17 +134,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="act_fisica_esp">
             </div>
         </div>
 
@@ -152,17 +154,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="drogas" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="drogas" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="drogras_esp">
             </div>
         </div>
 
@@ -172,17 +174,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="fuma" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="fuma" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="fuma_esp">
             </div>
         </div>
 
@@ -192,17 +194,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="alcohol" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="alcohol" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="alcohol_esp">
             </div>
         </div>
 
@@ -212,17 +214,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="tatuajes_esp">
             </div>
         </div>
 
@@ -232,17 +234,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="vacunas" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="vacunas" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="vacunas_esp">
             </div>
         </div>
 
@@ -252,17 +254,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="embarazada" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="embarazada" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="embarazada_esp">
             </div>
         </div>
 
@@ -272,17 +274,17 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="amamantando" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="amamantando" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="amamantando_esp">
             </div>
         </div>
 
@@ -292,23 +294,19 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="S">
+                    <input class="form-check-input" type="radio" name="anticonceptivos" value="S">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="N" checked="checked">
+                    <input class="form-check-input" type="radio" name="anticonceptivos" value="N">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
             <div class="form-group col-sm-6 col-md-3">
                 <label for="quien">Especifique</label>
-                <input type="text">
+                <input type="text" name="anticonceptivos_esp">
             </div>
-        </div>
-
-        
-
-        
+        </div>    
         <br>
         <div class="col-12 text-center">
             <input  class = "btn btn-success" type="submit" value="Siguiente" name = "btnEnviar">
