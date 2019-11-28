@@ -30,6 +30,9 @@
     $colonia = $_REQUEST['colonia'];
     $rfc = $_REQUEST['rfc'];
     $salario = $_REQUEST['salario'];
+    $localidad = $_REQUEST['localidad'];
+
+   // echo $localidad;
 
     if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
         if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto))
@@ -46,9 +49,9 @@
     }
           
     $consulta= $conexion->prepare("Insert into Usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
-        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, salario,curriculum) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $consulta->bind_param('sssssssssssssssssss',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
-        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $salario, $nombre_cv);
+        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, salario,curriculum, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $consulta->bind_param('sssssssssssssssssssi',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
+        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $salario, $nombre_cv, $localidad);
     
     if($consulta->execute()){
         header('location: EmpleadoVer.php');

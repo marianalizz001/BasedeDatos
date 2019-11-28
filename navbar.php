@@ -94,8 +94,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="PacienteVer.php">Ver</a>
           <a class="dropdown-item" href="PacienteAlta.php">Alta</a>
-          <a class="dropdown-item" href="#">Baja</a>
-          <a class="dropdown-item" href="#">Editar</a>
         </div>
       </li>
       <?php } ?>
