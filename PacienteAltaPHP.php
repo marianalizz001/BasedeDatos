@@ -22,6 +22,7 @@
     $cp = $_REQUEST['cp'];
     $colonia = $_REQUEST['colonia'];
     $rfc = $_REQUEST['rfc'];
+    $localidad = $_REQUEST['localidad'];
 
     if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
         if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto))
@@ -31,9 +32,9 @@
     }
           
     $consulta= $conexion->prepare("Insert into Usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
-        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $consulta->bind_param('sssssssssssssssss',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
-        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc);
+        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $consulta->bind_param('sssssssssssssssssi',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
+        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $localidad);
     
     if($consulta->execute()){
         header('location: PacienteAlta2.php?usuario='.$usuario.'');

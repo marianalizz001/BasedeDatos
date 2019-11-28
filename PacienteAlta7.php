@@ -25,25 +25,27 @@
 <body>
     <br><br>
     <div class="container">
-    <form action="PacienteAltaPHP.php" method="post" enctype="multipart/form-data">
+    <form action="PacienteAltaPHP7.php" method="post" enctype="multipart/form-data">
+        <?php $idUsuario = $_REQUEST['idUsuario']; ?>
+        <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
         <p class="h4"> Nuevo Paciente - <small>Éxamenes Complementarios</small></p>
         <hr>
         <div class="form-row">
             <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
     
             <div class="form-group col-sm-6 col-md-4">
-                <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Laboratorio: </label>
-                <input type="number" class="form-control" id="referido" name="referido">
+                <label for="lab" style="font-size:20px;color: rgba(144, 12, 52);"> Laboratorio: </label>
+                <input type="text" class="form-control" id="referido" name="laboratorio">
             </div>
 
             <div class="form-group col-sm-6 col-md-4">
-                <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Descripción: </label>
-                <input type="number" class="form-control" id="ultima_consulta" name="ultima_consulta">
+                <label for="dec" style="font-size:20px;color: rgba(144, 12, 52);"> Descripción: </label>
+                <input type="text" class="form-control" id="ultima_consulta" name="descripcion">
             </div>
 
             <div class="form-group col-sm-6 col-md-4">
-                <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> TIPO: </label>
-                <input type="number" class="form-control" id="mot_consulta" name="mot_consulta">
+                <label for="tipo" style="font-size:20px;color: rgba(144, 12, 52);"> TIPO: </label>
+                <input type="text" class="form-control" id="mot_consulta" name="tipo">
             </div>
 
         </div>
