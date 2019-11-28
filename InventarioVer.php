@@ -33,8 +33,8 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Fecha de alta</th>
-                <th scope="col"><span><i class="fas fa-trash-alt"></i></span></th>
-                <th scope="col"><span><i class="fas fa-edit"></i></span></th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody class="buscar" style="padding-top: 40px; width:100%;">
@@ -49,12 +49,13 @@
                 exit();
             }
             while ($act = $resultado -> fetch_assoc()){
-                $id_producto = $act['idProducto'];
-                $nombre = $act['nombre'];
-                $precio = $act['precio'];
-                $existencia = $act['existencia'];
-                $fecha = $act['fecha'];
-                $nombreUsuario=$act['nombreUsuario'];
+                if( $act['activo']==1){
+                    $id_producto = $act['idProducto'];
+                    $nombre = $act['nombre'];
+                    $precio = $act['precio'];
+                    $existencia = $act['existencia'];
+                    $fecha = $act['fecha'];
+                    $nombreUsuario=$act['nombreUsuario'];
                     echo'
                     <tr>    
                         <td>' .$id_producto.'</td>
@@ -63,9 +64,11 @@
                         <td>' .$precio.'</td>
                         <td>' .$nombreUsuario.'</td>
                         <td>' .$fecha.'</td>
-                        <td><button></button></td>
-                        <td><button></button></td>
+                        <td><a href="InventarioBorrar.php?idProducto='.$id_producto.'"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><button><i class="fas fa-edit"></i></button></td>
                     </tr>';
+                }
+                
             }
             $resultado -> free();  
 
