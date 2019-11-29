@@ -73,8 +73,10 @@ $(document).ready(function () {
 
             if(! $resultado = $conexion -> query($instruccion)){
                 echo "Ha sucedido un problema ... ";
+                
                 exit();
             }
+
             while ($act = $resultado -> fetch_assoc()){
                 $id_mensaje = $act['id_mensaje'];
                 $nombre = $act['nombre'];
