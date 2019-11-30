@@ -3,7 +3,7 @@
     $nombre_temp = $_FILES[ 'archivo' ][ 'name' ];
     $tmp = $_FILES[ 'archivo' ][ 'tmp_name' ];
     $tipoFile = $_FILES['archivo']['type'];
-    $folder = 'Empleados/Fotos';
+    $folder = 'Usuarios/Fotos';
     $nombre_foto = utf8_decode($nombre_temp);
     
     $tipo_usuario = 'P';

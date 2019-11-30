@@ -29,7 +29,7 @@
                 $_SESSION['foto'] = $foto;
                 $_SESSION['especialidad'] = $especialidad;
                 $_SESSION['cedula'] = $cedula;
-                $_SESSION['foto'] = "Empleados/Fotos/".$foto;
+                $_SESSION['foto'] = "Usuarios/Fotos/".$foto;
                 $_SESSION['curriculum'] = "Empleados/Curriculums/".$curriculum;
                 
                 if($_SESSION['tipo']== 'M')

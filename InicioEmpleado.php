@@ -31,7 +31,7 @@
             <div class="row no-gutters">
               <div class="col-md-4">
               <?php
-                if ($_SESSION['foto'] == "Empleados/Fotos")
+                if ($_SESSION['foto'] == "Usuarios/Fotos/")
                   echo '<img src="img/perfil.png" class="card-img" alt="...">';
                 else
                   echo '<img src='.$_SESSION['foto'].' class="card-img" alt="...">';

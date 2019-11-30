@@ -19,12 +19,13 @@
     $colonia = $_REQUEST['colonia'];
     $rfc = $_REQUEST['rfc'];
     $salario = $_REQUEST['salario'];
+    $localidad = $_REQUEST['localidad'];
 
 
     $nombre_archivo = $_FILES[ 'archivo' ][ 'name' ];
     $tmp = $_FILES[ 'archivo' ][ 'tmp_name' ];
     $tipoFile = $_FILES['archivo']['type'];
-    $folder = 'Empleados/Fotos';
+    $folder = 'Usuarios/Fotos';
     $nombre_foto = utf8_decode($nombre_archivo);
 
 
@@ -71,9 +72,9 @@
     }
 
  	$consulta= $conexion->prepare("UPDATE Usuario SET nombre=?, apPat=?, apMat=?, usuario=?, passwd=?, genero=?, 
-     correo=?, telefono=?, f_nac=?, calle=?, no_ext=?, no_int=?,cp=?, colonia=?, rfc=?, salario=? WHERE idUsuario=?");
-    $consulta->bind_param('ssssssssssssssssi', $nombre, $apPat, $apMat,$usuario, $passwd, $genero, $correo, $telefono,
-                $f_nac, $calle, $no_ext, $no_int, $cp, $colonia, $rfc, $salario, $idUsuario);
+     correo=?, telefono=?, f_nac=?, calle=?, no_ext=?, no_int=?,cp=?, colonia=?, rfc=?, salario=?, localidades_idlocalidades=? WHERE idUsuario=?");
+    $consulta->bind_param('sssssssssssssssssi', $nombre, $apPat, $apMat,$usuario, $passwd, $genero, $correo, $telefono,
+                $f_nac, $calle, $no_ext, $no_int, $cp, $colonia, $rfc, $salario, $localidad, $idUsuario);
 
  	if($consulta->execute()){
 			header('location: EmpleadoVer.php');

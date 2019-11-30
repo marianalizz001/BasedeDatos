@@ -128,6 +128,11 @@
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
+
+        <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+          <a class="nav-link" href="PerfilPaciente.php"><h5>Perfil</h5><span class="sr-only"></span></a>
+        </li>
+
         <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Citas

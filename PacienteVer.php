@@ -67,8 +67,8 @@ $(document).ready(function () {
 
         <?php
             include ('Conexion.php');
-                            
-            $instruccion = "SELECT idUsuario, usuario, nombre, apPat, apMat, correo, f_baja, foto FROM Usuario";
+            $temp = "P";
+            $instruccion = "SELECT idUsuario, usuario, nombre, apPat, apMat, correo, f_baja, foto FROM Usuario WHERE tipo_usuario = '$temp'";
 
             if(! $resultado = $conexion -> query($instruccion)){
                 echo "Ha sucedido un problema ... ";
@@ -82,7 +82,7 @@ $(document).ready(function () {
                 $apMat = $act['apMat'];
                 $correo = $act['correo'];
                 $f_baja = $act['f_baja'];
-                $foto = "Empleados/Fotos/".$act['foto'];
+                $foto = "Usuarios/Fotos/".$act['foto'];
 
                 if($f_baja == NULL){
                     echo'
@@ -90,7 +90,7 @@ $(document).ready(function () {
                       <a href="PacienteEditar.php?idUsuario='.$idUsuario.'"><img src="img/editar.webp" width="25" height="25"></a></button></a>
                       <a href="PacienteBorrar.php?idUsuario='.$idUsuario.'"><img src="img/borrar.png" width="25" height="25"></a></button></a>
                     <td>';
-                        if ($foto == "Empleados/Fotos/"){
+                        if ($foto == "Usuarios/Fotos/"){
                             echo '<img src="img/perfil.png" width="80" height="80">';
                         }
                         else{

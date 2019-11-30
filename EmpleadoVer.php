@@ -47,7 +47,7 @@
         $telefono = $act['telefono'];
         $rfc = $act['rfc'];
         $salario = $act['salario'];
-        $foto = "Empleados/Fotos/".$act['foto'];
+        $foto = "Usuarios/Fotos/".$act['foto'];
         $curriculum = "Empleados/Curriculums/".$act['curriculum'];
 
         if($f_baja == NULL){
@@ -55,7 +55,7 @@
             <div class="card mb-3" style="max-width: 800px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">';
-                    if ($foto == "Empleados/Fotos/"){
+                    if ($foto == "Usuarios/Fotos/"){
                         echo '<img src="img/perfil.png" class="card-img" alt="...">';
                     }
                     else{

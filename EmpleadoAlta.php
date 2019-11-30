@@ -85,54 +85,8 @@
             </div>
         </div>
         
-        <?php
-            include('Conexion.php');
-            $instruccion = "SELECT nombre FROM estados";
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema";
-                exit();
-            }
-        ?>
-
         <div class="form-row mt-3">
-            <div class="form-group col-sm-12 col-md-4">
-                <label for="estado" style="font-size:20px;color: rgba(144, 12, 52);"> Estado: </label>
-                <select id="estado" class="form-control" name="estado" required>
-                    <option selected>Selecciona ... </option>
-                    <?php 
-                            while ($act = $resultado -> fetch_assoc()){
-                        ?>
-                    <option value="<?php echo $act['nombre'];?>"><?php echo $act['nombre'];?></option>
-                        <?php
-                        }
-                        ?>
-                </select>
-            </div>
-
         <?php
-            include('Conexion.php');
-            $instruccion = "SELECT nombre FROM municipios";
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema";
-                exit();
-            }
-        ?>
-
-            <div class="form-group col-sm-12 col-md-4">
-                <label for="telefono" style="font-size:20px;color: rgba(144, 12, 52);"> Municipio: </label>
-                <select id="municipio" class="form-control" name="municipio" required>
-                    <option selected>Selecciona ... </option>
-                    <?php 
-                            while ($act = $resultado -> fetch_assoc()){
-                        ?>
-                    <option value="<?php echo $act['nombre'];?>"><?php echo $act['nombre'];?></option>
-                        <?php
-                        }
-                        ?>
-                </select>
-            </div>
-
-            <?php
                 include('Conexion.php');
                 $instruccion = "SELECT idlocalidades, nombre FROM localidades";
                 if(! $resultado = $conexion -> query($instruccion)){
@@ -140,7 +94,7 @@
                     exit();
                 }
             ?>
-            <div class="form-group col-sm-12 col-md-4">
+            <div class="form-group col-sm-12 col-md-3">
                 <label for="f_nac" style="font-size:20px;color: rgba(144, 12, 52);"> Localidad: </label>
                 <select id="localidad" class="form-control" name="localidad" required>
                     <option selected>Selecciona ... </option>
@@ -153,16 +107,12 @@
                         ?>
                 </select>
             </div>
-        </div>
-
-
-        <div class="form-row mt-3">
-            <div class="form-group col-sm-6 col-md-4">
+            <div class="form-group col-sm-6 col-md-3">
                 <label for="fraccionamiento" style="font-size:20px;color: rgba(144, 12, 52);"> Fraccionamiento: </label>
                 <input type="text" class="form-control" id="colonia" name="colonia" required>
             </div>
 
-            <div class="form-group col-sm-12 col-md-4">
+            <div class="form-group col-sm-12 col-md-3">
                 <label for="calle" style="font-size:20px;color: rgba(144, 12, 52);"> Calle: </label>
                 <input type="text" class="form-control" id="calle" name="calle" required>
             </div>
@@ -177,7 +127,7 @@
                 <input type="text" class="form-control" id="no_int" name="no_int">
             </div>
 
-            <div class="form-group col-sm-12 col-md-2">
+            <div class="form-group col-sm-12 col-md-1">
                 <label for="no_int" style="font-size:20px;color: rgba(144, 12, 52);"> Cp: </label>
                 <input type="number" class="form-control" id="cp" name="cp" required>
             </div>

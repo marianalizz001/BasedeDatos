@@ -30,7 +30,12 @@
           <div class="card mb-3" style="max-width: 840px;" id="div-general">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="img/paciente.jpeg" class="card-img" alt="...">
+              <?php
+                if ($_SESSION['foto'] == "Usuarios/Fotos/")
+                  echo '<img src="img/perfil.png" class="card-img" alt="...">';
+                else
+                  echo '<img src='.$_SESSION['foto'].' class="card-img" alt="...">';
+              ?>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
