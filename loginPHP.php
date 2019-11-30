@@ -2,7 +2,7 @@
         include('Conexion.php');
         if(isset($_REQUEST['usuario'])){
         $user = $_REQUEST['usuario'];
-        $clave = ($_REQUEST['clave']);
+        $clave = md5($_REQUEST['clave']);
         
         $instruccion = ("SELECT idUsuario, usuario, passwd, tipo_usuario, nombre, apPat, apMat,genero, f_nac, correo, telefono, foto, especialidad, cedula, foto, curriculum  FROM Usuario WHERE usuario=? and passwd=?");
 
