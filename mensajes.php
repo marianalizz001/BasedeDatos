@@ -68,8 +68,8 @@ $(document).ready(function () {
 
         <?php
             include ('Conexion.php');
-                            
-            $instruccion = "SELECT * FROM mensaje ORDER BY f_enviado DESC";
+            //Llamada al stored procedure que selecciona todo de la tabla mensaje si aun no ha sido leido                
+            $instruccion = "call p2()";
 
             if(! $resultado = $conexion -> query($instruccion)){
                 echo "Ha sucedido un problema ... ";
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 $mensaje = $act['mensaje'];
                 $f_enviado = $act['f_enviado'];
 
-                if ($act['visto'] == '0'){
+                
                     echo'
                     <tr>    
                         <td><a href="MensajeOk.php?id_mensaje='.$act['id_mensaje'].';?>"><img src="img/cerrar.png" width="25" height="25"></a></td>
@@ -97,7 +97,7 @@ $(document).ready(function () {
                         <td>' .$mensaje.'</td>
                         <td>' .$f_enviado.'</td>
                     </tr>';
-                }
+                
             }
             $resultado -> free();  
 

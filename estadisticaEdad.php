@@ -28,11 +28,15 @@
 </head>
 
 <body>
-   <div class="container">
+   <div class="container" id="registro">
         <div class="row">
-            <div class="col-sm-12"></div>
-            <br><br><p class="h4"> Grafica de Edad</p>
-                <div id="cargaBarras"></div>
+            <div class="col-sm-12">
+            <br><br>
+                <div class="col-12" id="barra_servicio">
+                    <A class="h2 align-middle text-center" name="servicios" id="servicio">Grafica Edades</A>
+                </div>
+                <div class="abs-center" id="cargaBarras"></div>
+                </div>
             </div>         
         </div>
    </div>

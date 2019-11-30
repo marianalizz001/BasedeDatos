@@ -6,8 +6,14 @@
   $valoresX=array();
 
   while ($ver=mysqli_fetch_row($result)){
+    if($ver[0]=='F'){
+      $valoresX[]="Femenino";
+    }
+    if($ver[0]=='M'){
+      $valoresX[]="Masculino";
+    }
     $valoresY[]=$ver[1];
-    $valoresX[]=$ver[0];
+    
   }
 
   $datosX=json_encode($valoresX);
@@ -37,9 +43,26 @@
   {
     x: datosX,
     y: datosY,
-    type: 'bar'
+    type: 'bar',
+    marker: {
+      color: ['rgb(114,225,195)', 'rgb(255,128,192)']
+    }
   }
 ];
 
-Plotly.newPlot('graficaBarras', data);
+var layout = {
+  title: 'Grafica Genero',
+  font:{
+    family: 'Ralewey, sans-serif' 
+  },
+  xaxis: {
+    title: 'Genero'
+  },
+  yaxis: {
+    title: 'Pacientes'
+  },
+  bargap: 0.05
+};
+
+Plotly.newPlot('graficaBarras', data, layout);
 </script>
