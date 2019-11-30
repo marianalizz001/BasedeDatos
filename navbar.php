@@ -126,7 +126,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="#">Diagnostico</a>
-          <a class="dropdown-item" href="#">Edad</a>
+          <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
+          <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
         </div>
       </li>
 
