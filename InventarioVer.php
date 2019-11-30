@@ -42,14 +42,14 @@
         <?php
             include ('Conexion.php');
                             
-            $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
+            $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,a.activo,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
 
             if(! $resultado = $conexion -> query($instruccion)){
                 echo "Ha sucedido un problema ... ";
                 exit();
             }
             while ($act = $resultado -> fetch_assoc()){
-                if( $act['activo']==1){
+                if( $act['activo']=='1'){
                     $id_producto = $act['idProducto'];
                     $nombre = $act['nombre'];
                     $precio = $act['precio'];
