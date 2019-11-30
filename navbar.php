@@ -76,15 +76,9 @@
     </li>
     
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+        <a class="nav-link" href="Citas.php" role="button" style="font-size:18px;color:white;">
           Citas
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Ver</a>
-          <a class="dropdown-item" href="#">Alta</a>
-          <a class="dropdown-item" href="#">Baja</a>
-          <a class="dropdown-item" href="#">Editar</a>
-        </div>
       </li>
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
