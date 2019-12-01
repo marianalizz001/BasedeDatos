@@ -75,7 +75,7 @@
                     $("#ModalEventos").modal();
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
-                events: 'http://localhost/Citas/eventos.php',
+                events: 'http://localhost/BasedeDatos/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
