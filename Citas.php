@@ -20,14 +20,15 @@
 
     <?php include("navbar.php"); ?>
     <br>
-  </head>
-<!--Full Calendar-->
+    <!--Full Calendar-->
 <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
     <script src='js/fullcalendar.min.js'></script>
     <script src="js/es.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  </head>
+
 <style>
     .fc th {
         padding: 10px 0px;
