@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Dosis:400,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
-    <script src='js/jquery.min.js'></script>
-    <script src='js/moment.min.js'></script>
-    
-
-
     <link rel="stylesheet" href="css/style.css">
      
     <title>Dra.YazminNajera | Home</title>
@@ -23,6 +18,8 @@
     <?php include("navbar.php"); ?>
     <br>
   </head>
+  <script src='js/jquery.min.js'></script>
+<script src='js/moment.min.js'></script>
   <!--Full Calendar-->
   <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
     <script src='js/fullcalendar.min.js'></script>
