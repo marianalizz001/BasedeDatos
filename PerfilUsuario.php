@@ -18,6 +18,16 @@
 
     <?php include("navbar.php"); ?>
     <br>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal();
+        });
+        });
+    </script>
+
   </head>
 
 <body>
@@ -54,6 +64,39 @@
         $curriculum = "Empleados/Curriculums/".$act['curriculum'];
         $localidad = $act['localidades_idlocalidades'];
 ?>  
+
+<div class style="padding-left: 100px; padding-right: 200px;"> 
+    <div class="row">
+    <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cambiar contraseña</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="CambiarPasswd.php" method="post">
+                    <div class="form-group">
+                        <p style="font-size:20px;color: rgba(144, 12, 52);">Nueva Contraseña: </p>
+                        <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
+                        <input type="password" class="form-control"  name="passwd" required>
+                    </div>     
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input  class = "btn btn-success" type="submit" value="Aceptar" name = "btnEnviar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+     </div>
+
     <div class="card mb-3 mx-auto" style="max-width: 80%;">
     <div class="row no-gutters">
         <div class="col-md-4">
@@ -161,6 +204,7 @@
                 </div>
 
                 <div class="text-center">
+                    <button type="button" class="btn btn-warning"  id="myBtn">Cambiar contraseña</button>
                     <input  class = "btn btn-success" type="submit" value="Enviar" name = "btnEnviar">
                 </div>
             </form>
@@ -170,6 +214,10 @@
         </div>
         </div>
     <?php } ?>
+    <script src="js/jquery.slim.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
 <?php include("footer.php"); ?>

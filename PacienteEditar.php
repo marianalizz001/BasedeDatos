@@ -97,8 +97,9 @@
             <strong><h2 class="card-title"><?php echo $nombre. " ". $apPat. " ". $apMat;?></h2></strong>
             <p class="card-text">
 
-                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong>
-                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong>
+                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong><br>
+                <small>Fecha de nacimiento: </small> <strong><?php echo $f_nac; ?> </strong> <br>
+                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong><br>
             </p>
 
                 <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
