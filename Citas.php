@@ -13,18 +13,16 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
     <script src='js/jquery.min.js'></script>
     <script src='js/moment.min.js'></script>
-    
-
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Home</title>
+    <title>Dra.YazminNajera | Empleado</title>
 
     <?php include("navbar.php"); ?>
     <br>
   </head>
-  <!--Full Calendar-->
-  <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
+<!--Full Calendar-->
+<link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
     <script src='js/fullcalendar.min.js'></script>
     <script src="js/es.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -68,6 +66,7 @@
                     /*Desactiva el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
                     $('#btnAgregar').prop("disabled", false);
                     $('#btnModificar').prop("disabled", true);
+                    $('#btnEliminar').prop("disabled", true);
 
                     $('#txtHora2').prop("hidden", true);
                     $('#txtHora2').prop("disabled", true);
@@ -78,12 +77,13 @@
                     $("#ModalEventos").modal();
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
-                events: 'http://localhost/Citas/eventosPac.php',
+                events: 'http://localhost/Citas/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
                     $('#btnAgregar').prop("disabled", true);
                     $('#btnModificar').prop("disabled", false);
+                    $('#btnEliminar').prop("disabled", false);
 
 
                     $('#txtHora2').prop("hidden", false);
@@ -95,6 +95,9 @@
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
+                    $('#txtEstatus').val(calEvent.estatus);
+                    $('#txtMonto').val(calEvent.monto);
+                    $('#txtOdonto').val(calEvent.odontograma);
 
 
                     FechaHora = calEvent.start._i.split(" ");
@@ -109,6 +112,9 @@
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
+                    $('#txtEstatus').val(calEvent.estatus);
+                    $('#txtMonto').val(calEvent.monto);
+                    $('#txtOdonto').val(calEvent.odontograma);
 
                     var fechaHora = calEvent.start.format().split("T");
                     $('#txtFecha').val(fechaHora[0]);
@@ -176,7 +182,28 @@
                             <option>Otros</option>
                         </select>
                     </div>
-          
+                    <br>
+                           <div class="input-group mb-2">
+                          <label id="lblEstatus" name="lblEstatus">Estatus:</label>  &nbsp; &nbsp;
+                            <select class="form-control" name="txtEstatus" id="txtEstatus">
+                                <option class="form-control" value="1">Asistio</option>
+                                <option class="form-control" value="0">No asistio</option>
+                            </select>
+                    </div>
+                                 <div class="input-group mb-2">
+                                   <label>Monto:</label> &nbsp; &nbsp;
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="text" class="form-control"id="txtMonto" name="txtMonto"  aria-label="Amount (to the nearest dollar)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                    <div class="form-group">
+                        <label>Odontograma:</label>
+                        <input type="text" class="form-control" style="height: 36px, widht:30px " id="txtOdonto" name="txtOdonto" />
+                    </div>
                     <div class="form-group">
                         <label>Color:</label>
                         <input type="color" class="form-control" style="height: 36px" id="txtColor" name="txtColor" />
@@ -218,6 +245,9 @@
                 color: $('#txtColor').val(),
                 textColor: "#FFFFFF",
                 end: $('#txtFecha').val() + " " + $('#txtHora').val(),
+                estatus: $('#txtEstatus').val(),
+                monto: $('#txtMonto').val(),
+                odontograma: $('#txtOdonto').val()
             };
         }
 
@@ -225,7 +255,7 @@
             /*Envia la info usando ajax*/
             $.ajax({
                 type: 'POST',
-                url: 'eventosPac.php?accion=' + accion,
+                url: 'eventos.php?accion=' + accion,
                 data: objEvento,
                 success: function(msj) {
                     if (msj) {
@@ -250,12 +280,15 @@
             $('#txtColor').val('');
             $('#txtHora').val('');
             $('#txtHora2').val('');
+            $('#txtMonto').val('');
+            $('#txtEstatus').val('');
+            $('#txtOdonto').val('');
         }
 
     </script>
 
 </body>
-  
+
 </html>
 <?php include("footer.php"); ?>
 
