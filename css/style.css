@@ -235,4 +235,6 @@ body {
   border: 1px solid black;
   }
 
-  
+.form-control .ieditar{
+  background-color: rgba(85, 219, 183, 0.83);
+}

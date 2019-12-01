@@ -8,7 +8,7 @@
  	$consulta->bind_param('siii',$_REQUEST['nombre-producto'], $_REQUEST['precio'],$_REQUEST['existencia'],$idUsuario);
 
  	if($consulta->execute()){
-		header('location: inventario_alta.php');
+		header('location: InventarioVer.php');
  	}else{	
         echo "ERROOOOOOOOOOOOOOOR!";
         echo $conexion -> error;
