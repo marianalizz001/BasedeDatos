@@ -1,6 +1,7 @@
 <?php
     include("Conexion.php");
     $idUsuario = $_REQUEST['idUsuario'];
+    $tipo = $_REQUEST['tipo'];
     $correo = $_REQUEST['correo'];
     $telefono = $_REQUEST['telefono'];
     $localidad = $_REQUEST['localidad'];
@@ -38,7 +39,7 @@
     $consulta->bind_param('ssssssssi', $correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $localidad, $idUsuario);
 
  	if($consulta->execute()){
-			header('location: InicioPaciente.php');
+        header('location: Inicio.php');
  	}else{
 		echo "ERROOOOOOOOOOOOOOOR!";
         echo $conexion -> error;

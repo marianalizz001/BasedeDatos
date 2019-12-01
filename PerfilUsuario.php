@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Paciente</title>
+    <title>Dra.YazminNajera | Perfil</title>
 
     <?php include("navbar.php"); ?>
     <br>
@@ -25,37 +25,39 @@
     <?php
     include('Conexion.php');
     $temp = $_SESSION['id'];
-    $instruccion = "SELECT  idUsuario, usuario, nombre, apPat, apMat, genero, f_nac, passwd, correo, telefono, foto, calle, no_ext, no_int, cp, colonia,localidades_idlocalidades FROM Usuario WHERE idUsuario = '$temp'";
+    $instruccion = "SELECT * FROM Usuario WHERE idUsuario = '$temp'";
     if(! $resultado = $conexion -> query($instruccion)){
         echo "Ha sucedido un problema";
         exit();
     }
     while ($act = $resultado -> fetch_assoc()){
         $idUsuario = $act['idUsuario'];
+        $tipo = $act['tipo_usuario'];
         $usuario = $act['usuario'];
         $nombre = $act['nombre'];
         $apPat = $act['apPat'];
         $apMat = $act['apMat'];
         $genero = $act['genero'];
         $f_nac = $act['f_nac'];
-        $passwd = $act['passwd'];
-        $passwd = md5($passwd);
-
         $correo = $act['correo'];
         $telefono = $act['telefono'];
-        $localidad = $act['localidades_idlocalidades'];
-        $foto = $act['foto'];
         $calle = $act['calle'];
         $no_ext = $act['no_ext'];
         $no_int = $act['no_int'];
-        $cp = $act['cp'];
         $colonia = $act['colonia'];
+        $cp = $act['cp'];
         $foto = "Usuarios/Fotos/".$act['foto'];
+        $especialidad = $act['especialidad'];
+        $cedula = $act['cedula'];
+        $rfc = $act['rfc'];
+        $salario = $act['salario'];
+        $curriculum = "Empleados/Curriculums/".$act['curriculum'];
+        $localidad = $act['localidades_idlocalidades'];
 ?>  
     <div class="card mb-3 mx-auto" style="max-width: 80%;">
     <div class="row no-gutters">
         <div class="col-md-4">
-        <form action="PacientePerfilPHP.php" method="post" enctype="multipart/form-data">
+        <form action="PerfilUsuarioPHP.php" method="post" enctype="multipart/form-data">
             <?php
                 if ($foto == "Usuarios/Fotos/")
                     echo '<img src="img/perfil.png" class="card-img" alt="...">';
@@ -69,11 +71,27 @@
             <strong><h2 class="card-title"><?php echo $nombre. " ". $apPat. " ". $apMat;?></h2></strong>
             <p class="card-text">
 
-                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong>
-                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong>
+                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong> <br>
+                <small>Fecha de nacimiento: </small> <strong><?php echo $f_nac; ?> </strong> <br>
+                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong><br>
+                <? if ($tipo == 'M'){ ?>
+                    <small>Especialidad: </small> <strong><?php echo $especialidad; ?> </strong> <br>
+                    <small>Cedula: </small> <strong><?php echo $cedula; ?> </strong> <br>
+                <? } if ($tipo == 'E'){?>
+                    <small>Salario: </small> <strong><?php echo $salario; ?> </strong> <br>
+                    <small>Curriculum: </small>
+                    <?php
+                        if ($curriculum == "Empleados/Curriculums/")
+                            echo 'No hay archivo<br>';
+                        else
+                            echo '<a href='.$curriculum.' target="_blank">Descargar</a><br>';
+                    ?>
+                <?php } ?>
+
             </p>
 
                 <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
+                <input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
                 <div class="form-row mt-3">
                     <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Correo: </p>
