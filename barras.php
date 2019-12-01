@@ -45,7 +45,7 @@
     y: datosY,
     type: 'bar',
     marker: {
-      color: ['rgb(114,225,195)', 'rgb(255,128,192)']
+      color: ['rgb(255,174,201)','rgb(114,225,195)']
     }
   }
 ];
