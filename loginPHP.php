@@ -32,13 +32,8 @@
                 $_SESSION['foto'] = "Usuarios/Fotos/".$foto;
                 $_SESSION['curriculum'] = "Empleados/Curriculums/".$curriculum;
                 
-                if($_SESSION['tipo']== 'M')
-                    header('location: InicioMedico.php'); 
-                if($_SESSION['tipo']== 'E')
-                    header('location: InicioEmpleado.php'); 
-                if($_SESSION['tipo']== 'P')
-                    header('location: InicioPaciente.php');     
-
+                header('location: Inicio.php'); 
+                
             }else{
                 echo $conexion -> error;
                 ?>

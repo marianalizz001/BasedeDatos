@@ -1,61 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal();
+        });
+        });
+    </script>
 
-    <link rel="icon" href="img/favicon.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton|Dosis:400,800" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="css/style.css">
-     
-    <title>Dra.YazminNajera | Paciente</title>
-
-    <?php include("navbar.php"); ?>
-    <br>
-  </head>
-
-<body>
     <br>
     <?php
     include('Conexion.php');
-    $temp = $_SESSION['id'];
-    $instruccion = "SELECT  idUsuario, usuario, nombre, apPat, apMat, genero, f_nac, passwd, correo, telefono, foto, calle, no_ext, no_int, cp, colonia,localidades_idlocalidades FROM Usuario WHERE idUsuario = '$temp'";
+    $temp = $_GET['idUsuario'];
+    $instruccion = "SELECT * FROM Usuario WHERE idUsuario = '$temp'";
     if(! $resultado = $conexion -> query($instruccion)){
         echo "Ha sucedido un problema";
         exit();
     }
     while ($act = $resultado -> fetch_assoc()){
         $idUsuario = $act['idUsuario'];
+        $tipo = $act['tipo_usuario'];
         $usuario = $act['usuario'];
         $nombre = $act['nombre'];
         $apPat = $act['apPat'];
         $apMat = $act['apMat'];
         $genero = $act['genero'];
         $f_nac = $act['f_nac'];
-        $passwd = $act['passwd'];
-        $passwd = md5($passwd);
-
         $correo = $act['correo'];
         $telefono = $act['telefono'];
-        $localidad = $act['localidades_idlocalidades'];
-        $foto = $act['foto'];
         $calle = $act['calle'];
         $no_ext = $act['no_ext'];
         $no_int = $act['no_int'];
-        $cp = $act['cp'];
         $colonia = $act['colonia'];
+        $cp = $act['cp'];
         $foto = "Usuarios/Fotos/".$act['foto'];
+        $especialidad = $act['especialidad'];
+        $cedula = $act['cedula'];
+        $rfc = $act['rfc'];
+        $salario = $act['salario'];
+        $curriculum = "Empleados/Curriculums/".$act['curriculum'];
+        $localidad = $act['localidades_idlocalidades'];
 ?>  
+
+<div class style="padding-left: 100px; padding-right: 200px;"> 
+    <div class="row">
+    <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cambiar contraseña</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="CambiarPasswd.php" method="post">
+                    <div class="form-group">
+                        <p style="font-size:20px;color: rgba(144, 12, 52);">Nueva Contraseña: </p>
+                        <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
+                        <input type="password" class="form-control"  name="passwd" required>
+                    </div>     
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input  class = "btn btn-success" type="submit" value="Aceptar" name = "btnEnviar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+     </div>
+
     <div class="card mb-3 mx-auto" style="max-width: 80%;">
     <div class="row no-gutters">
         <div class="col-md-4">
-        <form action="PacientePerfilPHP.php" method="post" enctype="multipart/form-data">
+        <form action="PerfilUsuarioPHP.php" method="post" enctype="multipart/form-data">
             <?php
                 if ($foto == "Usuarios/Fotos/")
                     echo '<img src="img/perfil.png" class="card-img" alt="...">';
@@ -69,11 +91,27 @@
             <strong><h2 class="card-title"><?php echo $nombre. " ". $apPat. " ". $apMat;?></h2></strong>
             <p class="card-text">
 
-                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong>
-                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong>
+                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong> <br>
+                <small>Fecha de nacimiento: </small> <strong><?php echo $f_nac; ?> </strong> <br>
+                <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong><br>
+                <? if ($tipo == 'M'){ ?>
+                    <small>Especialidad: </small> <strong><?php echo $especialidad; ?> </strong> <br>
+                    <small>Cedula: </small> <strong><?php echo $cedula; ?> </strong> <br>
+                <? } if ($tipo == 'E'){?>
+                    <small>Salario: </small> <strong><?php echo $salario; ?> </strong> <br>
+                    <small>Curriculum: </small>
+                    <?php
+                        if ($curriculum == "Empleados/Curriculums/")
+                            echo 'No hay archivo<br>';
+                        else
+                            echo '<a href='.$curriculum.' target="_blank">Descargar</a><br>';
+                    ?>
+                <?php } ?>
+
             </p>
 
                 <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
+                <input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
                 <div class="form-row mt-3">
                     <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Correo: </p>
@@ -143,6 +181,7 @@
                 </div>
 
                 <div class="text-center">
+                    <button type="button" class="btn btn-warning"  id="myBtn">Cambiar contraseña</button>
                     <input  class = "btn btn-success" type="submit" value="Enviar" name = "btnEnviar">
                 </div>
             </form>
@@ -152,7 +191,8 @@
         </div>
         </div>
     <?php } ?>
-</body>
-</html>
-<?php include("footer.php"); ?>
+    <script src="js/jquery.slim.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
 

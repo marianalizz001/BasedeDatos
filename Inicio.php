@@ -25,7 +25,7 @@
 <br><br><br>
 <?php
 $temp = $_SESSION['id'];
-$instruccion = "SELECT  idUsuario,  correo, telefono, foto  FROM Usuario WHERE idUsuario = '$temp'";
+$instruccion = "SELECT  idUsuario, correo, telefono, foto  FROM Usuario WHERE idUsuario = '$temp'";
 if(! $resultado = $conexion -> query($instruccion)){
     echo "Ha sucedido un problema";
     exit();
