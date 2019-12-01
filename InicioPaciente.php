@@ -23,6 +23,20 @@
 
 <body>
 <br><br><br>
+<?php
+$temp = $_SESSION['id'];
+$instruccion = "SELECT  idUsuario,  correo, telefono, foto  FROM Usuario WHERE idUsuario = '$temp'";
+if(! $resultado = $conexion -> query($instruccion)){
+    echo "Ha sucedido un problema";
+    exit();
+}
+while ($act = $resultado -> fetch_assoc()){
+    $idUsuario = $act['idUsuario'];
+    $correo = $act['correo'];
+    $telefono = $act['telefono'];
+    $foto = $act['foto'];
+    $foto = "Usuarios/Fotos/".$act['foto'];
+?>
 <section id="login" class="mb-3 mt-3">
     <div class="container-fluid">
       <div class="row">
@@ -31,10 +45,10 @@
             <div class="row no-gutters">
               <div class="col-md-4">
               <?php
-                if ($_SESSION['foto'] == "Usuarios/Fotos/")
+                if ($foto == "Usuarios/Fotos/")
                   echo '<img src="img/perfil.png" class="card-img" alt="...">';
                 else
-                  echo '<img src='.$_SESSION['foto'].' class="card-img" alt="...">';
+                  echo '<img src='.$foto.' class="card-img" alt="...">';
               ?>
               </div>
               <div class="col-md-8">
@@ -48,8 +62,8 @@
                   <?php } ?>
                   <p class="card-text">
                     <i class="far fa-user" id="icon"></i> Nombre: <?php echo ($_SESSION['nombre']) . " " . ($_SESSION['apPat']) . " " . ($_SESSION['apMat']) ;?><br><br>
-                    <i class="fas fa-mobile-alt" id="icon"></i> Teléfono: <?php echo ($_SESSION['telefono']);?> <br><br>
-                    <i class="far fa-envelope" id="icon"></i> Correo: <?php echo $_SESSION['correo']; ?><br><br>
+                    <i class="fas fa-mobile-alt" id="icon"></i> Teléfono: <?php echo ($telefono);?> <br><br>
+                    <i class="far fa-envelope" id="icon"></i> Correo: <?php echo $correo; ?><br><br>
                   </p>
                 </div>
               </div>
@@ -63,5 +77,4 @@
 </body>
   
 </html>
-<?php include("footer.php"); ?>
-
+<?php } include("footer.php"); ?>
