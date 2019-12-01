@@ -11,26 +11,22 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Dosis:400,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
-    <script src='js/jquery.min.js'></script>
-    <script src='js/moment.min.js'></script>
 
     <link rel="stylesheet" href="css/style.css">
      
     <title>Dra.YazminNajera | Empleado</title>
-    
-    <?php include("navbar.php"); ?>
     <br>
-    <!--Full Calendar-->
+    <script src='js/jquery.min.js'></script>
+<script src='js/moment.min.js'></script>
+<!--Full Calendar-->
 <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
-    <script src='js/fullcalendar.min.js'></script>
-    <script src="js/es.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
-    <script src='js/fullcalendar.min.js'></script>
-    <script src="js/es.js"></script>
- </head>
+<script src='js/fullcalendar.min.js'></script>
+<script src="js/es.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  </head>
 
 <style>
     .fc th {
@@ -46,6 +42,162 @@
 </style>
 
 <body>
+<?php
+    session_start(); 
+    include ('Conexion.php');
+?>
+<!--NAVBAR-->
+<link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: rgba(85, 219, 183, 0.83);">
+  <i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true" onclick="history.back()" style="color: darkcyan; padding-right: 10px;"></i>
+  <a class="float-right" class="navbar-brand" href="index.php"><img src="img/logo.png" width="180" height="50" alt=""></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto" id="ejm2">
+
+    <!-- MENU GENERAL -->
+
+    <?php if (!isset($_SESSION['usuario']) || ($_SESSION['log'] == false)){ ?>
+      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="index.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="nosotros.php"><h5>Nosotros</h5><span class="sr-only">(current)</span></a>
+      </li>
+    
+      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="servicios.php"><h5>Servicios</h5><span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
+      </li>
+    
+      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
+      </li>
+
+      <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="login.php"><i class="fa fa-user fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
+      </li>
+    <?php } ?>
+
+    <!-- MENU CON LOGIN -->
+  <?php if (isset($_SESSION['usuario']) && ($_SESSION['log'] == true)) { ?>
+
+    <?php if ($_SESSION['tipo'] == 'M'){ ?>
+      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="InicioMedico.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+      </li>
+    <?php } ?>
+
+    <?php if ($_SESSION['tipo'] == 'E'){ ?>
+      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+      </li>
+    <?php } ?>
+
+    <?php if ($_SESSION['tipo'] == 'P'){ ?>
+      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+      </li>
+    <?php } ?>
+
+
+    <?php if (($_SESSION['tipo'] == 'M') || ($_SESSION['tipo'] == 'E')){ ?>
+      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="mensajes.php"><h5>Mensajes</h5><span class="sr-only">(current)</span></a>
+    </li>
+    
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link" href="Citas.php" role="button" style="font-size:18px;color:white;">
+          Citas
+        </a>
+      </li>
+
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Paciente
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="PacienteVer.php">Ver</a>
+          <a class="dropdown-item" href="PacienteAlta.php">Alta</a>
+        </div>
+      </li>
+      <?php } ?>
+
+      <?php if ($_SESSION['tipo'] == 'M'){ ?>
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Empleado
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="EmpleadoVer.php">Ver</a>
+          <a class="dropdown-item" href="EmpleadoAlta.php">Alta</a>
+          <a class="dropdown-item" href="EmpleadoAtributos.php">Agregar atributos</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Inventario
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="InventarioVer.php">Lista de Productos</a>
+          <a class="dropdown-item" href="InventarioAlta.php">Nuevo Producto</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Estadísticas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="#">Diagnostico</a>
+          <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
+          <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+        </div>
+      </li>
+
+      <?php } ?>
+
+      <?php if ($_SESSION['tipo'] == 'P'){ ?>
+        <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Citas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="#">Agendar</a>
+          <a class="dropdown-item" href="#">Historial</a>
+        </div>
+      </li>
+
+        <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+          <a class="nav-link" href="InicioPaciente.php"><h5>Saldo</h5><span class="sr-only">(current)</span></a>
+        </li>
+      <?php } ?>
+
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php"><span><i class="fas fa-sign-out-alt fa-2x" style="color: darkcyan;"></i></span></a>
+      </li>
+
+  <?php } ?>
+
+   </div>
+</nav>
+
+<br>
+
+<br>
     <!-- Muestra el calendario-->
     <div class="container">
         <div class="row">
@@ -81,7 +233,7 @@
                     $("#ModalEventos").modal();
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
-                events: 'http://localhost/BasedeDatos/eventos.php',
+                events: 'http://localhost/Citas/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
@@ -290,9 +442,12 @@
         }
 
     </script>
-
+<br>
+<br>
+<br>
 </body>
 
 </html>
+
 <?php include("footer.php"); ?>
 
