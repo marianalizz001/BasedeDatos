@@ -62,7 +62,7 @@
                         <td>' .$id_producto.'</td>
                         <td>' .$nombre.'</td>
                         <td>' .$existencia.'</td>
-                        <td>' .$precio.'</td>
+                        <td><i class="fas fa-dollar-sign"></i>   ' .$precio.'</td>
                         <td>' .$nombreUsuario.'</td>
                         <td>' .$fecha.'</td>
                         <td>'

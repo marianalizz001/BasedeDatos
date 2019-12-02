@@ -38,39 +38,44 @@
   
   $valoresY1=array();
   $valoresX1=array();
-
-  while ($ver1=mysqli_fetch_row($result1)){
+  if(!$result1){
+    echo "<br><br><br><br><br>No hubo citas esta semana <br><br><br><br><br><br>";
+  }else{
+    while ($ver1=mysqli_fetch_row($result1)){
       
-      //Toma en cuenta unicamente las citas agendadas en el rango de fecha obtenido (lunes- sabado)
-      //Guarda el nombre de la semana en español
-     
-      if($ver1[2]>= $fecha_ini and $ver1[2] <= $fecha_fin){
-          if($ver1[0] == "Monday"){
-            $valoresX1[0]="Lunes";
+          //Toma en cuenta unicamente las citas agendadas en el rango de fecha obtenido (lunes- sabado)
+          //Guarda el nombre de la semana en español
+        
+          if($ver1[2]>= $fecha_ini and $ver1[2] <= $fecha_fin){
+              if($ver1[0] == "Monday"){
+                $valoresX1[0]="Lunes";
+              }
+              if($ver1[0] == "Tuesday"){
+                $valoresX1[1]="Martes";
+              }
+              if($ver1[0] == "Wednesday"){
+                $valoresX1[2]="Miercoles";
+              }
+              if($ver1[0] == "Thursday"){
+                $valoresX1[3]="Jueves";
+              }
+              if($ver1[0] == "Friday"){
+                $valoresX1[4]="Viernes";
+              }
+              if($ver1[0] == "Saturday"){
+                $valoresX1[5]="Sabado";
+              }       
+              $valoresY1[]=$ver1[1];   
           }
-          if($ver1[0] == "Tuesday"){
-            $valoresX1[1]="Martes";
-          }
-          if($ver1[0] == "Wednesday"){
-            $valoresX1[2]="Miercoles";
-          }
-          if($ver1[0] == "Thursday"){
-            $valoresX1[3]="Jueves";
-          }
-          if($ver1[0] == "Friday"){
-            $valoresX1[4]="Viernes";
-          }
-          if($ver1[0] == "Saturday"){
-            $valoresX1[5]="Sabado";
-          }       
-          $valoresY1[]=$ver1[1];   
+        
+      
       }
-    
-   
+
+      $datosX1=json_encode($valoresX1);
+      $datosY1=json_encode($valoresY1);
   }
 
-  $datosX1=json_encode($valoresX1);
-  $datosY1=json_encode($valoresY1);
+  
 ?>
 
 <div id="graficaBarras"></div>

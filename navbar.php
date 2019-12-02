@@ -35,9 +35,9 @@
         <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
       </li>
     
-      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+      <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
-      </li>
+      </li>-->
 
       <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
