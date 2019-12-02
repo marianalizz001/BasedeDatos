@@ -102,13 +102,13 @@
 
     <?php if ($_SESSION['tipo'] == 'E'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
     <?php if ($_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
@@ -165,6 +165,8 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
+          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
         </div>
       </li>
 
@@ -233,7 +235,7 @@
                     $("#ModalEventos").modal();
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
-                events: 'http://localhost/Citas/eventos.php',
+                events: 'http://localhost/BasedeDatos/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
