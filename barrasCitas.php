@@ -33,7 +33,7 @@
       break;
   }
   //Llamda al stored procedure p1() del cual se obtiene la fecha de nacimiento y lo agrupa por año  
-  $sql1="SELECT dayname(start), COUNT(DATE(start)), date(start) from cita GROUP BY(DATE(start))";
+  $sql1="call p3()";
   $result1=mysqli_query($conexion,$sql1);
   
   $valoresY1=array();
