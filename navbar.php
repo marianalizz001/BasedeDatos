@@ -51,14 +51,11 @@
     <!-- MENU CON LOGIN -->
   <?php if (isset($_SESSION['usuario']) && ($_SESSION['log'] == true)) { ?>
 
+    <?php if ($_SESSION['tipo'] == 'M' || $_SESSION['tipo'] == 'E' || $_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
-
-    <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-          <a class="nav-link" href="PerfilUsuario.php"><h5>Perfil</h5><span class="sr-only"></span></a>
-    </li>
-
+    <?php } ?>
 
     <?php if (($_SESSION['tipo'] == 'M') || ($_SESSION['tipo'] == 'E')){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -112,6 +109,7 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas</a>
         </div>
       </li>
 
@@ -123,7 +121,7 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
+          <a class="dropdown-item" href="#">Agendar</a>
           <a class="dropdown-item" href="#">Historial</a>
         </div>
       </li>

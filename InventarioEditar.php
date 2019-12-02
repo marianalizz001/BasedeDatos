@@ -29,7 +29,7 @@
                 <th scope="col">Producto</th>
                 <th scope="col">Existencias</th>
                 <th scope="col">Precio</th>
-                <th scope="col">Usuario</th>
+                <th scope="col">Usuario modificador</th>
                 <th scope="col">Fecha de modificación</th>
                 <th scope="col">Eliminar</th>
                 <th scope="col">Editar</th>
@@ -55,21 +55,30 @@
                     $existencia = $act['existencia'];
                     $fecha = $act['fecha'];
                     $nombreUsuario=$act['nombreUsuario'];
-                    if($id_producto==$_GET['idProducto']){
+                    if($id_producto==$_POST['idProducto']){
                         echo'
                         <div class="form-row">
+                        <form id="miFormulario3" action="InventarioEditarPHP.php" method="post">
                             <tr id ="ieditar">    
                                 <td>' .$id_producto.'</td>
                                 <td><input type="text" class="form-control" id="nombre-producto" name="nombre-producto" value="'.$nombre.'"></td>
-                                <td>' .$existencia.'</td>
-                                <td>' .$precio.'</td>
+                                <td><input type="number" class="form-control" id="existencia" name="existencia" value="'.$existencia.'"></td>
+                                <td><input type="number" class="form-control" id="precio" name="precio" value="'.$precio.'"></td>
                                 <td>' .$nombreUsuario.'</td>
                                 <td>' .$fecha.'</td>
-                                <td><a href="">Listo <i class="fas fa-check-circle"></i></a></td>
+                                <td>'
+                                ?>
+                                <a href="" onclick="$('#miFormulario3').submit(); return false;" title="Confirmar">Listo <i class="fas fa-check-circle"></i></a>
+                                <?php 
+                                echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">'?>
+                                </td>
+                                </form>
                                 <td><a href="InventarioVer.php">Cancelar <i class="fas fa-times-circle"></i></a></td>
                             </tr>
-                        </div>';
+                        </div>
+                        <?php
                     }else{
+                    
                         echo'
                         <tr>    
                             <td>' .$id_producto.'</td>
@@ -78,8 +87,28 @@
                             <td>' .$precio.'</td>
                             <td>' .$nombreUsuario.'</td>
                             <td>' .$fecha.'</td>
-                            <td><a href="InventarioBorrar.php?idProducto='.$id_producto.'"><i class="fas fa-trash-alt"></i></a></td>
-                            <td><a href="InventarioEditar.php?idProducto='.$id_producto.'"><i class="fas fa-edit"></i></a></td>
+                            <td>'
+            ?>
+                <a href="" onclick="$('#miFormulario1').submit(); return false;" title="Borrar"><i class="fas fa-trash-alt"></i></a>
+                            <form id="miFormulario1" action="InventarioBorrar.php" method="post">
+                                <?php 
+                                echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
+                                    <input type="hidden" name="idUsuario" id="idUsuario" value="'.$nombreUsuario.'">'?>
+                                </form>
+            <?php
+            echo'
+                            </td>
+                            <td>'
+            ?>
+                <a href="" onclick="$('#miFormulario2').submit(); return false;" title="Editar"><i class="fas fa-edit"></i></a>
+                            <form id="miFormulario2" action="InventarioEditar.php" method="post">
+                                    <?php 
+                                    echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
+                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$nombreUsuario.'">'?>
+                                </form>
+            <?php
+            echo'
+                            </td>
                         </tr>';
                     }
                     
