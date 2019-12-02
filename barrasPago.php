@@ -1,9 +1,10 @@
 <?php
   include ('Conexion.php');
   $fecha=date('Y-m-d');
+  
   //Se obtiene que dia de la semana es, y se obtiene la fecha incial (lunes) y la final (sabado)
   switch(date('w')){
-      case 0:
+    case 0:
         $fecha_ini=date('Y-m-d', strtotime($fecha. '-7 days'));
         $fecha_fin=date('Y-m-d', strtotime($fecha. '-2 days'));
      break;
@@ -33,17 +34,16 @@
       break;
   }
   //Llamda al stored procedure p1() del cual se obtiene la fecha de nacimiento y lo agrupa por año  
-  $sql1="call p3()";
+  $sql1="SELECT dayname(start), SUM(monto), DATE(start) FROM `cita` GROUP BY (DATE(start))";
   $result1=mysqli_query($conexion,$sql1);
   
   $valoresY1=array();
   $valoresX1=array();
 
   while ($ver1=mysqli_fetch_row($result1)){
-      
       //Toma en cuenta unicamente las citas agendadas en el rango de fecha obtenido (lunes- sabado)
       //Guarda el nombre de la semana en español
-     
+      
       if($ver1[2]>= $fecha_ini and $ver1[2] <= $fecha_fin){
           if($ver1[0] == "Monday"){
             $valoresX1[0]="Lunes";
@@ -58,15 +58,16 @@
             $valoresX1[3]="Jueves";
           }
           if($ver1[0] == "Friday"){
+              
             $valoresX1[4]="Viernes";
           }
           if($ver1[0] == "Saturday"){
             $valoresX1[5]="Sabado";
-          }       
-          $valoresY1[]=$ver1[1];   
+          }  
+          $valoresY1[]=$ver1[1];        
       }
     
-   
+    
   }
 
   $datosX1=json_encode($valoresX1);
@@ -105,7 +106,7 @@
 ];
 //Valores de titulos
 var layout = {
-  title: 'Consultas Semanales',
+  title: 'Pagos Semanales',
   font:{
     family: 'Ralewey, sans-serif' 
   },
@@ -113,7 +114,7 @@ var layout = {
     title: 'Dias'
   },
   yaxis: {
-    title: 'Cantidad Citas'
+    title: 'Cantidad $'
   },
   bargap: 0.05
 };
