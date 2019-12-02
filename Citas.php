@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Dosis:400,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
-    <script src='js/jquery.min.js'></script>
-    <script src='js/moment.min.js'></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/moment.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
      
@@ -26,8 +26,8 @@
     <script src='js/fullcalendar.min.js'></script>
     <script src="js/es.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 <style>
     .fc th {
         padding: 10px 0px;

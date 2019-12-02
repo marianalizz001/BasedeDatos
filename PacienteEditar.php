@@ -16,7 +16,7 @@
      
     <title>Dra.YazminNajera | Paciente</title>
 
-    <?php include("navbar.php"); include('Conexion.php'); $idUsuario = $_GET['idUsuario'];?>
+    <?php include("navbar.php"); include('Conexion.php');?>
     <br>
   </head>
 
@@ -24,6 +24,9 @@
 
 <div class="accordion" id="accordionExample">
   <div class="card">
+  <?php 
+    $idUsuario = $_REQUEST['idUsuario'];
+  ?>
     <div class="card-header" id="uno">
       <h2 class="mb-0">
         <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseuno" aria-expanded="false" aria-controls="collapseuno">
@@ -35,6 +38,8 @@
     <div id="collapseuno" class="collapse" aria-labelledby="headinguno" data-parent="#accordionExample">
       <div class="card-body">
           Aqui ponemos el PDF de la historia clinica
+          <?php echo'
+              <a href="Reportes/reporte.php?idUsuario='.$idUsuario.'" target="_blank" >Ver</a></button></a>';?>
       </div>
     </div>
   </div>

@@ -19,7 +19,4 @@
     }
 
     mysqli_close($conexion);
-
-    
-
 ?>
