@@ -89,23 +89,21 @@
                             <td>' .$fecha.'</td>
                             <td>'
             ?>
-                <a href="" onclick="$('#miFormulario1').submit(); return false;" title="Borrar"><i class="fas fa-trash-alt"></i></a>
-                            <form id="miFormulario1" action="InventarioBorrar.php" method="post">
-                                <?php 
-                                echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
-                                    <input type="hidden" name="idUsuario" id="idUsuario" value="'.$nombreUsuario.'">'?>
-                                </form>
+                        <form id="miFormulario1" action="InventarioBorrar.php" method="post">
+                               <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
+                            '?>
+                            <button onclick=submit title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                        </form>
             <?php
             echo'
                             </td>
                             <td>'
             ?>
-                <a href="" onclick="$('#miFormulario2').submit(); return false;" title="Editar"><i class="fas fa-edit"></i></a>
-                            <form id="miFormulario2" action="InventarioEditar.php" method="post">
-                                    <?php 
-                                    echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
-                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$nombreUsuario.'">'?>
-                                </form>
+                        <form id="miFormulario2" action="InventarioEditar.php" method="post">
+                                <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">
+                            '?>
+                            <button onclick=submit title="Editar"><i class="fas fa-edit"></i></button>
+                        </form>
             <?php
             echo'
                             </td>
