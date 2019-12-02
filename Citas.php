@@ -165,6 +165,7 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas</a>
         </div>
       </li>
 
@@ -233,7 +234,7 @@
                     $("#ModalEventos").modal();
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
-                events: 'http://localhost/Citas/eventos.php',
+                events: 'http://localhost/BasedeDatos/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/

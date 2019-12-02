@@ -109,6 +109,7 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas</a>
         </div>
       </li>
 
