@@ -190,7 +190,7 @@
         </div>
         </div>
         </div>
-                            <?php }?>
+                           
     <script src="js/jquery.slim.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
