@@ -34,11 +34,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="servicios_basicos" value="S">
+                    <input class="form-check-input" type="radio" name="servicios_basicos" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="servicios_basicos" value="N">
+                    <input class="form-check-input" type="radio" name="servicios_basicos" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -54,11 +54,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="bano_personal" value="S">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="bano_personal" value="N">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -74,11 +74,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="S">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="N">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -94,11 +94,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="S">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="N">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -114,11 +114,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="hilo_dental" value="S">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="hilo_dental" value="N">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -134,11 +134,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="act_fisica" value="S">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="act_fisica" value="N">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -154,11 +154,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="drogas" value="S">
+                    <input class="form-check-input" type="radio" name="drogas" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="drogas" value="N">
+                    <input class="form-check-input" type="radio" name="drogas" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -174,11 +174,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="fuma" value="S">
+                    <input class="form-check-input" type="radio" name="fuma" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="fuma" value="N">
+                    <input class="form-check-input" type="radio" name="fuma" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -194,11 +194,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alcohol" value="S">
+                    <input class="form-check-input" type="radio" name="alcohol" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alcohol" value="N">
+                    <input class="form-check-input" type="radio" name="alcohol" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -214,11 +214,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="tatuajes" value="S">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="tatuajes" value="N">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -234,11 +234,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="vacunas" value="S">
+                    <input class="form-check-input" type="radio" name="vacunas" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="vacunas" value="N">
+                    <input class="form-check-input" type="radio" name="vacunas" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -254,11 +254,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="embarazada" value="S">
+                    <input class="form-check-input" type="radio" name="embarazada" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="embarazada" value="N">
+                    <input class="form-check-input" type="radio" name="embarazada" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -274,11 +274,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="amamantando" value="S">
+                    <input class="form-check-input" type="radio" name="amamantando" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="amamantando" value="N">
+                    <input class="form-check-input" type="radio" name="amamantando" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
@@ -294,11 +294,11 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="anticonceptivos" value="S">
+                    <input class="form-check-input" type="radio" name="anticonceptivos" value="Si">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="anticonceptivos" value="N">
+                    <input class="form-check-input" type="radio" name="anticonceptivos" value="No">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>

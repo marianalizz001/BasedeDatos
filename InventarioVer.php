@@ -58,14 +58,34 @@
                     $nombreUsuario=$act['nombreUsuario'];
                     echo'
                     <tr>    
+                    
                         <td>' .$id_producto.'</td>
                         <td>' .$nombre.'</td>
                         <td>' .$existencia.'</td>
-                        <td>' .$precio.'</td>
+                        <td><i class="fas fa-dollar-sign"></i>   ' .$precio.'</td>
                         <td>' .$nombreUsuario.'</td>
                         <td>' .$fecha.'</td>
-                        <td><a href="InventarioBorrar.php?idProducto='.$id_producto.'"><i class="fas fa-trash-alt"></i></a></td>
-                        <td><a href="InventarioEditar.php?idProducto='.$id_producto.'"><i class="fas fa-edit"></i></a></td>
+                        <td>'
+        ?>
+            
+                        <form id="miFormulario1" action="InventarioBorrar.php" method="post">
+                               <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
+                            '?>
+                            <button onclick=submit title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+        <?php
+        echo'
+                        </td>
+                        <td>'
+        ?>
+                        <form id="miFormulario2" action="InventarioEditar.php" method="post">
+                                <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">
+                            '?>
+                            <button onclick=submit title="Editar"><i class="fas fa-edit"></i></button>
+                        </form>
+        <?php
+        echo'
+                        </td>
                     </tr>';
                 }
                 
@@ -73,6 +93,7 @@
             $resultado -> free();  
 
         ?>
+        
         
         </tbody>
     </table>

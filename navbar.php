@@ -35,9 +35,9 @@
         <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
       </li>
     
-      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+      <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
-      </li>
+      </li>-->
 
       <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
@@ -51,24 +51,11 @@
     <!-- MENU CON LOGIN -->
   <?php if (isset($_SESSION['usuario']) && ($_SESSION['log'] == true)) { ?>
 
-    <?php if ($_SESSION['tipo'] == 'M'){ ?>
+    <?php if ($_SESSION['tipo'] == 'M' || $_SESSION['tipo'] == 'E' || $_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioMedico.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
-
-    <?php if ($_SESSION['tipo'] == 'E'){ ?>
-      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
-      </li>
-    <?php } ?>
-
-    <?php if ($_SESSION['tipo'] == 'P'){ ?>
-      <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
-      </li>
-    <?php } ?>
-
 
     <?php if (($_SESSION['tipo'] == 'M') || ($_SESSION['tipo'] == 'E')){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -122,6 +109,8 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
+          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
         </div>
       </li>
 
