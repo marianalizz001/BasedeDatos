@@ -11,23 +11,23 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Dosis:400,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/moment.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
      
     <title>Dra.YazminNajera | Empleado</title>
-
-    <?php include("navbar.php"); ?>
     <br>
-  </head>
+    <script src='js/jquery.min.js'></script>
+<script src='js/moment.min.js'></script>
 <!--Full Calendar-->
 <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
-    <script src='js/fullcalendar.min.js'></script>
-    <script src="js/es.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src='js/fullcalendar.min.js'></script>
+<script src="js/es.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+
 <style>
     .fc th {
         padding: 10px 0px;
@@ -42,8 +42,6 @@
 </style>
 
 <body>
-<<<<<<< HEAD
-=======
 <?php
     session_start(); 
     include ('Conexion.php');
@@ -104,13 +102,13 @@
 
     <?php if ($_SESSION['tipo'] == 'E'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
     <?php if ($_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
@@ -167,8 +165,6 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
-          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
-          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
         </div>
       </li>
 
@@ -202,7 +198,6 @@
 <br>
 
 <br>
->>>>>>> 372d13293cb7c7fb8dad91ffd163f1b6c912d3e1
     <!-- Muestra el calendario-->
     <div class="container">
         <div class="row">
@@ -447,9 +442,12 @@
         }
 
     </script>
-
+<br>
+<br>
+<br>
 </body>
 
 </html>
+
 <?php include("footer.php"); ?>
 
