@@ -185,7 +185,7 @@
                     <input  class = "btn btn-success" type="submit" value="Enviar" name = "btnEnviar">
                 </div>
             </form>
-            
+                            <?php } ?>
         </div>
         </div>
         </div>
@@ -195,4 +195,3 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
-
