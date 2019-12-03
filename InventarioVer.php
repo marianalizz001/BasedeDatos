@@ -22,82 +22,93 @@
 
 </head>
 <body>
+<div class="container" id="registro">
+    <div class="row">
+        <div class="col-12" id="barra_servicio" width=100%>
+            <A class="h2 align-middle text-center" name="servicios" id="servicio">Lista de Productos</A>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="table-responsive col-9">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Existencias</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody class="buscar" style="padding-top: 40px; width:100%;">
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Existencias</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Fecha de modificación</th>
-                <th scope="col">Eliminar</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </thead>
-        <tbody class="buscar" style="padding-top: 40px; width:100%;">
+                <?php
+                    include ('Conexion.php');
+                                    
+                    $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,a.activo,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
 
-        <?php
-            include ('Conexion.php');
-                            
-            $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,a.activo,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
-
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema ... ";
-                exit();
-            }
-            while ($act = $resultado -> fetch_assoc()){
-                if( $act['activo']=='1'){
-                    $id_producto = $act['idProducto'];
-                    $nombre = $act['nombre'];
-                    $precio = $act['precio'];
-                    $existencia = $act['existencia'];
-                    $fecha = $act['fecha'];
-                    $nombreUsuario=$act['nombreUsuario'];
-                    echo'
-                    <tr>    
+                    if(! $resultado = $conexion -> query($instruccion)){
+                        echo "Ha sucedido un problema ... ";
+                        exit();
+                    }
+                    while ($act = $resultado -> fetch_assoc()){
+                        if( $act['activo']=='1'){
+                            $id_producto = $act['idProducto'];
+                            $nombre = $act['nombre'];
+                            $precio = $act['precio'];
+                            $existencia = $act['existencia'];
+                            $fecha = $act['fecha'];
+                            $nombreUsuario=$act['nombreUsuario'];
+                            echo'
+                            <tr>    
+                                <td>' .$nombre.'</td>
+                                <td>' .$existencia.'</td>
+                                <td><i class="fas fa-dollar-sign"></i>   ' .$precio.'</td>
+                                <td>'
+                ?>
                     
-                        <td>' .$id_producto.'</td>
-                        <td>' .$nombre.'</td>
-                        <td>' .$existencia.'</td>
-                        <td><i class="fas fa-dollar-sign"></i>   ' .$precio.'</td>
-                        <td>' .$nombreUsuario.'</td>
-                        <td>' .$fecha.'</td>
-                        <td>'
-        ?>
-            
-                        <form id="miFormulario1" action="InventarioBorrar.php" method="post">
-                               <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
-                            '?>
-                            <button onclick=submit title="Borrar"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-        <?php
-        echo'
-                        </td>
-                        <td>'
-        ?>
-                        <form id="miFormulario2" action="InventarioEditar.php" method="post">
-                                <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">
-                            '?>
-                            <button onclick=submit title="Editar"><i class="fas fa-edit"></i></button>
-                        </form>
-        <?php
-        echo'
-                        </td>
-                    </tr>';
-                }
-                
-            }
-            $resultado -> free();  
+                                <form id="miFormulario1" action="InventarioBorrar.php" method="post">
+                                    <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'"> 
+                                    '?>
+                                    <button onclick=submit title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                <?php
+                echo'
+                                </td>
+                                <td>'
+                ?>
+                                <form id="miFormulario2" action="InventarioEditar.php" method="post">
+                                        <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">
+                                    '?>
+                                    <button onclick=submit title="Editar"><i class="fas fa-edit"></i></button>
+                                </form>
+                <?php
+                echo'
+                                </td>
+                            </tr>';
+                        }
+                        
+                    }
+                    $resultado -> free();  
 
-        ?>
+                ?>
+                
+                
+                </tbody>
+            </table>
+        </div>
         
-        
-        </tbody>
-    </table>
+        <div class="col-3" >
+        <img src="img/material.jpg" alt="Material" width=100%>
+        </div>
+
+    </div>
 </div>
+
+
+<br>
     
 </body>
 </html>
