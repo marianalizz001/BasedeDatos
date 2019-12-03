@@ -120,7 +120,7 @@
 
                     <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Teléfono: </p>
-                        <input type="number" class="form-control" id="telefono" name="telefono" required value="<?php echo $telefono;?>">
+                        <input type="tel" pattern="[0-9]{10}" class="form-control" id="telefono" name="telefono" required value="<?php echo $telefono;?>">
                     </div>
                 </div>
 

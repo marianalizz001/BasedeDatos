@@ -24,7 +24,7 @@
 <br><br>
 <div class="container">
     <form action="EmpleadoAtributosPHP.php" method="post" enctype="multipart/form-data">
-        <p class="h4"> Agregar Atributos</p><br>
+        <p class="h4"> Agregar Atributos</p><br><br>
         <div class="form-row">
             <div class="form-group col-sm-6 col-md-4">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre: </label>
@@ -56,7 +56,7 @@
         <div class="text-center">
             <input  class = "btn btn-success" type="submit" value="Enviar" name = "btnEnviar">
         </div>
-        <br>
+        <br><br><br><br><br><br><br><br>
     </form>
 </div>
 
