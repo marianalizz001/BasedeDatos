@@ -4,6 +4,7 @@
     $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
     $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 
+
     switch($accion){
         case 'agregar':
             /*Agrega los valores a la BD*/
@@ -17,7 +18,7 @@
                 "color" => $_POST['color'],
                 "textColor" => $_POST['textColor'],
                 "start" => $_POST['start'],
-                "end" => $_POST['end'],
+                "end" => $_POST['end']
             ));
             echo json_encode($respuesta);
             break;
@@ -42,7 +43,7 @@
             color=:color,
             textColor=:textColor,
             start=:start,
-            end=:end,
+            end=:end
             WHERE ID=:ID
             ");
             
@@ -53,7 +54,7 @@
                 "color" => $_POST['color'],
                 "textColor" => $_POST['textColor'],
                 "start" => $_POST['start'],
-                "end" => $_POST['end'],
+                "end" => $_POST['end']
             ));
             echo json_encode($respuesta);
             break;

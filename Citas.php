@@ -303,24 +303,13 @@
  
       
                 <div class="modal-body">
-                    <input type="text" id="txtID" name="textID">
+                    <input type="hidden" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Nombre:</label>
                             <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" required>
                         </div>
-                        <?php
-              /* 
-               $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
-               $temp = $_GET['txtID'];
-              $sentenciaSQL= $pdo->prepare("SELECT id, start FROM cita");
-              $sentenciaSQL->execute();
-
-              $resultado= $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-              echo json_encode($resultado);
-              echo json_encode($temp);*/
-  ?>
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
                             <select class="form-control" name="txtHora" id="txtHora" required>
