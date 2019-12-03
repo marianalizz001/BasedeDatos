@@ -200,9 +200,6 @@
 <br>
 
 <br>
-
-<br>
-
     <!-- Muestra el calendario-->
     <div class="container">
         <div class="row">
@@ -256,8 +253,6 @@
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
-                    $('#txtEstatus').val(calEvent.estatus);
-                    $('#txtMonto').val(calEvent.monto);
 
 
                     FechaHora = calEvent.start._i.split(" ");
@@ -272,8 +267,6 @@
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
-                    $('#txtEstatus').val(calEvent.estatus);
-                    $('#txtMonto').val(calEvent.monto);
 
                     var fechaHora = calEvent.start.format().split("T");
                     $('#txtFecha').val(fechaHora[0]);
@@ -288,9 +281,7 @@
         });
 
     </script>
-
     <!-- Modal (Eliminar, modificar y agregar) -->
-    <form action="Citas.php" method="get">
     <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -300,26 +291,49 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
- 
-      
                 <div class="modal-body">
                     <input type="hidden" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Nombre:</label>
-                            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" required>
+                            <select class="form-control" name="txtNombre" id="txtNombre">
+                            <option value="Nuevo paciente">Nuevo Paciente</option>
+                            <?php
+                            //Recupera el nombre de los pacientes
+                            include ('Conexion.php');
+                            $temp = "P";
+                            $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM Usuario WHERE tipo_usuario = '$temp'";
+
+                            if(! $resultado = $conexion -> query($instruccion)){
+                              echo "Ha sucedido un problema ... ";
+                              exit();
+                              }
+                              while ($act = $resultado -> fetch_assoc()){
+                                $idUsuario = $act['idUsuario'];
+                                $nombre = $act['nombre'];
+                                $apPat = $act['apPat'];
+                                $apMat = $act['apMat'];
+                                echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
+                                //echo '<input type="text" id="txtIDP" name="textIDP" value="'.$idUsuario.' text='.$idUsuario.'>';
+                              }
+                              $resultado -> free();  
+
+                            ?>           
+                            </select>
+                            
                         </div>
+
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
-                            <select class="form-control" name="txtHora" id="txtHora" required>
-                                <option >10:00-11:00</option>
+                            <select class="form-control" name="txtHora" id="txtHora">
+                                <option>10:00-11:00</option>
                                 <option>11:00-12:00</option>
                                 <option>16:00-17:00</option>
                                 <option>17:00-18:00</option>
                                 <option>18:00-19:00</option>
                             </select>
-                          
+
                         </div>
                         <div class="form-row">
                             &nbsp; <label id="lblHora2" name="lblHora2">Hora seleccionada previamente:</label> &nbsp;
@@ -331,7 +345,7 @@
 
                     <div class="form-row">
                         <label>Servicios:</label>
-                        <select class="form-control" name="txtTitulo" id="txtTitulo" required>
+                        <select class="form-control" name="txtTitulo" id="txtTitulo">
                             <option>Ortodoncia</option>
                             <option>Protesis</option>
                             <option>Estetica dental</option>
@@ -345,27 +359,6 @@
                         </select>
                     </div>
                     <br>
-                           <div class="input-group mb-2">
-                          <label id="lblEstatus" name="lblEstatus "required>Estatus:</label>  &nbsp; &nbsp;
-                            <select class="form-control" name="txtEstatus" id="txtEstatus">
-                                <option class="form-control" value="1">Asistio</option>
-                                <option class="form-control" value="0">No asistio</option>
-                            </select>
-                    </div>
-                                 <div class="input-group mb-2">
-                                   <label>Monto:</label> &nbsp; &nbsp;
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-                                    <input type="text" class="form-control"id="txtMonto" name="txtMonto"  aria-label="Amount (to the nearest dollar)">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                    <div class="form-group">
-                        <label>Color:</label>
-                        <input type="color" class="form-control" style="height: 36px" id="txtColor" name="txtColor" />
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
@@ -376,7 +369,7 @@
             </div>
         </div>
     </div>
-</form>
+
     <script>
         /*Recolecta los datos manda llamar a la funcion Recolectar datos y envia la instruccion de lo que se desea hacer*/
         var NuevoEvento;
@@ -387,6 +380,7 @@
         $('#btnEliminar').click(function() {
             RecolectarDatos();
             EnviarInformacion('eliminar', NuevoEvento);
+            
         });
         $('#btnModificar').click(function() {
             RecolectarDatos();
@@ -395,16 +389,47 @@
 
         function RecolectarDatos() {
             /*Recolecta los datos de los inputs para luego hacer las consultas*/
+            if ( $('#txtTitulo').val() == "Ortodoncia"){
+               $color="#0080ff";
+            }
+            if ( $('#txtTitulo').val() == "Protesis"){
+               $color="#ff8000";
+            }
+            if ( $('#txtTitulo').val() == "Estetica dental"){
+               $color="#ce00ce";
+            }
+            if ( $('#txtTitulo').val() == "Higiene"){
+               $color="#00df52";
+            }
+            if ( $('#txtTitulo').val() == "Prevencion"){
+               $color="#004080";
+            }
+            if ( $('#txtTitulo').val() == "Odontopediatria"){
+               $color="#d5006b";
+            }
+            if ( $('#txtTitulo').val() == "Endodoncia"){
+               $color="#ff0606";
+            }
+            if ( $('#txtTitulo').val() == "Peridoncia"){
+               $color="#1B743A";
+            }
+            if ( $('#txtTitulo').val() == "Cirugia dental"){
+               $color="#a80b0b";
+            }
+            if ( $('#txtTitulo').val() == "Otros"){
+               $color="#000000";
+            }
+             
+            
+                     
             NuevoEvento = {
                 id: $('#txtID').val(),
                 title: $('#txtTitulo').val(),
                 nombre: $('#txtNombre').val(),
                 start: $('#txtFecha').val() + " " + $('#txtHora').val(),
-                color: $('#txtColor').val(),
+                color: $color,
                 textColor: "#FFFFFF",
-                end: $('#txtFecha').val() + " " + $('#txtHora').val(),
-                estatus: $('#txtEstatus').val(),
-                monto: $('#txtMonto').val(),
+                end: $('#txtFecha').val() + " " + $('#txtHora').val()
             };
         }
 
@@ -428,7 +453,6 @@
 
             });
         }
-        
 
         function limpiarFormulario() {
             /*Limpia el formulario */
@@ -440,6 +464,7 @@
             $('#txtHora2').val('');
             $('#txtMonto').val('');
             $('#txtEstatus').val('');
+            $('#txtOdonto').val('');
         }
 
     </script>
