@@ -21,20 +21,26 @@
   </head>
 
 <body>
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Existencias</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Usuario modificador</th>
-                <th scope="col">Fecha de modificación</th>
-                <th scope="col">Eliminar</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </thead>
+<div class="container" id="registro">
+    <div class="row">
+        <div class="col-12" id="barra_servicio" width=100%>
+            <A class="h2 align-middle text-center" name="servicios" id="servicio">Lista de Productos</A>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="table-responsive col-9">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Existencias</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
         <tbody style="padding-top: 40px; width:100%;">
 
         <?php
@@ -48,7 +54,6 @@
             }
             while ($act = $resultado -> fetch_assoc()){
                 if( $act['activo']=='1'){
-                    
                     $id_producto = $act['idProducto'];
                     $nombre = $act['nombre'];
                     $precio = $act['precio'];
@@ -60,15 +65,12 @@
                         <div class="form-row">
                         <form id="miFormulario3" action="InventarioEditarPHP.php" method="post">
                             <tr id ="ieditar">    
-                                <td>' .$id_producto.'</td>
                                 <td><input type="text" class="form-control" id="nombre-producto" name="nombre-producto" value="'.$nombre.'"></td>
                                 <td><input type="number" class="form-control" id="existencia" name="existencia" value="'.$existencia.'"></td>
                                 <td><input type="number" class="form-control" id="precio" name="precio" value="'.$precio.'"></td>
-                                <td>' .$nombreUsuario.'</td>
-                                <td>' .$fecha.'</td>
                                 <td>'
                                 ?>
-                                <a href="" onclick="$('#miFormulario3').submit(); return false;" title="Confirmar">Listo <i class="fas fa-check-circle"></i></a>
+                                <a href="" onclick="$('#miFormulario3').submit(); return false;" title="Confirmar">Listo<br><i class="fas fa-check-circle"></i></a>
                                 <?php 
                                 echo '<input type="hidden" name="idProducto" id="idProducto" value="'.$id_producto.'">'?>
                                 </td>
@@ -81,12 +83,9 @@
                     
                         echo'
                         <tr>    
-                            <td>' .$id_producto.'</td>
                             <td>' .$nombre.'</td>
                             <td>' .$existencia.'</td>
                             <td>' .$precio.'</td>
-                            <td>' .$nombreUsuario.'</td>
-                            <td>' .$fecha.'</td>
                             <td>'
             ?>
                         <form id="miFormulario1" action="InventarioBorrar.php" method="post">
@@ -119,7 +118,14 @@
         
         </tbody>
     </table>
-</div>
+    </div>
+        
+        <div class="col-3">
+        <img src="img/material.jpg" alt="Material" width=100%>
+        </div>
+    </div>
+</div><br>
+
 </body>
 </html>
 <?php include("footer.php"); ?>

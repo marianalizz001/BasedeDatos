@@ -1,7 +1,7 @@
 <?php
 /*Hace la conexion a la base de datos*/
     header('Content-Type: application/json');
-    $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
+    $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","Karma_150");
     $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 
 
