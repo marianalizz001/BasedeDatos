@@ -4,12 +4,13 @@
     $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
     $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 
+
     switch($accion){
         case 'agregar':
             /*Agrega los valores a la BD*/
             $sentenciaSQL = $pdo->prepare("INSERT INTO
-            cita(title,nombre,color,textColor,start,end,estatus,monto,odontograma)
-            VALUES(:title,:nombre,:color,:textColor,:start,:end,:estatus,:monto,:odontograma)");
+            cita(title,nombre,color,textColor,start,end,estatus,monto)
+            VALUES(:title,:nombre,:color,:textColor,:start,:end,:estatus,:monto)");
             
             $respuesta=$sentenciaSQL->execute(array(
                "title" => $_POST['title'],
@@ -19,8 +20,7 @@
                 "start" => $_POST['start'],
                 "end" => $_POST['end'],
                 "estatus" => $_POST['estatus'],
-                "monto" => $_POST['monto'],
-                "odontograma" => $_POST['odontograma']
+                "monto" => $_POST['monto']
             ));
             echo json_encode($respuesta);
             break;
@@ -47,8 +47,7 @@
             start=:start,
             end=:end,
             estatus=:estatus,
-            monto=:monto,
-            odontograma=:odontograma
+            monto=:monto
             WHERE ID=:ID
             ");
             
@@ -61,8 +60,7 @@
                 "start" => $_POST['start'],
                 "end" => $_POST['end'],
                 "estatus" => $_POST['estatus'],
-                "monto" => $_POST['monto'],
-                "odontograma" => $_POST['odontograma']
+                "monto" => $_POST['monto']
             ));
             echo json_encode($respuesta);
             break;
