@@ -165,6 +165,8 @@
           <a class="dropdown-item" href="#">Diagnostico</a>
           <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
           <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
+          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
+          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
         </div>
       </li>
 
