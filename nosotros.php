@@ -25,10 +25,11 @@
       <div class="col-12" id="barra_servicio" style="text-align: center;">
           <a class="h2 align-middle text-center" name="servicios" id="servicio">¿Quiénes somos?</a>
       </div>
-      <div class="col-12" id="nosotros" style="font-size:20px;padding-bottom:20px;">
+      <div class="col-12" id="nosotros" style="font-size:20px;padding-bottom:15px;">
           <br>
-          Somos un consultorio dental cerca de ti, capacitados para brindarte un tratamiento dental completo de principio a fin, con profesionistas capacitados para brindarte consistencia en en tu diagnóstico, tratamientos personalizados y precio accesible, en el mismo sitio.
-          <br><br>
+          <p style="font-size:23px; text-align: center;">Somos un consultorio dental cerca de ti, capacitados para brindarte un tratamiento dental completo
+           de principio a fin, con profesionistas capacitados para brindarte consistencia en en tu diagnóstico, 
+           tratamientos personalizados y precio accesible, en el mismo sitio.</p>
           <img src="img/img16.jpg" class="img-fluid" width="700px" height="800px">
       </div>
       <br>
