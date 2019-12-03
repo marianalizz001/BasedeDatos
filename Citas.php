@@ -198,6 +198,9 @@
 <br>
 
 <br>
+
+<br>
+
     <!-- Muestra el calendario-->
     <div class="container">
         <div class="row">
@@ -253,7 +256,6 @@
                     $('#txtColor').val(calEvent.color);
                     $('#txtEstatus').val(calEvent.estatus);
                     $('#txtMonto').val(calEvent.monto);
-                    $('#txtOdonto').val(calEvent.odontograma);
 
 
                     FechaHora = calEvent.start._i.split(" ");
@@ -270,7 +272,6 @@
                     $('#txtColor').val(calEvent.color);
                     $('#txtEstatus').val(calEvent.estatus);
                     $('#txtMonto').val(calEvent.monto);
-                    $('#txtOdonto').val(calEvent.odontograma);
 
                     var fechaHora = calEvent.start.format().split("T");
                     $('#txtFecha').val(fechaHora[0]);
@@ -285,7 +286,9 @@
         });
 
     </script>
+
     <!-- Modal (Eliminar, modificar y agregar) -->
+    <form action="Citas.php" method="get">
     <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -295,25 +298,37 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+ 
+      
                 <div class="modal-body">
-                    <input type="hidden" id="txtID" name="textID">
+                    <input type="text" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Nombre:</label>
-                            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" required>
                         </div>
+                        <?php
+              /* 
+               $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
+               $temp = $_GET['txtID'];
+              $sentenciaSQL= $pdo->prepare("SELECT id, start FROM cita");
+              $sentenciaSQL->execute();
 
+              $resultado= $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+              echo json_encode($resultado);
+              echo json_encode($temp);*/
+  ?>
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
-                            <select class="form-control" name="txtHora" id="txtHora">
-                                <option>10:00-11:00</option>
+                            <select class="form-control" name="txtHora" id="txtHora" required>
+                                <option >10:00-11:00</option>
                                 <option>11:00-12:00</option>
                                 <option>16:00-17:00</option>
                                 <option>17:00-18:00</option>
                                 <option>18:00-19:00</option>
                             </select>
-
+                          
                         </div>
                         <div class="form-row">
                             &nbsp; <label id="lblHora2" name="lblHora2">Hora seleccionada previamente:</label> &nbsp;
@@ -325,7 +340,7 @@
 
                     <div class="form-row">
                         <label>Servicios:</label>
-                        <select class="form-control" name="txtTitulo" id="txtTitulo">
+                        <select class="form-control" name="txtTitulo" id="txtTitulo" required>
                             <option>Ortodoncia</option>
                             <option>Protesis</option>
                             <option>Estetica dental</option>
@@ -340,7 +355,7 @@
                     </div>
                     <br>
                            <div class="input-group mb-2">
-                          <label id="lblEstatus" name="lblEstatus">Estatus:</label>  &nbsp; &nbsp;
+                          <label id="lblEstatus" name="lblEstatus "required>Estatus:</label>  &nbsp; &nbsp;
                             <select class="form-control" name="txtEstatus" id="txtEstatus">
                                 <option class="form-control" value="1">Asistio</option>
                                 <option class="form-control" value="0">No asistio</option>
@@ -357,10 +372,6 @@
                                     </div>
                                 </div>
                     <div class="form-group">
-                        <label>Odontograma:</label>
-                        <input type="text" class="form-control" style="height: 36px, widht:30px " id="txtOdonto" name="txtOdonto" />
-                    </div>
-                    <div class="form-group">
                         <label>Color:</label>
                         <input type="color" class="form-control" style="height: 36px" id="txtColor" name="txtColor" />
                     </div>
@@ -374,7 +385,7 @@
             </div>
         </div>
     </div>
-
+</form>
     <script>
         /*Recolecta los datos manda llamar a la funcion Recolectar datos y envia la instruccion de lo que se desea hacer*/
         var NuevoEvento;
@@ -403,7 +414,6 @@
                 end: $('#txtFecha').val() + " " + $('#txtHora').val(),
                 estatus: $('#txtEstatus').val(),
                 monto: $('#txtMonto').val(),
-                odontograma: $('#txtOdonto').val()
             };
         }
 
@@ -427,6 +437,7 @@
 
             });
         }
+        
 
         function limpiarFormulario() {
             /*Limpia el formulario */
@@ -438,7 +449,6 @@
             $('#txtHora2').val('');
             $('#txtMonto').val('');
             $('#txtEstatus').val('');
-            $('#txtOdonto').val('');
         }
 
     </script>
