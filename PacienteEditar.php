@@ -37,9 +37,8 @@
 
     <div id="collapseuno" class="collapse" aria-labelledby="headinguno" data-parent="#accordionExample">
       <div class="card-body">
-          Aqui ponemos el PDF de la historia clinica
           <?php echo'
-              <a href="Reportes/reporte.php?idUsuario='.$idUsuario.'" target="_blank" >Ver</a></button></a>';?>
+              <iframe class="col-lg-12 col-md-12 col-sm-12" src="Reportes/HistoriaClinica.php?idUsuario='.$idUsuario.'" height="600"></iframe>'; ?>
       </div>
     </div>
   </div>

@@ -67,25 +67,14 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alergias" value="No" onclick="habilitar(2)">
+                    <input class="form-check-input" type="radio" name="alergias" value="No" onclick="habilitar(2)" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
 
-            <div class="form-group col-sm-6 col-md-4" style="visibility: hidden;" id="alergias">
+            <div class="form-group col-sm-6 col-md-8" style="visibility: hidden;" id="alergias">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Si" name="a_padre">
-                    <label class="form-check-label" for="inlineCheckbox1">Padres</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Si" name="a_abuelo">
-                    <label class="form-check-label" for="inlineCheckbox2">Abuelos</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Si" name="a_hermanos">
-                    <label class="form-check-label" for="inlineCheckbox3">Hermanos</label>
-                </div>
+                <input type="text" name="alergias_q" style="width: 400px;">
             </div>
         </div>
 
@@ -97,25 +86,14 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="cardiologicas" value="No" onclick="habilitar(4)">
+                    <input class="form-check-input" type="radio" name="cardiologicas" value="No" onclick="habilitar(4)" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
 
-            <div class="form-group col-sm-6 col-md-4" style="visibility: hidden;" id="cardiologicas">
+            <div class="form-group col-sm-6 col-md-8" style="visibility: hidden;" id="cardiologicas">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Si" name="card_padre">
-                    <label class="form-check-label" for="inlineCheckbox1">Padres</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Si" name="card_abuelo">
-                    <label class="form-check-label" for="inlineCheckbox2">Abuelos</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Si" name="card_hermanos">
-                    <label class="form-check-label" for="inlineCheckbox3">Hermanos</label>
-                </div>
+                <input type="text" name="cardiologicas_q" style="width: 400px;">
             </div>
         </div>
 
@@ -127,25 +105,14 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="hipertension" value="No" onclick="habilitar(6)">
+                    <input class="form-check-input" type="radio" name="hipertension" value="No" onclick="habilitar(6)" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
 
-            <div class="form-group col-sm-6 col-md-4" style="visibility: hidden;" id="hipertension">
+            <div class="form-group col-sm-6 col-md-8" style="visibility: hidden;" id="hipertension">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Si" name="hip_padre">
-                    <label class="form-check-label" for="inlineCheckbox1">Padres</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Si" name="hip_abuelo">
-                    <label class="form-check-label" for="inlineCheckbox2">Abuelos</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Si" name="hip_hermanos">
-                    <label class="form-check-label" for="inlineCheckbox3">Hermanos</label>
-                </div>
+                <input type="text" name="hipertension_q" style="width: 400px;">
             </div>
         </div>
 
@@ -157,25 +124,14 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="oncologicas" value="No" onclick="habilitar(8)">
+                    <input class="form-check-input" type="radio" name="oncologicas" value="No" onclick="habilitar(8)" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
 
-            <div class="form-group col-sm-6 col-md-4" style="visibility: hidden;" id="oncologicas">
+            <div class="form-group col-sm-6 col-md-8" style="visibility: hidden;" id="oncologicas">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Si" name="onc_padre">
-                    <label class="form-check-label" for="inlineCheckbox1">Padres</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Si" name="onc_abuelo">
-                    <label class="form-check-label" for="inlineCheckbox2">Abuelos</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Si" name="onc_hermanos">
-                    <label class="form-check-label" for="inlineCheckbox3">Hermanos</label>
-                </div>
+                <input type="text" name="oncologicas_q" style="width: 400px;">
             </div>
         </div>
 
@@ -187,25 +143,14 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="diabetes" value="No" onclick="habilitar(10)">
+                    <input class="form-check-input" type="radio" name="diabetes" value="No" onclick="habilitar(10)" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
 
-            <div class="form-group col-sm-6 col-md-4" style="visibility: hidden;" id="diabetes">
+            <div class="form-group col-sm-6 col-md-8" style="visibility: hidden;" id="diabetes">
                 <label for="quien" style="font-size:20px;color: rgba(144, 12, 52);">¿Quién?</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Si" name="diab_padre">
-                    <label class="form-check-label" for="inlineCheckbox1">Padres</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Si" name="diab_abuelo">
-                    <label class="form-check-label" for="inlineCheckbox2">Abuelos</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Si" name="diab_hermanos">
-                    <label class="form-check-label" for="inlineCheckbox3">Hermanos</label>
-                </div>
+                <input type="text" name="diabetes_q" style="width: 400px;">
             </div>
         </div>
 

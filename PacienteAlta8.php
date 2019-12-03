@@ -35,7 +35,7 @@
     
             <div class="form-group col-sm-6 col-md-3">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Estado de salud general: </label>
-                <select id="condicion" class="form-control" name="salud">
+                <select id="condicion" class="form-control" name="salud" required>
                         <option selected></option>
                         <option value="Bueno">Bueno</option>
                         <option value="Regular">Regular</option>
@@ -45,7 +45,7 @@
 
             <div class="form-group col-sm-6 col-md-3">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Conductual: </label>
-                <select id="condicion" class="form-control" name="conducta">
+                <select id="condicion" class="form-control" name="conducta" required>
                         <option selected></option>
                         <option value="Bueno">Bueno</option>
                         <option value="Regular">Regular</option>
@@ -60,7 +60,7 @@
 
             <div class="form-group col-sm-6 col-md-3">
                 <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> Pronóstico: </label>
-                <select id="condicion" class="form-control" name="pronostico">
+                <select id="condicion" class="form-control" name="pronostico" required>
                         <option selected></option>
                         <option value="Favorable">Favorable</option>
                         <option value="Desfavorable">Desfavorable</option>

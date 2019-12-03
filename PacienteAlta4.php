@@ -18,6 +18,42 @@
 
     <?php include("navbar.php"); ?>
     <br>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+    
+    function habilitar(radio){
+        if (radio == 5)
+            document.getElementById("cepillar_dientes").style.visibility = "visible";
+        if (radio == 6)
+            document.getElementById("cepillar_dientes").style.visibility = "hidden";
+        if (radio == 11)
+            document.getElementById("act_fisica").style.visibility = "visible";
+        if (radio == 12)
+            document.getElementById("act_fisica").style.visibility = "hidden";
+        if (radio == 13)
+            document.getElementById("drogas").style.visibility = "visible";
+        if (radio == 14)
+            document.getElementById("drogas").style.visibility = "hidden";
+        if (radio == 15)
+            document.getElementById("fuma").style.visibility = "visible";
+        if (radio == 16)
+            document.getElementById("fuma").style.visibility = "hidden";
+        if (radio == 17)
+            document.getElementById("alcohol").style.visibility = "visible";
+        if (radio == 18)
+            document.getElementById("alcohol").style.visibility = "hidden";
+        if (radio == 19)
+            document.getElementById("tatuajes").style.visibility = "visible";
+        if (radio == 20)
+            document.getElementById("tatuajes").style.visibility = "hidden";
+        if (radio == 23)
+            document.getElementById("embarazada").style.visibility = "visible";
+        if (radio == 24)
+            document.getElementById("embarazada").style.visibility = "hidden";
+    }
+    </script>
+
   </head>
 
 <body>
@@ -38,13 +74,9 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="servicios_basicos" value="No">
+                    <input class="form-check-input" type="radio" name="servicios_basicos" value="No" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="servicios_basicos_esp">
             </div>
         </div>
 
@@ -54,17 +86,13 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="bano_personal" value="Si">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="Si" >
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="bano_personal" value="No">
+                    <input class="form-check-input" type="radio" name="bano_personal" value="No" checked >
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="bano_personal_esp">
             </div>
         </div>
 
@@ -74,15 +102,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="Si">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="Si" onclick="habilitar(5)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="No">
+                    <input class="form-check-input" type="radio" name="cepillar_dientes" value="No" checked onclick="habilitar(6)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="cepillar_dientes">
                 <label for="quien">Especifique</label>
                 <input type="text" name="cepillar_dientes_esp">
             </div>
@@ -94,17 +122,13 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="Si">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="Si" >
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="No">
+                    <input class="form-check-input" type="radio" name="enjuage_bucal" value="No" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="enguaje_bucal_esp">
             </div>
         </div>
 
@@ -114,17 +138,13 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="hilo_dental" value="Si">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="Si" >
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="hilo_dental" value="No">
+                    <input class="form-check-input" type="radio" name="hilo_dental" value="No" checked >
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="hilo_dental_esp">
             </div>
         </div>
 
@@ -134,15 +154,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="act_fisica" value="Si">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="Si" onclick="habilitar(11)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="act_fisica" value="No">
+                    <input class="form-check-input" type="radio" name="act_fisica" value="No" checked onclick="habilitar(12)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="act_fisica">
                 <label for="quien">Especifique</label>
                 <input type="text" name="act_fisica_esp">
             </div>
@@ -154,15 +174,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="drogas" value="Si">
+                    <input class="form-check-input" type="radio" name="drogas" value="Si" onclick="habilitar(13)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="drogas" value="No">
+                    <input class="form-check-input" type="radio" name="drogas" value="No" checked onclick="habilitar(14)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="drogas">
                 <label for="quien">Especifique</label>
                 <input type="text" name="drogras_esp">
             </div>
@@ -174,15 +194,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="fuma" value="Si">
+                    <input class="form-check-input" type="radio" name="fuma" value="Si" onclick="habilitar(15)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="fuma" value="No">
+                    <input class="form-check-input" type="radio" name="fuma" value="No" checked onclick="habilitar(16)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="fuma">
                 <label for="quien">Especifique</label>
                 <input type="text" name="fuma_esp">
             </div>
@@ -194,15 +214,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alcohol" value="Si">
+                    <input class="form-check-input" type="radio" name="alcohol" value="Si" onclick="habilitar(17)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="alcohol" value="No">
+                    <input class="form-check-input" type="radio" name="alcohol" value="No" checked onclick="habilitar(18)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="alcohol">
                 <label for="quien">Especifique</label>
                 <input type="text" name="alcohol_esp">
             </div>
@@ -214,16 +234,16 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="tatuajes" value="Si">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="Si" onclick="habilitar(19)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="tatuajes" value="No">
+                    <input class="form-check-input" type="radio" name="tatuajes" value="No" checked onclick="habilitar(20)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="tatuajes">
+                <label for="quien">¿Cuántos?</label>
                 <input type="text" name="tatuajes_esp">
             </div>
         </div>
@@ -234,17 +254,13 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="vacunas" value="Si">
+                    <input class="form-check-input" type="radio" name="vacunas" value="Si" >
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="vacunas" value="No">
+                    <input class="form-check-input" type="radio" name="vacunas" value="No" checked >
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="vacunas_esp">
             </div>
         </div>
 
@@ -254,15 +270,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="embarazada" value="Si">
+                    <input class="form-check-input" type="radio" name="embarazada" value="Si" onclick="habilitar(23)">
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="embarazada" value="No">
+                    <input class="form-check-input" type="radio" name="embarazada" value="No" checked onclick="habilitar(24)">
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-3" style="visibility: hidden;" id="embarazada">
                 <label for="quien">Especifique</label>
                 <input type="text" name="embarazada_esp">
             </div>
@@ -274,18 +290,15 @@
             </div>
             <div class="form-group col-sm-6 col-md-2">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="amamantando" value="Si">
+                    <input class="form-check-input" type="radio" name="amamantando" value="Si" >
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="amamantando" value="No">
+                    <input class="form-check-input" type="radio" name="amamantando" value="No" checked>
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
             </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="amamantando_esp">
-            </div>
+            
         </div>
 
         <div class="form-row">
@@ -298,13 +311,9 @@
                     <label class="form-check-label" for="exampleRadios1"> Si </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="anticonceptivos" value="No">
+                    <input class="form-check-input" type="radio" name="anticonceptivos" value="No" checked >
                     <label class="form-check-label" for="exampleRadios2"> No </label>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
-                <label for="quien">Especifique</label>
-                <input type="text" name="anticonceptivos_esp">
             </div>
         </div>    
         <br>

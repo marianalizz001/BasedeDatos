@@ -28,7 +28,7 @@
     <form action="PacienteAltaPHP7.php" method="post" enctype="multipart/form-data">
         <?php $idUsuario = $_REQUEST['idUsuario']; ?>
         <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
-        <p class="h4"> Nuevo Paciente - <small>Éxamenes Complementarios</small></p>
+        <p class="h4"> Nuevo Paciente - <small>Exámenes Complementarios</small></p>
         <hr>
         <div class="form-row">
             <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">

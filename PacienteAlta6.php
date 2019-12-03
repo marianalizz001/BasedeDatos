@@ -34,7 +34,7 @@
     
             <div class="form-group col-sm-6 col-md-6">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Tipo de dentición: </label>
-                <select id="condicion" class="form-control" name="denticion">
+                <select id="condicion" class="form-control" name="denticion" required>
                         <option selected></option>
                         <option value="Temporal">Temporal</option>
                         <option value="Mixta">Mixta</option>
@@ -44,7 +44,7 @@
 
             <div class="form-group col-sm-6 col-md-6">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Clasificación de angle: </label>
-                <select id="condicion" class="form-control" name="angle">
+                <select id="condicion" class="form-control" name="angle" required>
                         <option selected></option>
                         <option value="Clase I">Clase I</option>
                         <option value="Clase II">Clase II</option>
