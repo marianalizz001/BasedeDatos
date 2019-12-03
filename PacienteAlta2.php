@@ -51,12 +51,12 @@
 
             <div class="form-group col-sm-6 col-md-4">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Última consulta dental: </label>
-                <input type="date" class="form-control" id="ultima_consulta" name="ultima_consulta">
+                <input type="date" class="form-control" id="ultima_consulta" name="ultima_consulta" min="1930-01-01" max="2019-12-05"required>
             </div>
 
             <div class="form-group col-sm-6 col-md-12">
                 <label for="passwd" style="font-size:20px;color: rgba(144, 12, 52);"> Motivo de consulta: </label>
-                <input type="text" class="form-control" id="mot_consulta" name="mot_consulta">
+                <input type="text" class="form-control" id="mot_consulta" name="mot_consulta" required>
             </div>
 
         </div>
@@ -80,7 +80,7 @@
 
             <div class="form-group col-sm-12 col-md-3 mt-2">
                 <label for="telefono" style="font-size:20px;color: rgba(144, 12, 52);"> Teléfono: </label>
-                <input type="number" class="form-control" id="telefono" name="telefono" required>
+                <input type="tel" pattern="[0-9]{10}" class="form-control" id="telefono" name="telefono" required>
             </div>
         </div>
         <br>

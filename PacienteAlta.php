@@ -77,12 +77,12 @@
 
             <div class="form-group col-sm-12 col-md-4">
                 <label for="telefono" style="font-size:20px;color: rgba(144, 12, 52);"> Teléfono: </label>
-                <input type="number" class="form-control" id="telefono" name="telefono" required>
+                <input type="tel" pattern="[0-9]{10}" class="form-control" id="telefono" name="telefono" required>
             </div>
 
             <div class="form-group col-sm-12 col-md-4">
                 <label for="f_nac" style="font-size:20px;color: rgba(144, 12, 52);"> Fecha Nacimiento: </label>
-                <input type="date" class="form-control" id="f_nac" name="f_nac" required>
+                <input type="date" class="form-control" id="f_nac" name="f_nac"  min="1930-01-01" max="2018-01-01" required>
             </div>
         </div>
 

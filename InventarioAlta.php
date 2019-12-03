@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Dra.YazminNajera | Contacto</title>
+    <title>Dra.YazminNajera | Inventario</title>
 
     <?php include("navbar.php"); ?>
     <br>
@@ -69,7 +69,7 @@
                     </div>
             </div>
 
-            <br><br>
+            <br><br><br><br><br>
         </div>
 
     </div>
