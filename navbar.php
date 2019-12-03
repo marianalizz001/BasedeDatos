@@ -122,7 +122,7 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="#">Agendar</a>
+          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
           <a class="dropdown-item" href="#">Historial</a>
         </div>
       </li>

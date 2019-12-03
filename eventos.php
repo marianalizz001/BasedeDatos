@@ -8,8 +8,8 @@
         case 'agregar':
             /*Agrega los valores a la BD*/
             $sentenciaSQL = $pdo->prepare("INSERT INTO
-            cita(title,nombre,color,textColor,start,end,estatus,monto,odontograma)
-            VALUES(:title,:nombre,:color,:textColor,:start,:end,:estatus,:monto,:odontograma)");
+            cita(title,nombre,color,textColor,start,end)
+            VALUES(:title,:nombre,:color,:textColor,:start,:end)");
             
             $respuesta=$sentenciaSQL->execute(array(
                "title" => $_POST['title'],
@@ -17,12 +17,13 @@
                 "color" => $_POST['color'],
                 "textColor" => $_POST['textColor'],
                 "start" => $_POST['start'],
-                "end" => $_POST['end'],
-                "estatus" => $_POST['estatus'],
-                "monto" => $_POST['monto'],
-                "odontograma" => $_POST['odontograma']
+                "end" => $_POST['end']
             ));
+
             echo json_encode($respuesta);
+            $conexion = new mysqli ('localhost','root','','Consultorio');
+            $sql1="call p4()";
+            $result1=mysqli_query($conexion,$sql1);
             break;
             
         case 'eliminar':
@@ -46,9 +47,6 @@
             textColor=:textColor,
             start=:start,
             end=:end,
-            estatus=:estatus,
-            monto=:monto,
-            odontograma=:odontograma
             WHERE ID=:ID
             ");
             
@@ -59,10 +57,7 @@
                 "color" => $_POST['color'],
                 "textColor" => $_POST['textColor'],
                 "start" => $_POST['start'],
-                "end" => $_POST['end'],
-                "estatus" => $_POST['estatus'],
-                "monto" => $_POST['monto'],
-                "odontograma" => $_POST['odontograma']
+                "end" => $_POST['end']
             ));
             echo json_encode($respuesta);
             break;
