@@ -22,11 +22,9 @@
 
 <body>
 
+<?php $idUsuario = $_REQUEST['idUsuario']; ?>
 <div class="accordion" id="accordionExample">
   <div class="card">
-  <?php 
-    $idUsuario = $_REQUEST['idUsuario'];
-  ?>
     <div class="card-header" id="uno">
       <h2 class="mb-0">
         <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseuno" aria-expanded="false" aria-controls="collapseuno">

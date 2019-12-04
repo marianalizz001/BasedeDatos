@@ -12,6 +12,8 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/sweetalert.css" rel="stylesheet">
+
 
     <title>Dra.YazminNajera | Contacto</title>
 
@@ -66,7 +68,7 @@
           <label for="telefono" style="font-size:20px;color: rgba(144, 12, 52);"> Teléfono: </label>
         </div>
         <div class="col-sm-12 col-md-3">
-          <input type="number" class="form-control" id="telefono" name="telefono" required>
+        <input type="tel" pattern="[0-9]{10}" class="form-control" id="telefono" name="telefono" required>
         </div>
       </div>
       <br><br>
