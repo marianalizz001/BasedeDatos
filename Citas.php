@@ -78,9 +78,9 @@
         <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
       </li>
     
-      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+      <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
-      </li>
+      </li>-->
 
       <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
@@ -94,24 +94,20 @@
     <!-- MENU CON LOGIN -->
   <?php if (isset($_SESSION['usuario']) && ($_SESSION['log'] == true)) { ?>
 
-    <?php if ($_SESSION['tipo'] == 'M'){ ?>
+    <?php if ($_SESSION['tipo'] == 'M' || $_SESSION['tipo'] == 'E' || $_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioMedico.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
-    <?php } ?>
 
-    <?php if ($_SESSION['tipo'] == 'E'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="PerfilUsuario.php"><h5>Perfil</h5><span class="sr-only">(current)</span></a>
       </li>
-    <?php } ?>
 
     <?php if ($_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
-
 
     <?php if (($_SESSION['tipo'] == 'M') || ($_SESSION['tipo'] == 'E')){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -170,6 +166,20 @@
         </div>
       </li>
 
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="Reportes/MsgContestados.php" target="_blank">Msg Contestados</a>
+          <a class="dropdown-item" href="Reportes/MsgPendientes.php" target="_blank">Msg Pendientes</a>
+          <a class="dropdown-item" href="Reportes/ListadoEmpleados.php" target="_blank">Empleados</a>
+          
+        </div>
+      </li>
+
+      
+
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
@@ -178,7 +188,7 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="#">Agendar</a>
+          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
           <a class="dropdown-item" href="#">Historial</a>
         </div>
       </li>
@@ -249,11 +259,11 @@
 
 
                     //Mostrar la innfo del evento en los inputs
+                    
                     $('#txtID').val(calEvent.id);
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
-
 
                     FechaHora = calEvent.start._i.split(" ");
                     $('#txtFecha').val(FechaHora[0]);
@@ -292,7 +302,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="txtID" name="textID">
+                    <input type="text" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
@@ -327,11 +337,12 @@
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
                             <select class="form-control" name="txtHora" id="txtHora">
-                                <option>10:00-11:00</option>
-                                <option>11:00-12:00</option>
-                                <option>16:00-17:00</option>
-                                <option>17:00-18:00</option>
-                                <option>18:00-19:00</option>
+                                <option>10:00:00</option>
+                                <option>11:00:00</option>
+                                <option>16:00:00</option>
+                                <option>17:00:00</option>
+                                <option>18:00:00</option>
+                                <option>19:00:00</option>
                             </select>
 
                         </div>

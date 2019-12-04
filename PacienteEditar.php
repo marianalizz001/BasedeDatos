@@ -22,78 +22,62 @@
 
 <body>
 
+<?php $idUsuario = $_REQUEST['idUsuario']; ?>
+
 <div class="accordion" id="accordionExample">
-  <div class="card">
-  <?php 
-    $idUsuario = $_REQUEST['idUsuario'];
-  ?>
-    <div class="card-header" id="uno">
-      <h2 class="mb-0">
-        <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseuno" aria-expanded="false" aria-controls="collapseuno">
-          H I S T O R I A  -  C L I N I C A
-        </button>
-      </h2>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                H I S T O R I A  -  C L I N I C A
+                </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                <?php echo'
+                    <iframe class="col-lg-12 col-md-12 col-sm-12" src="Reportes/HistoriaClinica.php?idUsuario='.$idUsuario.'" height="600"></iframe>'; ?>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="collapseuno" class="collapse" aria-labelledby="headinguno" data-parent="#accordionExample">
-      <div class="card-body">
-          <?php echo'
-              <iframe class="col-lg-12 col-md-12 col-sm-12" src="Reportes/HistoriaClinica.php?idUsuario='.$idUsuario.'" height="600"></iframe>'; ?>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingcuatro">
-      <h2 class="mb-0">
-        <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapsecuatro" aria-expanded="false" aria-controls="collapsecuatro">
-          P E R F I L
-        </button>
-      </h2>
-    </div>
-
-    <div id="collapsecuatro" class="collapse" aria-labelledby="headingcuatro" data-parent="#accordionExample">
-      <div class="card-body">
-        <?php include("Perfil.php")?>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-header" id="headingdos">
-      <h2 class="mb-0">
-        <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapsedos" aria-expanded="false" aria-controls="collapsedos">
-          C I T A S
-        </button>
-      </h2>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                 P E R F I L
+                </button>
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <?php include("Perfil.php")?>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="collapsedos" class="collapse" aria-labelledby="headingdos" data-parent="#accordionExample">
-      <div class="card-body">
-          
-      </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                 C I T A S
+                </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                 
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingtres">
-      <h2 class="mb-0">
-        <button class="btn btn-outline-secondary" type="button" style="width: 300px;"  data-toggle="collapse" data-target="#collapsetres" aria-expanded="false" aria-controls="collapsetres">
-          P A G O S
-        </button>
-      </h2>
-    </div>
-
-    <div id="collapsetres" class="collapse" aria-labelledby="headingtres" data-parent="#accordionExample">
-      <div class="card-body">
-          
-      </div>
-    </div>
-  </div>
-</div>
 </body>
   
 </html>
 <?php include("footer.php"); ?>
+
 

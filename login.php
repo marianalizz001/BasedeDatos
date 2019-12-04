@@ -12,6 +12,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/sweetalert.css" rel="stylesheet">
 
     <title>Dra.YazminNajera | Login</title>
 

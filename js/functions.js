@@ -9,7 +9,7 @@ jQuery(".msg-basico-txt").click(function() {
 });
 
 jQuery(".msg-exito").click(function() {
-	swal("¡Bien!", "Mensaje Enviado", "success");
+	swal("¡Bien!", "Has hecho clic en el botón :)", "success");
 });
 
 jQuery(".msg-warning").click(function() {
@@ -33,25 +33,22 @@ jQuery(".msg-warning").click(function() {
 
 jQuery(".msg-cond").click(function() {
 	swal({   
-		title: "¿Deseas unirte al lado oscuro?",   
-		text: "Este paso marcará el resto de tu vida...",   
+		title: "¿Está seguro?",   
+		text: "El paciente será eliminado",   
 		type: "warning",   
 		showCancelButton: true,   
 		confirmButtonColor: "#DD6B55",   
-		confirmButtonText: "¡Claro!",   
-		cancelButtonText: "No, jamás",   
+		confirmButtonText: "Si",   
+		cancelButtonText: "No",   
 		closeOnConfirm: false,   
 		closeOnCancel: false }, 
 
 		function(isConfirm){   
 			if (isConfirm) {     
-				swal("¡Hecho!", 
-					"Ahora eres uno de los nuestros", 
-					"success");   
+				swal("¡Bien!", "El paciente se ha sido eliminado", "success");  
 			} else {     
 				swal("¡Gallina!", 
-					"Tu te lo pierdes...", 
-				"error");   
+					"Tu te lo pierdes...", "error");   
 			} 
 		});
 });
