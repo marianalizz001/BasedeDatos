@@ -249,11 +249,11 @@
 
 
                     //Mostrar la innfo del evento en los inputs
+                    
                     $('#txtID').val(calEvent.id);
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
-
 
                     FechaHora = calEvent.start._i.split(" ");
                     $('#txtFecha').val(FechaHora[0]);
@@ -292,7 +292,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="txtID" name="textID">
+                    <input type="text" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
@@ -327,11 +327,12 @@
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
                             <select class="form-control" name="txtHora" id="txtHora">
-                                <option>10:00-11:00</option>
-                                <option>11:00-12:00</option>
-                                <option>16:00-17:00</option>
-                                <option>17:00-18:00</option>
-                                <option>18:00-19:00</option>
+                                <option>10:00:00</option>
+                                <option>11:00:00</option>
+                                <option>16:00:00</option>
+                                <option>17:00:00</option>
+                                <option>18:00:00</option>
+                                <option>19:00:00</option>
                             </select>
 
                         </div>
