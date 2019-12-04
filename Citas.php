@@ -96,7 +96,7 @@
 
     <?php if ($_SESSION['tipo'] == 'M'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioMedico.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
@@ -108,7 +108,7 @@
 
     <?php if ($_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="InicioPaciente.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
 
