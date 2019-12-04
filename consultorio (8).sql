@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2019 a las 19:59:00
+-- Tiempo de generación: 04-12-2019 a las 23:13:02
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,18 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `p2` ()  BEGIN 
 SELECT * FROM mensaje where visto='0' ORDER BY f_enviado DESC;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `p3` ()  BEGIN
+SELECT dayname(start), COUNT(DATE(start)), date(start) from cita GROUP BY(DATE(start));
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `p4` ()  BEGIN
+DECLARE y int;
+DECLARE x int;
+set y = (select a.idUsuario from usuario a, cita b where CONCAT(a.nombre,' ',a.apPat,' ',a.apMat)=b.nombre ORDER BY b.id DESC limit 1);
+set x = (select b.id from usuario a, cita b where CONCAT(a.nombre,' ',a.apPat,' ',a.apMat)=b.nombre ORDER BY b.id DESC limit 1);
+update cita set usuario_idUsuario=y where id=x;
 END$$
 
 DELIMITER ;
@@ -69,15 +81,17 @@ CREATE TABLE `cita` (
   `end` datetime DEFAULT NULL,
   `estatus` char(1) NOT NULL,
   `monto` float DEFAULT NULL,
-  `odontograma` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `odontograma` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `usuario_idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cita`
 --
 
-INSERT INTO `cita` (`id`, `title`, `nombre`, `color`, `textColor`, `start`, `end`, `estatus`, `monto`, `odontograma`) VALUES
-(3, 'Prevencion', 'Joanna', '#ffff00', '#FFFFFF', '2019-12-05 16:00:17', '2019-12-05 16:00:17', '', NULL, NULL);
+INSERT INTO `cita` (`id`, `title`, `nombre`, `color`, `textColor`, `start`, `end`, `estatus`, `monto`, `odontograma`, `usuario_idUsuario`) VALUES
+(76, 'Ortodoncia', 'Sebastian Velasco  Romo', '#0080ff', '#FFFFFF', '2019-12-12 11:00:00', '2019-12-12 11:00:00', '', NULL, NULL, 3),
+(77, 'Higiene', 'Sebastian Velasco  Romo', '#00df52', '#FFFFFF', '2019-12-13 11:00:00', '2019-12-13 11:00:00', '', NULL, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -109,9 +123,26 @@ CREATE TABLE `detalle_paciente` (
   `referido` varchar(45) DEFAULT NULL,
   `mot_consulta` varchar(500) DEFAULT NULL,
   `ult_consulta` date DEFAULT NULL,
-  `contacto_emergencia` int(11) DEFAULT NULL,
-  `ant_fam` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `contacto_emergencia_nombre` varchar(50) NOT NULL,
+  `contacto_emergencia_apPat` varchar(20) NOT NULL,
+  `contacto_emergencia_apMat` varchar(20) NOT NULL,
+  `contacto_emergencia_num` char(10) DEFAULT NULL,
+  `ant_fam` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ant_per_no_pat` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ant_per_pat` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `exp_fisica` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ex_compl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `con_diag` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `carta_cons` blob DEFAULT NULL,
+  `Usuario_idUsuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle_paciente`
+--
+
+INSERT INTO `detalle_paciente` (`idPaciente`, `referido`, `mot_consulta`, `ult_consulta`, `contacto_emergencia_nombre`, `contacto_emergencia_apPat`, `contacto_emergencia_apMat`, `contacto_emergencia_num`, `ant_fam`, `ant_per_no_pat`, `ant_per_pat`, `exp_fisica`, `ex_compl`, `con_diag`, `carta_cons`, `Usuario_idUsuario`) VALUES
+(1, 'Familiar', 'Limpieza bucal', '2019-10-01', 'Malena', 'Márquez', 'Ramírez', '4493456290', '{\"idUsuario\":\"22\",\"alergias\":\"S\",\"alergias_quien\":\"Padres\",\"enf_car\":\"N\",\"enf_car_quien\":\"\",\"hip_arterial\":\"S\",\"hip_arterial_quien\":\"Abuelos\",\"enf_onc\":\"N\",\"enf_onc_quien\":\"\",\"diabetes\":\"S\",\"diabetes_quien\":\"Hermanos\"}', NULL, '{\"idUsuario\":\"22\",\"hospitalizado\":\"S\",\"hospitalizado_esp\":\"\",\"tratamiento\":\"S\",\"tratamiento_esp\":\"\",\"anestesia\":\"S\",\"anestesia_esp\":\"\",\"sangre\":\"S\",\"sangre_esp\":\"\",\"secuela\":\"S\",\"secuela_esp\":\"\",\"hipertension\":\"S\",\"hipertension_esp\":\"\",\"corazon\":\"N\",\"corazon_esp\":\"\",\"respiratoria\":\"N\",\"respiratoria_esp\":\"\",\"convulsiones\":\"N\",\"convulsiones_esp\":\"\",\"hepatitis\":\"N\",\"hepatitis_esp\":\"\",\"vih\":\"N\",\"vih_esp\":\"\",\"tuberculosis\":\"N\",\"tuberculosis_esp\":\"\",\"rinones\":\"N\",\"rinones_esp\":\"\",\"nomencionada\":\"N\",\"nomencionada_esp\":\"\",\"transfusion\":\"N\",\"transfusion_esp\":\"\",\"medicamento\":\"N\",\"medicamento_esp\":\"\",\"observaciones\":\"obs\"}', '{\"idUsuario\":\"22\",\"denticion\":\"Mixta\",\"angle\":\"Clase II\"}', '{\"idUsuario\":\"22\",\"salud\":\"B\",\"conducta\":\"B\",\"enfermedad_actual\":\"Ninguna\",\"pronostico\":\"Favorable\"}', '{\"salud\":\"B\",\"conducta\":\"B\",\"enfermedad_actual\":\"Ninguna\",\"pronostico\":\"Favorable\"}', NULL, 22);
 
 -- --------------------------------------------------------
 
@@ -127,20 +158,6 @@ CREATE TABLE `diente` (
   `Cita_idCita` int(11) NOT NULL,
   `Cita_Paciente_idPaciente` int(11) NOT NULL,
   `Cita_Paciente_Usuario_idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado`
---
-
-CREATE TABLE `empleado` (
-  `idEmpleado` int(11) NOT NULL,
-  `salario` float DEFAULT NULL,
-  `curriculum` blob DEFAULT NULL,
-  `tipo` char(1) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -209,14 +226,27 @@ CREATE TABLE `expediente` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `items`
+-- Estructura de tabla para la tabla `historial_inventario`
 --
 
-CREATE TABLE `items` (
-  `idItems` int(11) NOT NULL,
-  `respuesta` varchar(45) DEFAULT NULL,
-  `obs` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `historial_inventario` (
+  `id_movimiento` int(11) NOT NULL,
+  `Usuario_idUsuario` int(11) NOT NULL,
+  `fecha_modificacion` datetime NOT NULL,
+  `producto_idProducto` int(11) NOT NULL,
+  `existencia_actual` int(11) DEFAULT NULL,
+  `existencia_nueva` int(11) DEFAULT NULL,
+  `precio_actual` int(11) DEFAULT NULL,
+  `precio_nuevo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `historial_inventario`
+--
+
+INSERT INTO `historial_inventario` (`id_movimiento`, `Usuario_idUsuario`, `fecha_modificacion`, `producto_idProducto`, `existencia_actual`, `existencia_nueva`, `precio_actual`, `precio_nuevo`) VALUES
+(1, 1, '2019-12-02 19:42:03', 1, 12, 10, 8, 8),
+(2, 1, '2019-12-04 00:03:24', 1, 10, 12, 8, 8);
 
 -- --------------------------------------------------------
 
@@ -996,42 +1026,34 @@ INSERT INTO `localidades` (`idlocalidades`, `clave`, `nombre`, `municipios_idmun
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `medico`
---
-
-CREATE TABLE `medico` (
-  `idMedico` int(11) NOT NULL,
-  `especialidad` varchar(45) NOT NULL,
-  `cedula` int(11) DEFAULT NULL,
-  `rfc` varchar(45) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `mensaje`
 --
 
 CREATE TABLE `mensaje` (
   `id_mensaje` int(11) NOT NULL,
+  `usuario_id_usuario` int(11) DEFAULT NULL,
   `nombre` varchar(20) NOT NULL,
   `apPat` varchar(20) NOT NULL,
   `apMat` varchar(20) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `telefono` char(10) NOT NULL,
   `mensaje` varchar(1000) NOT NULL,
-  `visto` char(1) NOT NULL,
-  `f_enviado` datetime DEFAULT NULL ON UPDATE current_timestamp()
+  `f_enviado` datetime NOT NULL DEFAULT current_timestamp(),
+  `f_respuesta` datetime DEFAULT NULL,
+  `visto` char(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `mensaje`
 --
 
-INSERT INTO `mensaje` (`id_mensaje`, `nombre`, `apPat`, `apMat`, `correo`, `telefono`, `mensaje`, `visto`, `f_enviado`) VALUES
-(1, 'Karen', 'Marquez', 'Rodriguez', 'ivette.marquez98@gmail.com', '4494346300', 'Esto es un mensaje de prueba. ', '0', '2019-11-28 17:16:11'),
-(2, 'Mariana', 'Acero', 'Perez', 'mariana@gmail.com', '4491234355', ' jfbjdcnjdsbcjsxmkskcn', '', NULL);
+INSERT INTO `mensaje` (`id_mensaje`, `usuario_id_usuario`, `nombre`, `apPat`, `apMat`, `correo`, `telefono`, `mensaje`, `f_enviado`, `f_respuesta`, `visto`) VALUES
+(1, 0, 'Karen', 'Marquez', 'Rodriguez', 'ivette.marquez98@gmail.com', '4494346300', 'Esto es un mensaje de prueba. ', '2019-11-23 00:00:00', '2019-11-23 00:00:00', '0'),
+(2, 2, 'Mariana', 'Acero', 'Perez', 'mariana@gmail.com', '4491234355', ' jfbjdcnjdsbcjsxmkskcn', '2019-11-23 00:00:00', '2019-11-23 00:00:00', '1'),
+(3, 1, 'sara', 'Romo', 'Diaz', 'sra@gmail.com', '449547688', 'Este es le mensaje', '2019-11-23 00:00:00', '2019-11-23 00:00:00', '1'),
+(4, NULL, 'Minerva', 'Rodriguez', '', 'mine@hotmail.com', '4491938932', 'Por favor de comunicarse.\r\nGracias', '2019-11-23 00:00:00', NULL, '0'),
+(5, NULL, 'Jesus Sebastian', 'Velasco', 'Romo', 'sebitas@gmail.com', '4494145560', 'Tengo un espacio entre los dientes de arriba\r\nfavor de comunicarse.', '2019-11-23 00:00:00', NULL, '0'),
+(6, 1, 'sebas', 'velasco', 'romo', 'jesussebastianvelascoromo@gmail.com', '4494145569', 'Primero que nada, buenos dìas', '2019-11-25 00:00:00', '2019-11-30 00:00:00', '1');
 
 -- --------------------------------------------------------
 
@@ -3520,16 +3542,6 @@ INSERT INTO `municipios` (`idmunicipios`, `clave`, `nombre`, `estados_idestado`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `odontograma`
---
-
-CREATE TABLE `odontograma` (
-  `idOdontograma` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `producto`
 --
 
@@ -3538,8 +3550,18 @@ CREATE TABLE `producto` (
   `nombre` varchar(45) DEFAULT NULL,
   `precio` float DEFAULT NULL,
   `existencia` int(11) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) NOT NULL
+  `Usuario_idUsuario` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `activo` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `existencia`, `Usuario_idUsuario`, `fecha`, `activo`) VALUES
+(1, 'Gasas', 8, 12, 1, '2019-12-04 00:03:23', '1'),
+(3, 'Algodon', 8, 80, 1, '2019-12-02 16:31:58', '1');
 
 -- --------------------------------------------------------
 
@@ -3550,7 +3572,8 @@ CREATE TABLE `producto` (
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
   `tipo_usuario` char(1) DEFAULT NULL,
-  `f_alta` date DEFAULT NULL,
+  `f_alta` datetime NOT NULL DEFAULT current_timestamp(),
+  `f_baja` datetime DEFAULT NULL,
   `usuario` varchar(20) DEFAULT NULL,
   `passwd` varchar(500) DEFAULT NULL,
   `nombre` varchar(20) DEFAULT NULL,
@@ -3569,7 +3592,7 @@ CREATE TABLE `usuario` (
   `especialidad` varchar(45) DEFAULT NULL,
   `cedula` varchar(10) DEFAULT NULL,
   `rfc` varchar(15) DEFAULT NULL,
-  `salario` float DEFAULT NULL,
+  `salario` int(11) DEFAULT NULL,
   `curriculum` blob DEFAULT NULL,
   `localidades_idlocalidades` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -3578,10 +3601,17 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `tipo_usuario`, `f_alta`, `usuario`, `passwd`, `nombre`, `apPat`, `apMat`, `genero`, `f_nac`, `correo`, `telefono`, `calle`, `no_ext`, `no_int`, `colonia`, `cp`, `foto`, `especialidad`, `cedula`, `rfc`, `salario`, `curriculum`, `localidades_idlocalidades`) VALUES
-(1, 'M', '2019-11-21', 'med', 'med', 'Yazmin', 'Najera', 'Marquez', 'F', '1998-05-05', 'yaz@gmail.com', '4494346300', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'E', '2019-11-21', 'emp', 'emp', 'Karen', 'Marquez', 'Rodriguez', 'F', NULL, 'karen@gmail.com', '4494346300', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'P', '2019-11-21', 'pac', 'pac', 'Sebastian', 'Velasco ', 'Romo', 'M', '2019-11-21', 'sebas@gmail.com', '4491234566', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `usuario` (`idUsuario`, `tipo_usuario`, `f_alta`, `f_baja`, `usuario`, `passwd`, `nombre`, `apPat`, `apMat`, `genero`, `f_nac`, `correo`, `telefono`, `calle`, `no_ext`, `no_int`, `colonia`, `cp`, `foto`, `especialidad`, `cedula`, `rfc`, `salario`, `curriculum`, `localidades_idlocalidades`) VALUES
+(1, 'M', '2019-11-21 00:00:00', NULL, 'med', 'de4667d1f44423b565b07a7bb14790fc', 'Yazmin', 'Najera', 'Marquez', 'F', '1998-05-05', 'yaz@gmail.com', '4494346300', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'E', '2019-11-21 00:00:00', NULL, 'emp', 'ac8be4aee61f5f6e21b8c5afffb52939', 'Karen', 'Marquez', 'Rodriguez', 'F', '1998-05-05', 'karen@gmail.com', '4494346300', 'Hacienda el Soyatal', '125', '', NULL, '20196', 0x35314332433743432d313431312d344541442d393834462d3042343037324346343443452e6a706567, NULL, NULL, 'MR9805', 1233, 0x5072616374696361437572736f7265732e646f6378, NULL),
+(3, 'P', '2019-11-21 00:00:00', NULL, 'pac', '182a15b93cd323556be21fd4fe8f3a8a', 'Sebastian', 'Velasco ', 'Romo', 'M', '2019-11-21', 'sebas@gmail.com', '4491234566', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'E', '2019-11-24 00:00:00', '2019-11-25 00:00:00', 'DianaGpe', 'hola', 'Diana', 'Márquez', 'Rodriguez', 'F', '1998-12-12', 'diana@gmail.com', '4495467787', 'Hda. nueva', '128', '', 'Los Arbolitos [Rancho]', '20196', '', NULL, NULL, 'DMR98', 45600, '', NULL),
+(10, 'E', '2019-11-25 00:00:00', NULL, 'jeronimo', 'alo', 'Jeronimo', 'Diaz', 'Ruiz', 'M', '1998-03-02', 'i@gmail.com', '9484', 'nd', '2', '9', 'Granja Adelita', '83', 0x46374441333246322d313132462d343331322d393438452d3142453341373942303643305f315f3130355f632e6a706567, NULL, NULL, 'jhdfnjd', 3874, 0x5072616374696361437572736f7265732e646f6378, NULL),
+(22, 'P', '2019-11-28 00:00:00', NULL, 'Gabriela95', '4d186321c1a7f0f354b297e8914ab240', 'Gabriela ', 'Nájera', 'Márquez', 'F', '1995-04-18', 'gaby@gmail.com', '4492223454', 'Burgos', '220', '', 'Aguascalientes', '20200', '', NULL, NULL, 'RFCGaby95', NULL, NULL, NULL),
+(23, 'E', '2019-11-28 00:00:00', NULL, 'Ximena95', '4d186321c1a7f0f354b297e8914ab240', 'Ximena', 'Figueroa', 'Márquez', 'F', '2014-04-18', 'xime@gmail.com', '4498767800', 'Viracocha', '211', '', NULL, '30098', 0x42433441304345432d383932372d343230312d394634342d3744463436333443313034422e6a706567, NULL, NULL, 'RFCXimena', 54500, '', 0),
+(24, 'E', '2019-11-28 00:00:00', '2019-11-29 00:00:00', 'x', '4d186321c1a7f0f354b297e8914ab240', 'x', 'x', 'x', 'F', '1998-08-12', 'i@gmail.com', '7', 'h', '6', '', 'h', '7678', '', NULL, NULL, 'jggb', 768, '', 2),
+(26, 'P', '2019-11-28 00:00:00', '2019-11-29 00:00:00', 'xy', '4d186321c1a7f0f354b297e8914ab240', 'x', 'x', 'x', 'F', '1998-12-12', 'loc@gmail.com', '86', 'bhb', '87', '', 'hbh', '798', '', NULL, NULL, '', NULL, NULL, 1),
+(28, 'P', '2019-11-29 18:50:57', NULL, 'Angie', '202cb962ac59075b964b07152d234b70', 'Angie', 'Estrada', 'Cornejo', 'F', '1988-05-17', 'aestrada@gruposinco.com.mx', '4492122079', 'Rio duero', '102', '', 'Colinas del Rio', '20010', '', NULL, NULL, 'eacd980517MASSR', NULL, NULL, 7);
 
 --
 -- Índices para tablas volcadas
@@ -3597,7 +3627,8 @@ ALTER TABLE `abono`
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_idUsuario` (`usuario_idUsuario`);
 
 --
 -- Indices de la tabla `credito`
@@ -3618,12 +3649,6 @@ ALTER TABLE `diente`
   ADD PRIMARY KEY (`idDiente`,`Cita_idCita`,`Cita_Paciente_idPaciente`,`Cita_Paciente_Usuario_idUsuario`);
 
 --
--- Indices de la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`idEmpleado`,`Usuario_idUsuario`);
-
---
 -- Indices de la tabla `estados`
 --
 ALTER TABLE `estados`
@@ -3636,22 +3661,18 @@ ALTER TABLE `expediente`
   ADD PRIMARY KEY (`idExpediente`);
 
 --
--- Indices de la tabla `items`
+-- Indices de la tabla `historial_inventario`
 --
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`idItems`);
+ALTER TABLE `historial_inventario`
+  ADD PRIMARY KEY (`id_movimiento`),
+  ADD KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
+  ADD KEY `producto_idProducto` (`producto_idProducto`);
 
 --
 -- Indices de la tabla `localidades`
 --
 ALTER TABLE `localidades`
   ADD PRIMARY KEY (`idlocalidades`) USING BTREE;
-
---
--- Indices de la tabla `medico`
---
-ALTER TABLE `medico`
-  ADD PRIMARY KEY (`idMedico`,`Usuario_idUsuario`);
 
 --
 -- Indices de la tabla `mensaje`
@@ -3666,24 +3687,19 @@ ALTER TABLE `municipios`
   ADD PRIMARY KEY (`idmunicipios`,`estados_idestado`);
 
 --
--- Indices de la tabla `odontograma`
---
-ALTER TABLE `odontograma`
-  ADD PRIMARY KEY (`idOdontograma`);
-
---
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`) USING BTREE,
-  ADD UNIQUE KEY `Usuario_idUsuario` (`Usuario_idUsuario`);
+  ADD KEY `Usuario_idUsuario` (`Usuario_idUsuario`) USING BTREE;
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`) USING BTREE,
-  ADD UNIQUE KEY `localidades_idlocalidades` (`localidades_idlocalidades`);
+  ADD UNIQUE KEY `localidades_idlocalidades` (`localidades_idlocalidades`) USING BTREE,
+  ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -3693,13 +3709,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_paciente`
 --
 ALTER TABLE `detalle_paciente`
   MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_inventario`
+--
+ALTER TABLE `historial_inventario`
+  MODIFY `id_movimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `mensaje`
@@ -3711,13 +3733,24 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `historial_inventario`
+--
+ALTER TABLE `historial_inventario`
+  ADD CONSTRAINT `historial_inventario_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `historial_inventario_ibfk_2` FOREIGN KEY (`producto_idProducto`) REFERENCES `producto` (`idProducto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

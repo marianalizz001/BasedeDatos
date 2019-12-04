@@ -292,7 +292,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="txtID" name="textID">
+                    <input type="hidden" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
