@@ -11,7 +11,8 @@
 			$this->SetTextColor(184,10,10);
 			$this->Cell(30);
 			$this->Cell(120,10,utf8_decode("Mensajes Pendientes"),0,0,'C');
-			$this->Ln(20);
+            $this->Ln(20);
+            
 		}
 		
 		function Footer()
