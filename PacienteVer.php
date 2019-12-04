@@ -114,4 +114,4 @@ $(document).ready(function () {
 </html>
 <?php include("footer.php"); ?>
 <script src="js/jquery.slim.js"></script>
-    <script src="js/scripts.js"></script>
+<script src="js/scripts.js"></script>
