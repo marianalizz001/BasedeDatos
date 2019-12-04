@@ -19,7 +19,7 @@
     
     <script src="librerias/jquery-3.4.1.min.js"></script>
     <script src="librerias/plotly-latest.min.js"></script>
-    <title>Dra.YazminNajera | Inventario</title>
+    <title>Dra.YazminNajera | Estadisticas</title>
     
     <?php include("navbar.php"); ?>
     

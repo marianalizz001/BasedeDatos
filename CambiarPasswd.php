@@ -48,7 +48,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "PacienteVer.php";
+                            window.location.href = "javascript:window.history.back()";
                         }
                     });
             });
