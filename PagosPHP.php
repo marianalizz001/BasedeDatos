@@ -5,59 +5,12 @@
 <script src="js/sweetalert.min.js"></script>
 
 <?php
-    session_start();
     include('Conexion.php');
+    $idCita=$_POST['idCita'];
+    $idUsuario=$_POST['idUsuario'];
+    $monto=$_REQUEST['monto'];
 
-	$idUsuario= $_SESSION['id'];
-	//echo $idUsuario;
-	$Nombre = $_SESSION['nombre'];
-	//echo $Nombre;
-	$Fecha=$_REQUEST['fecha_cita'];
-	//echo $Fecha;
-	$Hora= $_REQUEST['txtHora'];
-	//echo $Hora;
-	$Titulo= $_REQUEST['txtTitulo'];
-	//echo $Titulo;
-	$Fecha_Inicial = $Fecha." ".$Hora;
-	//echo $Fecha_Inicial;
-	$Fecha_Final = $Fecha." ".$Hora;
-	//echo $Fecha_Final;
-
-	if ( $Titulo == "Ortodoncia"){
-		$color="#0080ff";
-	 }
-	 if ( $Titulo == "Protesis"){
-		$color="#ff8000";
-	 }
-	 if ( $Titulo == "Estetica dental"){
-		$color="#ce00ce";
-	 }
-	 if ( $Titulo == "Higiene"){
-		$color="#00df52";
-	 }
-	 if ( $Titulo == "Prevencion"){
-		$color="#004080";
-	 }
-	 if ( $Titulo == "Odontopediatria"){
-		$color="#d5006b";
-	 }
-	 if (	$Titulo == "Endodoncia"){
-		$color="#ff0606";
-	 }
-	 if ( $Titulo == "Peridoncia"){
-		$color="#1B743A";
-	 }
-	 if ( $Titulo == "Cirugia dental"){
-		$color="#a80b0b";
-	 }
-	 if ( $Titulo == "Otros"){
-		$color="#000000";
-	 }
-
-	 $TextColor="#FFFFFF";
- 	$consulta= $conexion->prepare("INSERT into cita(title,nombre,color,textColor,start,end,usuario_idUsuario) values (?,?,?,?,?,?,?)");
-    
- 	$consulta->bind_param('ssssssi',$Titulo,$Nombre,$color,$TextColor,$Fecha_Inicial,$Fecha_Final,$idUsuario);
+ 	$consulta= $conexion->prepare("insert into pagos(cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),$monto)");
 
  	if($consulta->execute()){
 		?>
@@ -73,7 +26,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "CitaVer.php";
+                            window.location.href = "PacienteVer.php";
                         }
                     });
             });
@@ -100,5 +53,4 @@
                 </script>
             <?php
  	}
-
 ?>

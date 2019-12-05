@@ -130,6 +130,7 @@
                                                         <form id="miFormulario2" action="PacienteEditarPHP.php" method="post">
                                                             <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
                                                                         <input type="hidden" name="opc" id="opc" value="0"> 
+                                                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
                                                             '?>
 
                                                             <button id="estatus" onclick=submit title="No asistió"><i class="fas fa-times-circle" style="color:red;"></i></button>
@@ -142,12 +143,14 @@
                                             <?php
                                             }elseif($estatus=='1'){
                                                 echo "<strong style='color: green;'>Asistió</strong>";
+
                                             }else{
                                                 echo "<strong style='color: red;'>No asistió</strong>";
+
                                             }
                                             echo '</td>
                                             <td>';
-                                            if($odontograma==null){                                           
+                                            if($odontograma==null && $estatus!='0'){                                           
                                             ?>
 
                                             <form id="miFormulario3" action="PacienteAlta9.php" method="post">
@@ -157,7 +160,7 @@
                                                 <button onclick=submit title="Ir a odontograma" style="background:transparent;"><strong>Odontograma </strong><i class="fas fa-teeth-open"></i></button>
                                             </form>
                                             <?php
-                                            }else{
+                                            }elseif($odontograma!=null && $estatus!='0'){
                                                 ?>
                                                 <form id="miFormulario3" action="PacienteOdontograma.php" method="post">
                                                     <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
@@ -166,18 +169,37 @@
                                                     <button onclick=submit title="Ir a odontograma" style="background:rgba(85, 219, 183, 0.83);"><strong>Odontograma </strong><i class="fas fa-teeth-open"></i></button>
                                                 </form>
                                             <?php
+                                            }else{
+                                                echo 'No hay odontograma';
                                             }
                                             echo'
                                             </td>
-                                            <td>'
-                                            ?>
-
-                                            <form id="miFormulario4" action=".php" method="post">
-                                                    <?php echo '<input type="hidden" name="idProducto" id="idProducto" value="">
-                                                '?>
-                                                <button onclick=submit title="Agregar monto"><i class="fas fa-money-bill-wave" style="color:#136303;"></i></button>
-                                            </form>
-                                            <?php
+                                            <td>';
+                                            if($estatus!='0'){
+                                                $instruccion2="SELECT * from pagos where cita_idcita=$idCita";
+                                                if(! $resultado2 = $conexion -> query($instruccion2)){
+                                                    echo "Ha sucedido un problema ... ";
+                                                    exit();
+                                                }
+                                                $act2 = $resultado2 -> fetch_assoc();
+                                                $monto= $act2['monto'];
+                                                if($monto==null){
+                                                    ?>
+                                                        <form id="miFormulario4" action="Pagos.php" method="post">
+                                                        <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
+                                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
+                                                    '?>
+                                                        <button onclick=submit title="Agregar monto"><i class="fas fa-money-bill-wave" style="color:#136303;"></i></button>
+                                                    </form>
+                                                    <?php
+                                                }else{
+                                                    echo "$",$monto,".00";
+                                                }
+                                                
+                                            }else{
+                                                echo '$ 0.00';
+                                            }
+                                            
                                             echo'
                                             </td>
                                         </tr>';
