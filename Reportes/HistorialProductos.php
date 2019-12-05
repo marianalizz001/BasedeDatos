@@ -1,4 +1,5 @@
 <?php
+    include("../compruebo.php");
 	require '../fpdf/fpdf.php';
     require '../Conexion.php';
 	

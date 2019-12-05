@@ -1,3 +1,6 @@
+<?php 
+  include("compruebo.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +46,6 @@
 
 <body>
 <?php
-    session_start(); 
     include ('Conexion.php');
 ?>
 <!--NAVBAR-->
