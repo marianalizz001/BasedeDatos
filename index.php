@@ -16,7 +16,12 @@
      
     <title>Dra.YazminNajera | Home</title>
 
-    <?php include("navbar.php"); ?>
+
+    <?php 
+    $_SESSION['log'] = false;
+    session_start();
+    session_destroy();
+    include("navbar.php"); ?>
     <br>
   </head>
 
