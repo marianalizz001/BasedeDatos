@@ -213,6 +213,7 @@
 
     <script>
         /*Muestra los botones para cambiar el mes, el titulo(mes) y da la opcion de elegir el mes, la semana */
+        
         $(document).ready(function() {
             $('#Calendario').fullCalendar({
                 header: {
@@ -235,6 +236,9 @@
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
                 events: 'http://localhost/BasedeDatos/eventos.php',
+
+                hiddenDays: [0],
+
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
@@ -287,7 +291,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="txtID" name="textID">
+                    <input type="hidden" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
@@ -408,7 +412,26 @@
             if ( $('#txtTitulo').val() == "Otros"){
                $color="#000000";
             }
-             
+
+            if ($('#txtHora').val() == "10:00:00"){
+              $horafin="11:00:00";
+            } 
+            if ($('#txtHora').val() == "11:00:00"){
+              $horafin="12:00:00";
+            }
+            if ($('#txtHora').val() == "16:00:00"){
+              $horafin="17:00:00";
+            }
+            if ($('#txtHora').val() == "17:00:00"){
+              $horafin="18:00:00";
+            }
+            if ($('#txtHora').val() == "18:00:00"){
+              $horafin="19:00:00";
+            }
+            if ($('#txtHora').val() == "19:00:00"){
+              $horafin="20:00:00";
+            }
+            
             
                      
             NuevoEvento = {
@@ -419,7 +442,7 @@
                 start: $('#txtFecha').val() + " " + $('#txtHora').val(),
                 color: $color,
                 textColor: "#FFFFFF",
-                end: $('#txtFecha').val() + " " + $('#txtHora').val()
+                end: $('#txtFecha').val() + " " + $horafin
             };
             
         }
