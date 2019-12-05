@@ -22,7 +22,6 @@
         $precio = $act['precio'];
         $existencia = $act['existencia'];
         $fecha = $act['fecha'];
-        $nombreUsuario=$act['nombreUsuario'];
         }
     }
     //Actualizar tabla de producto
@@ -39,7 +38,7 @@
             jQuery(function() {
                 swal({   
                     title: "¡Bien!",   
-                    text: "Se han borrado el producto",   
+                    text: "Se ha modificado el producto",   
                     type: "success",    
                     confirmButtonColor: "#696565",   
                     confirmButtonText: "Ok",   
