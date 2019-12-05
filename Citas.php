@@ -78,9 +78,9 @@
         <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
       </li>
     
-      <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+      <li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
-      </li>-->
+      </li>
 
       <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
@@ -94,20 +94,24 @@
     <!-- MENU CON LOGIN -->
   <?php if (isset($_SESSION['usuario']) && ($_SESSION['log'] == true)) { ?>
 
-    <?php if ($_SESSION['tipo'] == 'M' || $_SESSION['tipo'] == 'E' || $_SESSION['tipo'] == 'P'){ ?>
+    <?php if ($_SESSION['tipo'] == 'M'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
+    <?php } ?>
 
+    <?php if ($_SESSION['tipo'] == 'E'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="PerfilUsuario.php"><h5>Perfil</h5><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="InicioEmpleado.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
+    <?php } ?>
 
     <?php if ($_SESSION['tipo'] == 'P'){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="Inicio.php"><h5>Inicio</h5><span class="sr-only">(current)</span></a>
       </li>
     <?php } ?>
+
 
     <?php if (($_SESSION['tipo'] == 'M') || ($_SESSION['tipo'] == 'E')){ ?>
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -166,20 +170,6 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Reportes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="Reportes/MsgContestados.php" target="_blank">Msg Contestados</a>
-          <a class="dropdown-item" href="Reportes/MsgPendientes.php" target="_blank">Msg Pendientes</a>
-          <a class="dropdown-item" href="Reportes/ListadoEmpleados.php" target="_blank">Empleados</a>
-          
-        </div>
-      </li>
-
-      
-
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
@@ -188,7 +178,7 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
+          <a class="dropdown-item" href="#">Agendar</a>
           <a class="dropdown-item" href="#">Historial</a>
         </div>
       </li>
@@ -231,16 +221,15 @@
                     right: 'month, agendaWeek, agendaDay'
                 },
                 dayClick: function(date, jsEvent, view) {
-                    /*Desactiva el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
+                    /*Activa el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
+                    limpiarFormulario();
                     $('#btnAgregar').prop("disabled", false);
                     $('#btnModificar').prop("disabled", true);
                     $('#btnEliminar').prop("disabled", true);
-
-                    $('#txtHora2').prop("hidden", true);
+                    $('#txtNombre').prop("disabled", false);
+                    
                     $('#txtHora2').prop("disabled", true);
-                    $('#lblHora2').prop("hidden", true);
 
-                    limpiarFormulario();
                     $('#txtFecha').val(date.format());
                     $("#ModalEventos").modal();
                 },
@@ -248,14 +237,12 @@
                 events: 'http://localhost/BasedeDatos/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
-                    /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
+                    /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
                     $('#btnAgregar').prop("disabled", true);
                     $('#btnModificar').prop("disabled", false);
                     $('#btnEliminar').prop("disabled", false);
+                    $('#txtNombre').prop("disabled", true);
 
-
-                    $('#txtHora2').prop("hidden", false);
-                    $('#lblHora2').prop("hidden", false);
 
 
                     //Mostrar la innfo del evento en los inputs
@@ -268,7 +255,6 @@
                     FechaHora = calEvent.start._i.split(" ");
                     $('#txtFecha').val(FechaHora[0]);
                     $('#txtHora').val(FechaHora[1]);
-                    $('#txtHora2').val(FechaHora[1]);
                     $("#ModalEventos").modal();
                 },
                 editable: true,
@@ -281,7 +267,6 @@
                     var fechaHora = calEvent.start.format().split("T");
                     $('#txtFecha').val(fechaHora[0]);
                     $('#txtHora').val(fechaHora[1]);
-                    $('#txtHora2').val(fechaHora[1]);
 
                     RecolectarDatos();
                     EnviarInformacion('modificar', NuevoEvento, true);
@@ -325,7 +310,6 @@
                                 $apPat = $act['apPat'];
                                 $apMat = $act['apMat'];
                                 echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
-                                //echo '<input type="text" id="txtIDP" name="textIDP" value="'.$idUsuario.' text='.$idUsuario.'>';
                               }
                               $resultado -> free();  
 
@@ -345,12 +329,6 @@
                                 <option>19:00:00</option>
                             </select>
 
-                        </div>
-                        <div class="form-row">
-                            &nbsp; <label id="lblHora2" name="lblHora2">Hora seleccionada previamente:</label> &nbsp;
-                            <div class="class-form col-sm-4">
-                                <input type="text" class="form-control" id="txtHora2" name="txtHora2" />
-                            </div>
                         </div>
                     </div>
 
@@ -391,12 +369,12 @@
         $('#btnEliminar').click(function() {
             RecolectarDatos();
             EnviarInformacion('eliminar', NuevoEvento);
-            
         });
         $('#btnModificar').click(function() {
             RecolectarDatos();
             EnviarInformacion('modificar', NuevoEvento);
         });
+
 
         function RecolectarDatos() {
             /*Recolecta los datos de los inputs para luego hacer las consultas*/
@@ -434,6 +412,7 @@
             
                      
             NuevoEvento = {
+  
                 id: $('#txtID').val(),
                 title: $('#txtTitulo').val(),
                 nombre: $('#txtNombre').val(),
@@ -442,6 +421,7 @@
                 textColor: "#FFFFFF",
                 end: $('#txtFecha').val() + " " + $('#txtHora').val()
             };
+            
         }
 
         function EnviarInformacion(accion, objEvento, modal) {
@@ -472,7 +452,6 @@
             $('#txtNombre').val('');
             $('#txtColor').val('');
             $('#txtHora').val('');
-            $('#txtHora2').val('');
             $('#txtMonto').val('');
             $('#txtEstatus').val('');
             $('#txtOdonto').val('');

@@ -5,7 +5,7 @@
     $idUsuario= $_SESSION['id'];
  	$consulta= $conexion->prepare("insert into producto(nombre,precio,existencia,Usuario_idUsuario,fecha,activo) values (?,?,?,?,now(),'1')");
     
- 	$consulta->bind_param('siii',$_REQUEST['nombre-producto'], $_REQUEST['precio'],$_REQUEST['existencia'],$idUsuario);
+ 	$consulta->bind_param('sdii',$_REQUEST['nombre-producto'], $_REQUEST['precio'],$_REQUEST['existencia'],$idUsuario);
 
  	if($consulta->execute()){
 		header('location: InventarioVer.php');

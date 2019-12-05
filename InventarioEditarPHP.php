@@ -21,11 +21,11 @@
     }
     //Actualizar tabla de producto
     $consulta= $conexion->prepare("UPDATE producto SET nombre=?, precio=?, existencia=?, Usuario_idUsuario=?, fecha=now() WHERE idProducto=$idProducto");
-    $consulta->bind_param('siii', $_REQUEST['nombre-producto'], $_REQUEST['precio'], $_REQUEST['existencia'],$idUsuario);
+    $consulta->bind_param('sdii', $_REQUEST['nombre-producto'], $_REQUEST['precio'], $_REQUEST['existencia'],$idUsuario);
 
  	if($consulta->execute()){
         $consulta2= $conexion->prepare("INSERT INTO historial_inventario (Usuario_idUsuario, fecha_modificacion, producto_idProducto, existencia_actual, existencia_nueva, precio_actual, precio_nuevo) VALUES ($idUsuario, now(), $idProducto, $existencia, ?, $precio,?)");
-        $consulta2->bind_param('ii',  $_REQUEST['existencia'],$_REQUEST['precio']);
+        $consulta2->bind_param('id',  $_REQUEST['existencia'],$_REQUEST['precio']);
     
          if($consulta2->execute()){
                 header('location: InventarioVer.php');
