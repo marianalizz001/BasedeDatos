@@ -1,5 +1,4 @@
 <?php
-    include("../compruebo.php");
 	include 'plantilla.php';
     require '../Conexion.php';
 
