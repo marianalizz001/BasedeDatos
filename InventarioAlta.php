@@ -55,7 +55,7 @@
                                 <label for="precio" style="font-size:20px;color: rgba(144, 12, 52);"> Precio: </label>
                             </div>
                             <div class="col-6">
-                                <input type="number" class="form-control" id="precio" name="precio">
+                                <input type="number" step="any" class="form-control" id="precio" name="precio">
                             </div>
                         </div>
                         <br><br>

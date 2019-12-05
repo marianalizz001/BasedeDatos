@@ -89,7 +89,7 @@ $(document).ready(function () {
                     echo'
                     <td>    
                       <a href="PacienteEditar.php?idUsuario='.$idUsuario.'"><img src="img/editar.webp" width="25" height="25"></a>
-                      <a href="PacienteBorrar.php?idUsuario='.$idUsuario.'"><img src="img/borrar.png" width="25" height="25"></a>
+                      <a href="UsuarioBorrar.php?idUsuario='.$idUsuario.'"><img src="img/borrar.png" width="25" height="25"></a>
                     <td>';
                         if ($foto == "Usuarios/Fotos/"){
                             echo '<img src="img/perfil.png" width="80" height="80">';
@@ -114,4 +114,4 @@ $(document).ready(function () {
 </html>
 <?php include("footer.php"); ?>
 <script src="js/jquery.slim.js"></script>
-    <script src="js/scripts.js"></script>
+<script src="js/scripts.js"></script>

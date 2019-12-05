@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Empleado</title>
+    <title>Dra.YazminNajera | Paciente</title>
     <br>
     <script src='js/jquery.min.js'></script>
 <script src='js/moment.min.js'></script>
@@ -221,17 +221,15 @@
                     right: 'month, agendaWeek, agendaDay'
                 },
                 dayClick: function(date, jsEvent, view) {
-                  alert('Current view: ' + view.day);
-                    /*Desactiva el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
+                    /*Activa el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
+                    limpiarFormulario();
                     $('#btnAgregar').prop("disabled", false);
                     $('#btnModificar').prop("disabled", true);
                     $('#btnEliminar').prop("disabled", true);
-
-                    $('#txtHora2').prop("hidden", true);
+                    $('#txtNombre').prop("disabled", false);
+                    
                     $('#txtHora2').prop("disabled", true);
-                    $('#lblHora2').prop("hidden", true);
 
-                    limpiarFormulario();
                     $('#txtFecha').val(date.format());
                     $("#ModalEventos").modal();
                 },
@@ -239,14 +237,12 @@
                 events: 'http://localhost/BasedeDatos/eventos.php',
 
                 eventClick: function(calEvent, jsEvent, view) {
-                    /*Desactiva los botones de modificar y eliminar para que solo se puedan agregar*/
+                    /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
                     $('#btnAgregar').prop("disabled", true);
                     $('#btnModificar').prop("disabled", false);
                     $('#btnEliminar').prop("disabled", false);
+                    $('#txtNombre').prop("disabled", true);
 
-
-                    $('#txtHora2').prop("hidden", false);
-                    $('#lblHora2').prop("hidden", false);
 
 
                     //Mostrar la innfo del evento en los inputs
@@ -259,7 +255,6 @@
                     FechaHora = calEvent.start._i.split(" ");
                     $('#txtFecha').val(FechaHora[0]);
                     $('#txtHora').val(FechaHora[1]);
-                    $('#txtHora2').val(FechaHora[1]);
                     $("#ModalEventos").modal();
                 },
                 editable: true,
@@ -272,7 +267,6 @@
                     var fechaHora = calEvent.start.format().split("T");
                     $('#txtFecha').val(fechaHora[0]);
                     $('#txtHora').val(fechaHora[1]);
-                    $('#txtHora2').val(fechaHora[1]);
 
                     RecolectarDatos();
                     EnviarInformacion('modificar', NuevoEvento, true);
@@ -316,7 +310,6 @@
                                 $apPat = $act['apPat'];
                                 $apMat = $act['apMat'];
                                 echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
-                                //echo '<input type="text" id="txtIDP" name="textIDP" value="'.$idUsuario.' text='.$idUsuario.'>';
                               }
                               $resultado -> free();  
 
@@ -336,12 +329,6 @@
                                 <option>19:00:00</option>
                             </select>
 
-                        </div>
-                        <div class="form-row">
-                            &nbsp; <label id="lblHora2" name="lblHora2">Hora seleccionada previamente:</label> &nbsp;
-                            <div class="class-form col-sm-4">
-                                <input type="text" class="form-control" id="txtHora2" name="txtHora2" />
-                            </div>
                         </div>
                     </div>
 
@@ -382,12 +369,12 @@
         $('#btnEliminar').click(function() {
             RecolectarDatos();
             EnviarInformacion('eliminar', NuevoEvento);
-            
         });
         $('#btnModificar').click(function() {
             RecolectarDatos();
             EnviarInformacion('modificar', NuevoEvento);
         });
+
 
         function RecolectarDatos() {
             /*Recolecta los datos de los inputs para luego hacer las consultas*/
@@ -425,6 +412,7 @@
             
                      
             NuevoEvento = {
+  
                 id: $('#txtID').val(),
                 title: $('#txtTitulo').val(),
                 nombre: $('#txtNombre').val(),
@@ -433,6 +421,7 @@
                 textColor: "#FFFFFF",
                 end: $('#txtFecha').val() + " " + $('#txtHora').val()
             };
+            
         }
 
         function EnviarInformacion(accion, objEvento, modal) {
@@ -463,7 +452,6 @@
             $('#txtNombre').val('');
             $('#txtColor').val('');
             $('#txtHora').val('');
-            $('#txtHora2').val('');
             $('#txtMonto').val('');
             $('#txtEstatus').val('');
             $('#txtOdonto').val('');

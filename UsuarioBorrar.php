@@ -4,28 +4,6 @@
 <script src="js/functions.js"></script>
 <script src="js/sweetalert.min.js"></script>
 
-<!--
-<script>
-    jQuery(function() {
-        swal({   
-        title: "¿Está seguro?",   
-        text: "El paciente será eliminado",   
-        type: "warning",    
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Si",
-        cancelButtonText: "Cancelar",
-        closeOnConfirm: false,
-        closeOnCancel: false },
-
-        function(isConfirm){   
-            if (isConfirm) 
-                swal("¡Hecho!", "El paciente ha sido eliminado", "success");
-                window.location.href = "PacienteVer.php";
-        });
-});
-</script> -->
-
 <?php
     $idUsuario = $_GET['idUsuario'];
     include('Conexion.php');
@@ -41,7 +19,7 @@
         jQuery(function() {
             swal({   
                 title: "¡Error!",   
-                text: "El paciente no fue eliminado",   
+                text: "El usuario no fue eliminado",   
                 type: "error",    
                 confirmButtonColor: "#DD6B55",   
                 confirmButtonText: "Intentar de nuevo",   
@@ -49,7 +27,7 @@
 
                 function(isConfirm){   
                     if (isConfirm) {     
-                        window.location.href = "PacienteVer.php";
+                        window.location.href = "javascript:window.history.back()";
                     }
                 });
         });
@@ -61,7 +39,7 @@
         jQuery(function() {
             swal({   
 				title: "¡Bien!",   
-				text: "Se ha eliminado el paciente",   
+				text: "Se ha eliminado el usuario",   
 				type: "success",    
 				confirmButtonColor: "#696565",   
 				confirmButtonText: "Ok",   
@@ -69,7 +47,7 @@
 
 				function(isConfirm){   
 					if (isConfirm) {     
-						window.location.href = "PacienteVer.php";
+						window.location.href = "javascript:window.history.back()";
 					}
 				});
         });
