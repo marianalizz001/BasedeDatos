@@ -221,7 +221,7 @@
                 header: {
                     left: 'today ,prev, next',
                     center: 'title',
-                    right: 'month, agendaWeek, agendaDay'
+                    right: 'month'
                 },
                 dayClick: function(date, jsEvent, view) {
                     /*Activa el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
@@ -241,14 +241,24 @@
 
                 hiddenDays: [0],
 
-                //slotDuration: '01:00:00',
-
                 eventLimit: true,
                 allDaySlot: false,
                 
                 minTime: '10:00:00',
                 maxTime: '20:00:00',
-                daysOfWeek: [ 1, 2, 3, 4, 5, 6 ],
+
+                plugins: ['timeGrid'],
+
+
+               bussinesHours: {
+                 daysOfWeek: [1, 2, 3, 4],
+                 startTime: '10:00',
+                 endTime: '16:00',
+               },
+
+                //slotDuration: '01:00:00',
+
+                
                                     
 
                 eventClick: function(calEvent, jsEvent, view) {
