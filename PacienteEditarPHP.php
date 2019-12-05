@@ -10,10 +10,11 @@
     $idUsuario=$_POST['idUsuario'];
     
     if($opc=='1'){
-        $instruccion=$conexion->prepare("UPDATE cita SET estatus='1' where id=$idCita");
-        if($instruccion->execute()){
+        $instruccion1=$conexion->prepare("UPDATE cita SET estatus='1' where id=$idCita");
+        if($instruccion1->execute()){
             ?>
             <script>
+                
             jQuery(function() {
                 swal({   
                     title: "¡Bien!",   
@@ -52,29 +53,31 @@
                 </script>
             <?php
         }
-    }elseif($opc=='2'){
+    }elseif($opc=='0'){
         $instruccion2=$conexion->prepare("UPDATE cita SET estatus='0' where id=$idCita");
         if($instruccion2->execute()){
-            ?>
-            <script>
-            jQuery(function() {
-                swal({   
-                    title: "¡Bien!",   
-                    text: "Se han actualizado los datos",   
-                    type: "success",    
-                    confirmButtonColor: "#696565",   
-                    confirmButtonText: "Ok",   
-                    closeOnConfirm: false}, 
+            $instruccion3=$conexion->prepare("INSERT into pagos (cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),0)");
+            if($instruccion3->execute()){
+                ?>
+                    <script>
+                    jQuery(function() {
+                        swal({   
+                            title: "¡Bien!",   
+                            text: "Se han actualizado los datos",   
+                            type: "success",    
+                            confirmButtonColor: "#696565",   
+                            confirmButtonText: "Ok",   
+                            closeOnConfirm: false}, 
 
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            window.location.href = "PacienteVer.php";
-                        }
+                            function(isConfirm){   
+                                if (isConfirm) {     
+                                    window.location.href = "PacienteVer.php";
+                                }
+                            });
                     });
-            });
-            </script>
-        <?php 
-        }else{
+                    </script>
+                <?php 
+            }else{
             ?>
                 <script>
                 jQuery(function() {
@@ -96,6 +99,7 @@
             <?php
         }
     }
-    
+}
+
 
 ?>
