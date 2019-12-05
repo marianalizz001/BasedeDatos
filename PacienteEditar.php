@@ -159,7 +159,7 @@
                                             <?php
                                             }else{
                                                 ?>
-                                                <form id="miFormulario3" action="PacienteAlta9.php" method="post">
+                                                <form id="miFormulario3" action="PacienteOdontograma.php" method="post">
                                                     <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
                                                         <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
                                                     '?>
