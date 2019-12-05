@@ -1,6 +1,3 @@
-<?php 
-  include("compruebo.php");
-?>
 <?php
     require '../fpdf/fpdf.php';
     require '../Conexion.php';
