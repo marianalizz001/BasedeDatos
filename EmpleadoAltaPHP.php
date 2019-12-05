@@ -54,7 +54,7 @@
             $nombre_cv = "";
     }
           
-    $consulta= $conexion->prepare("Insert into Usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
+    $consulta= $conexion->prepare("Insert into vista_usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
         f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, salario,curriculum, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     $consulta->bind_param('sssssssssssssssssssi',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
         ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $salario, $nombre_cv, $localidad);

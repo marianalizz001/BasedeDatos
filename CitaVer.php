@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Dra.YazminNajera | Inventario</title>
+    <title>Dra.YazminNajera | Cita</title>
 
     <?php include("navbar.php"); ?>
     <br>

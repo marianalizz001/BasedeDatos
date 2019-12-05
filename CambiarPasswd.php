@@ -11,7 +11,7 @@
     $passwd = $_REQUEST['passwd'];
     $passwd = md5($passwd);
 
-    $sql = "UPDATE Usuario SET  passwd = '$passwd' WHERE idUsuario = $idUsuario";
+    $sql = "UPDATE vista_usuario SET  passwd = '$passwd' WHERE idUsuario = $idUsuario";
 
     if (mysqli_query($conexion, $sql)) {
         if ($idUsuario == $_SESSION['id']){
