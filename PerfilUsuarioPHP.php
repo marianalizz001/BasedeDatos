@@ -27,7 +27,7 @@
     if ($nombre_foto != ""){
         if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
             if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto)){
-                echo "Se ha grabado correctamente el archivo"; 
+                //echo "Se ha grabado correctamente el archivo"; 
                 $consulta= $conexion->prepare("UPDATE Usuario SET foto=? WHERE idUsuario=?");
                 $consulta->bind_param('si', $nombre_foto, $idUsuario);
                 if($consulta->execute()){
@@ -58,7 +58,7 @@
         }
     }
 
- 	$consulta= $conexion->prepare("UPDATE Usuario SET   correo=?, telefono=?, calle=?, no_ext=?, no_int=?, colonia=?, cp=?, localidades_idlocalidades=? WHERE idUsuario=?");
+ 	$consulta= $conexion->prepare("UPDATE Usuario SET correo=?, telefono=?, calle=?, no_ext=?, no_int=?, colonia=?, cp=?, localidades_idlocalidades=? WHERE idUsuario=?");
     $consulta->bind_param('ssssssssi', $correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $localidad, $idUsuario);
 
  	if($consulta->execute()){
@@ -75,7 +75,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "Inicio.php";
+                            window.location.href = "javascript:window.history.back()";
                         }
                     });
             });

@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Empleado</title>
+    <title>Dra.YazminNajera | Paciente</title>
     <br>
     <script src='js/jquery.min.js'></script>
 <script src='js/moment.min.js'></script>
@@ -287,7 +287,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="txtID" name="textID">
+                    <input type="text" id="txtID" name="textID">
                     <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">

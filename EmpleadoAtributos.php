@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Home</title>
+    <title>Dra.YazminNajera | Empleado</title>
 
     <?php include("navbar.php"); ?>
     <br>

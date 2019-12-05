@@ -101,8 +101,8 @@
           Inventario
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="InventarioVer.php">Lista de Productos</a>
-          <a class="dropdown-item" href="InventarioAlta.php">Nuevo Producto</a>
+          <a class="dropdown-item" href="InventarioVer.php">Listado</a>
+          <a class="dropdown-item" href="InventarioAlta.php">Agregar</a>
         </div>
       </li>
 

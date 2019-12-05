@@ -86,7 +86,7 @@
                                     echo '<a href='.$curriculum.' target="_blank">Descargar</a><br>';
                                 echo'
                                     <a href="EmpleadoEditar.php?idUsuario='.$idUsuario.'"><img src="img/editar.webp" width="25" height="25"></a></button></a>
-                                    <a href="EmpleadoBorrar.php?idUsuario='.$idUsuario.'"><img src="img/borrar.png" width="25" height="25"></a></button></a>';
+                                    <a href="UsuarioBorrar.php?idUsuario='.$idUsuario.'"><img src="img/borrar.png" width="25" height="25"></a></button></a>';
                                 ?>
                             </p>
                         </div>
