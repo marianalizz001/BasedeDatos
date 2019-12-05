@@ -39,9 +39,6 @@
                 if($diaSemana ==6 && ($horaN!="10:00:00" || $horaN!="11:00:00" )){
                     $b=1;
                 }
-                if($diaSemana == 0){
-                    $b=1;
-                }
             }   
             if ($b==0){
                 $sentenciaSQL = $pdo->prepare("INSERT INTO
@@ -107,7 +104,7 @@
 
                 $diaSemana = date('w', strtotime($fechaN));
                 $idN = $_POST['id'];
-                
+
                 $hoy=date('Y-m-d');
                 if($fechaN < $hoy ){
                     $b=1;
@@ -115,10 +112,7 @@
                 if(($fecha==$fechaN && $hora==$horaN) && $id!=$idN){
                    $b=1;
                 }
-                if($diaSemana ==6 && ($horaN!="10:00:00" || $horaN!="11:00:00" )){
-                    $b=1;
-                }
-                if($diaSemana == 0){
+                if($diaSemana ==6 && !($horaN=="10:00:00" || $horaN=="11:00:00" ) && $id!=$idN){
                     $b=1;
                 }
             }  

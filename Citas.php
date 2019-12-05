@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Cita</title>
+    <title>Dra.YazminNajera | Paciente</title>
     <br>
     <script src='js/jquery.min.js'></script>
 <script src='js/moment.min.js'></script>
@@ -239,6 +239,15 @@
 
                 hiddenDays: [0],
 
+                //slotDuration: '01:00:00',
+
+                eventLimit: true,
+                allDaySlot: false,
+                
+                minTime: '10:00:00',
+                maxTime: '20:00:00',
+                daysOfWeek: [ 1, 2, 3, 4, 5, 6 ],
+                                    
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
@@ -302,7 +311,7 @@
                             //Recupera el nombre de los pacientes
                             include ('Conexion.php');
                             $temp = "P";
-                            $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM vista_usuario WHERE tipo_usuario = '$temp'";
+                            $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM Usuario WHERE tipo_usuario = '$temp'";
 
                             if(! $resultado = $conexion -> query($instruccion)){
                               echo "Ha sucedido un problema ... ";
