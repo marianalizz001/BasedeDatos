@@ -26,9 +26,13 @@
     <br><br>
     <div class="container">
     <form action="PacienteAltaPHP9.php" method="post" enctype="multipart/form-data">
-    <?php $idUsuario = $_REQUEST['idUsuario']; ?>
+    <?php $idUsuario = $_POST['idUsuario']; 
+            $idCita=$_POST['idCita'];
+        ?>
+
         <input type="hidden" value="<?php echo $idUsuario;?>" name="idUsuario">
-        <p class="h4"> Nuevo Paciente - <small>Plan de Tratamiento</small></p>
+        <input type="hidden" value="<?php echo $idCita;?>" name="idCita">
+        <p class="h4"> Odontograma</p>
         <hr>
         <center><img src="img/odo_sup.png" class="img-fluid" alt="Responsive image"></center>
         <div class="table-responsive-sm">

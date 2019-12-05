@@ -47,7 +47,7 @@
                 <?php
                     include ('Conexion.php');
                                     
-                    $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,a.activo,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
+                    $instruccion = "SELECT * FROM producto";
 
                     if(! $resultado = $conexion -> query($instruccion)){
                         echo "Ha sucedido un problema ... ";
@@ -60,7 +60,6 @@
                             $precio = $act['precio'];
                             $existencia = $act['existencia'];
                             $fecha = $act['fecha'];
-                            $nombreUsuario=$act['nombreUsuario'];
                             echo'
                             <tr>    
                                 <td>' .$nombre.'</td>
