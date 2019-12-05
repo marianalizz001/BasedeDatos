@@ -1,6 +1,6 @@
 <?php
   include ('Conexion.php');
-  $sql="SELECT genero, count(genero) from usuario where tipo_usuario='P' group by(genero)" ;
+  $sql="SELECT genero, count(genero) from Usuario where tipo_usuario='P' group by(genero)" ;
   $result=mysqli_query($conexion,$sql);
   $valoresY=array();
   $valoresX=array();

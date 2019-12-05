@@ -5,18 +5,16 @@
 <script src="js/sweetalert.min.js"></script>
 
 <?php
-    include("Conexion.php");
-    
-    $idUsuario = $_POST['idUsuario'];
-    $idCita = $_POST['idCita'];
+    include('Conexion.php');
+    $nombre = $_REQUEST['nombre'];
+    $nombre = str_replace(' ', '', $nombre);
+    //echo $nombre;
 
-    unset($_POST['btnEnviar']);
-    unset($_POST['idUsuario']);
-    $var_json = json_encode($_POST);
-
-    $sql = "UPDATE cita SET odontograma = '$var_json' WHERE id = $idCita";
-
-    if (mysqli_query($conexion, $sql)) {
+    $tipo = $_REQUEST['tipo'];
+        
+    $instruccion = ("ALTER TABLE usuario ADD $nombre $tipo");
+    $consulta = $conexion->prepare($instruccion);
+    if($consulta->execute()){
         ?>
             <script>
             jQuery(function() {
@@ -30,13 +28,13 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "PacienteVer.php";
+                            window.location.href = "AtributoAgregar.php";
                         }
                     });
             });
             </script>
-        <?php
-    } else {
+        <?php 
+    }else{
         ?>
         <script>
         jQuery(function() {
@@ -50,13 +48,10 @@
         
                 function(isConfirm){   
                     if (isConfirm) {     
-                         window.location.href = "PacienteAlta.php";
+                         window.location.href = "javascript:window.history.back()";
                     }
                 });
          });
         </script>
      <?php
     }
-
-    mysqli_close($conexion);
-?>

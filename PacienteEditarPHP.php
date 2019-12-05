@@ -3,44 +3,21 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/sweetalert.min.js"></script>
-
 <?php
     include("Conexion.php");
-    session_start();
-    $idUsuario = $_REQUEST['idUsuario'];
-    $passwd = $_REQUEST['passwd'];
-    $passwd = md5($passwd);
-
-    $sql = "UPDATE vista_usuario SET  passwd = '$passwd' WHERE idUsuario = $idUsuario";
-
-    if (mysqli_query($conexion, $sql)) {
-        if ($idUsuario == $_SESSION['id']){
-            ?>
-            <script>
-            jQuery(function() {
-                swal({   
-                    title: "¡Bien!",   
-                    text: "Se ha cambiado la contraseña",   
-                    type: "success",    
-                    confirmButtonColor: "#696565",   
-                    confirmButtonText: "Ok",   
-                    closeOnConfirm: false}, 
+    $opc=$_POST['opc'];
+    $idCita=$_POST['idCita'];
+    $idUsuario=$_POST['idUsuario'];
     
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            window.location.href = "PerfilUsuario.php";
-                        }
-                    });
-            });
-            </script>
-            <?php
-         }else{
+    if($opc=='1'){
+        $instruccion=$conexion->prepare("UPDATE cita SET estatus='1' where id=$idCita");
+        if($instruccion->execute()){
             ?>
             <script>
             jQuery(function() {
                 swal({   
                     title: "¡Bien!",   
-                    text: "Se ha cambiado la contraseña",   
+                    text: "Se han actualizado los datos",   
                     type: "success",    
                     confirmButtonColor: "#696565",   
                     confirmButtonText: "Ok",   
@@ -48,21 +25,19 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "javascript:window.history.back()";
+                            window.location.href = "PacienteVer.php";
                         }
                     });
             });
             </script>
-            <?php
-         }
-    } else {
-        if ($idUsuario == $_SESSION['id']){
+        <?php 
+        }else{
             ?>
                 <script>
                 jQuery(function() {
                     swal({   
                         title: "¡Error!",   
-                        text: "No se ha cambiado la contraseña",   
+                        text: "No se han actualizado los datos",   
                         type: "error",    
                         confirmButtonColor: "#DD6B55",   
                         confirmButtonText: "Intentar de nuevo",   
@@ -70,19 +45,42 @@
     
                         function(isConfirm){   
                             if (isConfirm) {     
-                                window.location.href = "PerfilUsuario.php";
+                                window.location.href = "javascript:window.history.back()";
                             }
                         });
                 });
                 </script>
             <?php
-            }else{
-                ?>
+        }
+    }elseif($opc=='2'){
+        $instruccion2=$conexion->prepare("UPDATE cita SET estatus='0' where id=$idCita");
+        if($instruccion2->execute()){
+            ?>
+            <script>
+            jQuery(function() {
+                swal({   
+                    title: "¡Bien!",   
+                    text: "Se han actualizado los datos",   
+                    type: "success",    
+                    confirmButtonColor: "#696565",   
+                    confirmButtonText: "Ok",   
+                    closeOnConfirm: false}, 
+
+                    function(isConfirm){   
+                        if (isConfirm) {     
+                            window.location.href = "PacienteVer.php";
+                        }
+                    });
+            });
+            </script>
+        <?php 
+        }else{
+            ?>
                 <script>
                 jQuery(function() {
                     swal({   
                         title: "¡Error!",   
-                        text: "No se ha cambiado la contraseña",   
+                        text: "No se han actualizado los datos",   
                         type: "error",    
                         confirmButtonColor: "#DD6B55",   
                         confirmButtonText: "Intentar de nuevo",   
@@ -90,15 +88,14 @@
     
                         function(isConfirm){   
                             if (isConfirm) {     
-                                window.location.href = "PacienteVer.php";
+                                window.location.href = "javascript:window.history.back()";
                             }
                         });
                 });
                 </script>
-                <?php
-            } 
-        }  
+            <?php
+        }
+    }
     
+
 ?>
-
-

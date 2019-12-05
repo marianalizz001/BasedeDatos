@@ -1,3 +1,6 @@
+<?php 
+  include("compruebo.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +46,6 @@
 
 <body>
 <?php
-    session_start(); 
     include ('Conexion.php');
 ?>
 <!--NAVBAR-->
@@ -213,12 +215,13 @@
 
     <script>
         /*Muestra los botones para cambiar el mes, el titulo(mes) y da la opcion de elegir el mes, la semana */
+        
         $(document).ready(function() {
             $('#Calendario').fullCalendar({
                 header: {
                     left: 'today ,prev, next',
                     center: 'title',
-                    right: 'month, agendaWeek, agendaDay'
+                    right: 'month'
                 },
                 dayClick: function(date, jsEvent, view) {
                     /*Activa el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
@@ -235,6 +238,28 @@
                 },
                 /*Manda llamar al documento eventos.php que es el que hace las consultas*/
                 events: 'http://localhost/BasedeDatos/eventos.php',
+
+                hiddenDays: [0],
+
+                eventLimit: true,
+                allDaySlot: false,
+                
+                minTime: '10:00:00',
+                maxTime: '20:00:00',
+
+                plugins: ['timeGrid'],
+
+
+               bussinesHours: {
+                 daysOfWeek: [1, 2, 3, 4],
+                 startTime: '10:00',
+                 endTime: '16:00',
+               },
+
+                //slotDuration: '01:00:00',
+
+                
+                                    
 
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
@@ -408,7 +433,26 @@
             if ( $('#txtTitulo').val() == "Otros"){
                $color="#000000";
             }
-             
+
+            if ($('#txtHora').val() == "10:00:00"){
+              $horafin="11:00:00";
+            } 
+            if ($('#txtHora').val() == "11:00:00"){
+              $horafin="12:00:00";
+            }
+            if ($('#txtHora').val() == "16:00:00"){
+              $horafin="17:00:00";
+            }
+            if ($('#txtHora').val() == "17:00:00"){
+              $horafin="18:00:00";
+            }
+            if ($('#txtHora').val() == "18:00:00"){
+              $horafin="19:00:00";
+            }
+            if ($('#txtHora').val() == "19:00:00"){
+              $horafin="20:00:00";
+            }
+            
             
                      
             NuevoEvento = {
@@ -419,7 +463,7 @@
                 start: $('#txtFecha').val() + " " + $('#txtHora').val(),
                 color: $color,
                 textColor: "#FFFFFF",
-                end: $('#txtFecha').val() + " " + $('#txtHora').val()
+                end: $('#txtFecha').val() + " " + $horafin
             };
             
         }

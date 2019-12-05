@@ -41,7 +41,7 @@
         if ($tipoFile_cv == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || $tipoFile_cv == "application/pdf"){
             if(move_uploaded_file($tmp_cv,$folder_cv.'/'.$nombre_cv)){
                 echo "Se ha grabado correctamente el archivo"; 
-                $consulta= $conexion->prepare("UPDATE Usuario SET curriculum=? WHERE idUsuario=?");
+                $consulta= $conexion->prepare("UPDATE vista_usuario SET curriculum=? WHERE idUsuario=?");
                 $consulta->bind_param('si', $nombre_cv, $idUsuario);
                 if($consulta->execute()){
                         echo "si";
@@ -58,7 +58,7 @@
         if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
             if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto)){
                 echo "Se ha grabado correctamente el archivo"; 
-                $consulta= $conexion->prepare("UPDATE Usuario SET foto=? WHERE idUsuario=?");
+                $consulta= $conexion->prepare("UPDATE vista_usuario SET foto=? WHERE idUsuario=?");
                 $consulta->bind_param('si', $nombre_foto, $idUsuario);
                 if($consulta->execute()){
                         echo "si";
@@ -71,7 +71,7 @@
         }
     }
 
- 	$consulta= $conexion->prepare("UPDATE Usuario SET nombre=?, apPat=?, apMat=?, usuario=?, passwd=?, genero=?, 
+ 	$consulta= $conexion->prepare("UPDATE vista_usuario SET nombre=?, apPat=?, apMat=?, usuario=?, passwd=?, genero=?, 
      correo=?, telefono=?, f_nac=?, calle=?, no_ext=?, no_int=?,cp=?, colonia=?, rfc=?, salario=?, localidades_idlocalidades=? WHERE idUsuario=?");
     $consulta->bind_param('sssssssssssssssssi', $nombre, $apPat, $apMat,$usuario, $passwd, $genero, $correo, $telefono,
                 $f_nac, $calle, $no_ext, $no_int, $cp, $colonia, $rfc, $salario, $localidad, $idUsuario);
