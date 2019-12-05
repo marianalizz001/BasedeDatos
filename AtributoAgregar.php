@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css">
      
-    <title>Dra.YazminNajera | Empleado</title>
+    <title>Dra.YazminNajera | Atributo</title>
 
     <?php include("navbar.php"); ?>
     <br>
@@ -23,8 +23,8 @@
 <body>
 <br><br>
 <div class="container">
-    <form action="EmpleadoAtributosPHP.php" method="post" enctype="multipart/form-data">
-        <p class="h4"> Agregar Atributos</p><br><br>
+    <form action="AtributoAgregarPHP.php" method="post" enctype="multipart/form-data">
+        <p class="h4"> Agregar Atributo</p><br><br>
         <div class="form-row">
             <div class="form-group col-sm-6 col-md-4">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre: </label>
@@ -34,7 +34,7 @@
             <div class="form-group col-sm-6 col-md-4">
                 <label for="tipo" style="font-size:20px;color: rgba(144, 12, 52);"> Valor permitido: </label><br>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="int">
+                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="int" checked>
                     <label class="form-check-label" for="exampleRadios1"> Número </label>
                 </div>
                 <div class="form-check-inline">
