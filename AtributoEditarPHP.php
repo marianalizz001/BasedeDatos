@@ -6,13 +6,14 @@
 
 <?php
     include('Conexion.php');
-    $nombre = $_REQUEST['nombre'];
-    $nombre = str_replace(' ', '', $nombre);
+    $nombre_ant = $_REQUEST['nombre_ant'];
+    $nombre_des = $_REQUEST['nombre_des'];
+    $nombre_des = str_replace(' ', '', $nombre_des);
     //echo $nombre;
 
     $tipo = $_REQUEST['tipo'];
         
-    $instruccion = ("ALTER TABLE Usuario ADD $nombre $tipo");
+    $instruccion = ("ALTER TABLE usuario CHANGE $nombre_ant $nombre_des $tipo");
     $consulta = $conexion->prepare($instruccion);
     if($consulta->execute()){
         ?>
@@ -28,7 +29,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "EmpleadoAtributos.php";
+                            window.location.href = "AtributoEditar.php";
                         }
                     });
             });

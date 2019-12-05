@@ -92,7 +92,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="EmpleadoVer.php">Ver</a>
           <a class="dropdown-item" href="EmpleadoAlta.php">Alta</a>
-          <a class="dropdown-item" href="EmpleadoAtributos.php">Agregar atributos</a>
         </div>
       </li>
 
@@ -127,9 +126,18 @@
           <a class="dropdown-item" href="Reportes/MsgContestados.php" target="_blank">Msg Contestados</a>
           <a class="dropdown-item" href="Reportes/MsgPendientes.php" target="_blank">Msg Pendientes</a>
           <a class="dropdown-item" href="Reportes/ListadoEmpleados.php" target="_blank">Empleados</a>
-          <a class="dropdown-item" href="Reportes/HistorialProductos.php" target="_blank">Inventario</a>
+          <a class="dropdown-item" href="Reportes/HistorialProductos.php" target="_blank">Inventario</a>          
+        </div>
+      </li>
 
-          
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Atributos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+          <a class="dropdown-item" href="AtributoAgregar.php">Agregar</a>
+          <a class="dropdown-item" href="AtributoEditar.php" >Editar</a>
+          <a class="dropdown-item" href="AtributoEliminar.php">Eliminar</a>         
         </div>
       </li>
 

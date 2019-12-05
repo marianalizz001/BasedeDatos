@@ -4,7 +4,6 @@
     $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
     $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
 
-
     switch($accion){
         case 'agregar':
             /*Agrega los valores a la BD*/
@@ -20,7 +19,11 @@
                 "start" => $_POST['start'],
                 "end" => $_POST['end']
             ));
+
             echo json_encode($respuesta);
+            $conexion = new mysqli ('localhost','root','','Consultorio');
+            $sql1="call p4()";
+            $result1=mysqli_query($conexion,$sql1);
             break;
             
         case 'eliminar':
