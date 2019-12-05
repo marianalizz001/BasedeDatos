@@ -146,7 +146,7 @@
 
             <div class="form-group col-sm-12 col-md-3">
                 <label for="no_int" style="font-size:20px;color: rgba(144, 12, 52);"> RFC: </label>
-                <input type="text" class="form-control" id="rfc" name="rfc">
+                <input type="text" class="form-control" id="rfc" name="rfc" required>
             </div>
 
             <div class="form-group col-sm-12 col-md-3">

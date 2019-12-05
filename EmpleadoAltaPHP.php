@@ -22,6 +22,7 @@
     $tipo_usuario = 'E';
     $usuario = $_REQUEST['usuario'];
     $passwd = $_REQUEST['passwd'];
+    $passwd = md5($passwd);
     $genero = $_REQUEST['genero'];
     $f_nac = $_REQUEST['f_nac'];
     $nombre = $_REQUEST['nombre'];
@@ -56,7 +57,7 @@
           
     $consulta= $conexion->prepare("Insert into vista_usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
         f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, salario,curriculum, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $consulta->bind_param('sssssssssssssssssssi',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
+    $consulta->bind_param('sssssssssssssssssssi',$tipo_usuario ,$usuario, $passwd, $nombre, $apPat, $apMat,$genero, $f_nac
         ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $salario, $nombre_cv, $localidad);
     
     if($consulta->execute()){
@@ -80,6 +81,7 @@
             </script>
         <?php
     }else{
+        echo $conexion->error;
         ?>
         <script>
         jQuery(function() {
@@ -93,7 +95,7 @@
         
                 function(isConfirm){   
                     if (isConfirm) {     
-                         window.location.href = "EmpleadoAlta.php";
+                         window.location.href = "javascript:window.history.back()";
                     }
                 });
          });
