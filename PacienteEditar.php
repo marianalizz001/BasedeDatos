@@ -172,13 +172,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="CitaVer.php">Agendar</a>
-          <a class="dropdown-item" href="#">Historial</a>
+          
         </div>
       </li>
 
-        <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-          <a class="nav-link" href="Inicio.php"><h5>Saldo</h5><span class="sr-only">(current)</span></a>
-        </li>
       <?php } ?>
 
       <li class="nav-item">

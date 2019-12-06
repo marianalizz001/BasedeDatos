@@ -46,7 +46,7 @@
 
 <body>
 <?php
-    session_start(); 
+    
     include ('Conexion.php');
 ?>
 <!--Navbar-->
