@@ -32,8 +32,7 @@
         $fecha_ini=date('Y-m-d', strtotime($fecha. '-6 days'));
         $fecha_fin=$fecha;
       break;
-  }
-  //Llamda al stored procedure p1() del cual se obtiene la fecha de nacimiento y lo agrupa por año  
+  } 
   $sql1="SELECT dayname(fecha), SUM(monto), DATE(fecha) FROM pagos GROUP BY (DATE(fecha))";
   $result1=mysqli_query($conexion,$sql1);
   
