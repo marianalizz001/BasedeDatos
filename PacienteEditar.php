@@ -22,7 +22,6 @@
 
 <body>
 <?php
-    session_start(); 
     include ('Conexion.php');
 ?>
 
@@ -361,6 +360,14 @@
                                                     <?php
                                                 }else{
                                                     echo "$",$monto,".00";
+                                                    ?>
+                                                        <form id="miFormulario4" action="Reportes/GenerarTicket.php" method="post">
+                                                        <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
+                                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
+                                                    '?>
+                                                        <button onclick=submit title="Generar Reporte"><i class="fas fa-money-check-alt" style="color:orange;"></i></button>
+                                                    </form>
+                                                    <?php
                                                 }
                                                 
                                             }else{
