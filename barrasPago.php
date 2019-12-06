@@ -34,7 +34,7 @@
       break;
   }
   //Llamda al stored procedure p1() del cual se obtiene la fecha de nacimiento y lo agrupa por año  
-  $sql1="SELECT dayname(start), SUM(monto), DATE(start) FROM `cita` GROUP BY (DATE(start))";
+  $sql1="SELECT dayname(fecha), SUM(monto), DATE(fecha) FROM pagos GROUP BY (DATE(fecha))";
   $result1=mysqli_query($conexion,$sql1);
   
   $valoresY1=array();

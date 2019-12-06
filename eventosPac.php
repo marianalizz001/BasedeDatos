@@ -55,11 +55,38 @@
 	 }
 
 	 $TextColor="#FFFFFF";
- 	$consulta= $conexion->prepare("INSERT into cita(title,nombre,color,textColor,start,end,usuario_idUsuario) values (?,?,?,?,?,?,?)");
-    
- 	$consulta->bind_param('ssssssi',$Titulo,$Nombre,$color,$TextColor,$Fecha_Inicial,$Fecha_Final,$idUsuario);
 
- 	if($consulta->execute()){
+	 $conexion = new mysqli ('localhost','root','','Consultorio');
+	 $instruccion="select * from cita";
+	 if(! $resultado = $conexion -> query($instruccion)){
+		 echo "Ha sucedido un problema ... ";
+		 exit();
+	 }
+	 $b=0;
+	 while ($act = $resultado -> fetch_assoc()){
+		 $BD = $act['start'];
+		 $fechacompleta =explode(" ", $act['start']); 
+		 $fecha=$fechacompleta[0];
+		 $hora=$fechacompleta[1];
+
+		 $diaSemana = date('w', strtotime($Fecha));
+         $hoy=date('Y-m-d');
+
+		 if($BD==$Fecha_Inicial){
+			 
+			 $b=1;
+		 }
+		 if($diaSemana==6 && ($Hora != "10:00:00" || $Hora != "11:00:00") ){
+			 $b=1;
+		 }
+		 if($diaSemana==0){
+			 $b=1;
+		 }
+	 }
+	 if($b==0){
+		$consulta= $conexion->prepare("INSERT into cita(title,nombre,color,textColor,start,end,usuario_idUsuario) values (?,?,?,?,?,?,?)");
+		$consulta->bind_param('ssssssi',$Titulo,$Nombre,$color,$TextColor,$Fecha_Inicial,$Fecha_Final,$idUsuario);
+		$consulta->execute();
 		?>
             <script>
             jQuery(function() {
@@ -79,13 +106,14 @@
             });
             </script>
         <?php 
- 	}else{	
+		
+	 }else{	
         ?>
                 <script>
                 jQuery(function() {
                     swal({   
                         title: "¡Error!",   
-                        text: "No se han actualizado los datos",   
+                        text: "Cita NO disponible",   
                         type: "error",    
                         confirmButtonColor: "#DD6B55",   
                         confirmButtonText: "Intentar de nuevo",   
@@ -99,6 +127,7 @@
                 });
                 </script>
             <?php
- 	}
-
+	 }
 ?>
+
+ 	
