@@ -62,7 +62,7 @@
                                 <label for="fecha" style="font-size:20px;color: rgba(144, 12, 52);"> Fecha de la cita: </label>
                             </div>
                             <div class="col-6">
-                                <input type="date" class="form-control" name="fecha_cita" id="fecha_cita" min="2019-12-01" >
+                                <input type="date" class="form-control" name="fecha_cita" id="fecha_cita" min="2019-12-01" required >
                             </div>
                         </div>
                         <div class="form-group row">
@@ -70,7 +70,7 @@
                                 <label for="hora" style="font-size:20px;color: rgba(144, 12, 52);"> Hora de la cita: </label>
                             </div>
                             <div class="col-6">
-                            <select class="form-control" name="txtHora" id="txtHora">
+                            <select class="form-control" name="txtHora" id="txtHora" required>
                                 <option>10:00:00</option>
                                 <option>11:00:00</option>
                                 <option>16:00:00</option>
@@ -86,7 +86,7 @@
                                 <label for="titulo" style="font-size:20px;color: rgba(144, 12, 52);"> Servicios: </label>
                             </div>
                             <div class="col-6">
-                            <select class="form-control" name="txtTitulo" id="txtHora">
+                            <select class="form-control" name="txtTitulo" id="txtHora" required >
                             <option>Ortodoncia</option>
                             <option>Protesis</option>
                             <option>Estetica dental</option>
