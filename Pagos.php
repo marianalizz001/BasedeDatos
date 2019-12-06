@@ -31,7 +31,7 @@
         </div>
         <?php
         $idCita=$_POST['idCita'];
-        $idUsuario=$_POST['idUsuario'];
+        $idUsuario=$_SESSION['id'];
         ?>
         <div class="container">
             <br><br>
