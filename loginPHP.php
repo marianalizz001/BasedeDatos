@@ -9,58 +9,53 @@
         if(isset($_REQUEST['usuario'])){
             $user = $_REQUEST['usuario'];
             $clave = md5($_REQUEST['clave']);
-        
-        $instruccion = ("SELECT idUsuario, usuario, passwd, tipo_usuario, nombre, apPat, apMat,genero, f_nac, correo, telefono, foto, especialidad, cedula, foto, curriculum  FROM Usuario WHERE usuario=? and passwd=?");
-
-        $consulta = $conexion->prepare($instruccion);
-        $consulta->bind_param("ss", $user, $clave);
-        if($consulta->execute()){
             
-            $consulta->bind_result($idUsuario, $usuario, $passwd, $tipo_usuario, $nombre, $apPat, $apMat, $genero, $f_nac, $correo, $telefono, $foto, $especialidad, $cedula, $foto, $curriculum);
-            $consulta->fetch();
-            
-            if($user == $usuario and $clave == $passwd){
-                session_start();
-                $_SESSION['id']=$idUsuario;
-                $_SESSION['usuario']=$usuario;
-                $_SESSION['tipo']=$tipo_usuario;
-                $_SESSION['nombre']=$nombre; 
-                $_SESSION['apPat']=$apPat;
-                $_SESSION['apMat']=$apMat;
-                $_SESSION['log'] = true;
-                $_SESSION['genero'] = $genero;
-                $_SESSION['f_nac'] = $f_nac;
-                $_SESSION['correo'] = $correo;
-                $_SESSION['telefono'] = $telefono;
-                $_SESSION['foto'] = $foto;
-                $_SESSION['especialidad'] = $especialidad;
-                $_SESSION['cedula'] = $cedula;
-                $_SESSION['foto'] = "Usuarios/Fotos/".$foto;
-                $_SESSION['curriculum'] = "Empleados/Curriculums/".$curriculum;
-                
-                header('location: Inicio.php'); 
-                
-            }else{
-                ?>
-                <script>
-                jQuery(function() {
-                    swal({   
-                        title: "¡Error!",   
-                        text: "Los datos son incorrectos",   
-                        type: "error",    
-                        confirmButtonColor: "#DD6B55",   
-                        confirmButtonText: "Intentar de nuevo",   
-                        closeOnConfirm: false}, 
+            $cursor = $bd->Usuario->find();
 
-                        function(isConfirm){   
-                            if (isConfirm) {     
-                                window.location.href = "login.php";
-                            }
+            foreach ($cursor as $usuario) {
+                if ($usuario['usuario'] ==  $user and $usuario['passwd'] == $clave){
+                    session_start();
+                    $_SESSION['id']= $usuario['_id'];
+                    $_SESSION['usuario']= $usuario['usuario'];
+                    $_SESSION['tipo']= $usuario['tipo_usuario'];
+                    $_SESSION['nombre']= $usuario['nombre']; 
+                    $_SESSION['apPat']= $usuario['apPat'];
+                    $_SESSION['apMat']= $usuario['apMat'];
+                    $_SESSION['log'] = true;
+                    $_SESSION['genero'] = $usuario['genero'];
+                    $_SESSION['f_nac'] = $usuario['f_nac'];
+                    $_SESSION['correo'] = $usuario['correo'];
+                    $_SESSION['telefono'] = $usuario['telefono'];
+                    # $_SESSION['foto'] = $usuario['foto'];
+                    $_SESSION['especialidad'] = $usuario['especialidad'];
+                    $_SESSION['cedula'] = $usuario['cedula'];
+                    $_SESSION['foto'] = "Usuarios/Fotos/".$usuario['foto'];
+                    $_SESSION['curriculum'] = "Empleados/Curriculums/".$usuario['curriculum'];
+                    header('location: Inicio.php'); 
+
+                }else{
+                    ?>
+                        <script>
+                        jQuery(function() {
+                            swal({   
+                                title: "¡Error!",   
+                                text: "Los datos son incorrectos",   
+                                type: "error",    
+                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonText: "Intentar de nuevo",   
+                                closeOnConfirm: false}, 
+
+                                function(isConfirm){   
+                                    if (isConfirm) {     
+                                        window.location.href = "login.php";
+                                    }
+                                });
                         });
-                });
-                </script>
-                <?php
-            }
+                        </script>
+                    <?php
+                }
+            };
+
+            
         }
-	}
 ?>

@@ -28,16 +28,15 @@
 <?php
     include ('Conexion.php');
     
-    $temp = "E";
-    $instruccion = "SELECT idUsuario, f_alta, f_baja, usuario, nombre, apPat, apMat, f_nac, correo, telefono, foto, rfc, salario, curriculum FROM Usuario WHERE tipo_usuario = '$temp'";
+    $consulta = $bd->Usuario->find(
+        [
+            'tipo_usuario' => 'E',
+            'f_baja' => array('$exists' => false)
+        ]
+    );
 
-    if(! $resultado = $conexion -> query($instruccion)){
-        echo "Ha sucedido un problema ... ";
-        exit();
-    }
-    while ($act = $resultado -> fetch_assoc()){
-        $idUsuario = $act['idUsuario'];
-        $f_baja = $act['f_baja'];
+    foreach ($consulta as $act){
+        $idUsuario = $act['_id'];
         $usuario = $act['usuario'];
         $nombre = $act['nombre'];
         $apPat = $act['apPat'];
@@ -50,7 +49,6 @@
         $foto = "Usuarios/Fotos/".$act['foto'];
         $curriculum = "Empleados/Curriculums/".$act['curriculum'];
 
-        if($f_baja == NULL){
         echo'
             <div class="card mb-3" style="max-width: 800px;">
                 <div class="row no-gutters">
@@ -93,10 +91,8 @@
                     </div>
                 </div>
             </div>
-      <?php   
-        }   
-    }
-    $resultado -> free();  
+      <?php    
+    } 
 ?>    
 
 </div>

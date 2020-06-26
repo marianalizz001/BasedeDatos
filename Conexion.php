@@ -1,7 +1,6 @@
 <?php
-    $conexion = new mysqli ('localhost','root','','Consultorio');
-    if($conexion->connect_errno){
-        echo "Error de conexion en la base de datos";
-        exit();
-    }
+     require_once __DIR__ . "/vendor/autoload.php";
+
+     $conexion = new MongoDB\Client('mongodb+srv://Karen:Aloha98@cluster0-rzcxc.mongodb.net/Consultorio?retryWrites=true&w=majority');
+     $bd = $conexion->selectDatabase('Consultorio');
 ?>

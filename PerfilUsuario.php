@@ -204,34 +204,29 @@
     <?php
     include('Conexion.php');
     $temp = $_SESSION['id'];
-    $instruccion = "SELECT * FROM Usuario WHERE idUsuario = '$temp'";
-    if(! $resultado = $conexion -> query($instruccion)){
-        echo "Ha sucedido un problema";
-        exit();
-    }
-    while ($act = $resultado -> fetch_assoc()){
-        $idUsuario = $act['idUsuario'];
-        $tipo = $act['tipo_usuario'];
-        $usuario = $act['usuario'];
-        $nombre = $act['nombre'];
-        $apPat = $act['apPat'];
-        $apMat = $act['apMat'];
-        $genero = $act['genero'];
-        $f_nac = $act['f_nac'];
-        $correo = $act['correo'];
-        $telefono = $act['telefono'];
-        $calle = $act['calle'];
-        $no_ext = $act['no_ext'];
-        $no_int = $act['no_int'];
-        $colonia = $act['colonia'];
-        $cp = $act['cp'];
-        $foto = "Usuarios/Fotos/".$act['foto'];
-        $especialidad = $act['especialidad'];
-        $cedula = $act['cedula'];
-        $rfc = $act['rfc'];
-        $salario = $act['salario'];
-        $curriculum = "Empleados/Curriculums/".$act['curriculum'];
-        $localidad = $act['localidades_idlocalidades'];
+    $cursor = $bd->Usuario->find(['_id' => $temp]);
+
+    foreach ($cursor as $datos) {
+      $idUsuario = $datos['_id'];
+      $tipo = $datos['tipo_usuario'];
+      $usuario = $datos['usuario'];
+      $nombre = $datos['nombre'];
+      $apPat = $datos['apPat'];
+      $apMat = $datos['apMat'];
+      $genero = $datos['genero'];
+      $f_nac = $datos['f_nac'];
+      $correo = $datos['correo'];
+      $telefono = $datos['telefono'];
+
+      $domicilio = $datos['direccion'];
+      $calle = $domicilio->calle;
+      $no_ext = $domicilio->no_ext;
+      $colonia = $domicilio->colonia;
+      $cp = $domicilio->cp;
+
+      $foto = "Usuarios/Fotos/".$datos['foto'];
+
+      $rfc = $datos['rfc']; 
 ?>  
 
 <div class style="padding-left: 100px; padding-right: 200px;"> 
@@ -282,23 +277,9 @@
         <div class="card-body">
             <strong><h2 class="card-title"><?php echo $nombre. " ". $apPat. " ". $apMat;?></h2></strong>
             <p class="card-text">
-                <small>Usuario: </small> <strong><?php echo $nombre; ?> </strong> <br>
+                <small>Usuario: </small> <strong><?php echo $usuario; ?> </strong> <br>
                 <small>Fecha de nacimiento: </small> <strong><?php echo $f_nac; ?> </strong> <br>
                 <small>Género: </small> <strong> <?php  if ($genero == 'F') echo 'Femenino'; else echo 'Masculino';?> </strong><br>
-                <? if ($tipo == 'M'){ ?>
-                    <small>Especialidad: </small> <strong><?php echo $especialidad; ?> </strong> <br>
-                    <small>Cedula: </small> <strong><?php echo $cedula; ?> </strong> <br>
-                <? } if ($tipo == 'E'){?>
-                    <small>Salario: </small> <strong><?php echo $salario; ?> </strong> <br>
-                    <small>Curriculum: </small>
-                    <?php
-                        if ($curriculum == "Empleados/Curriculums/")
-                            echo 'No hay archivo<br>';
-                        else
-                            echo '<a href='.$curriculum.' target="_blank">Descargar</a><br>';
-                    ?>
-                <?php } ?>
-
             </p>
 
                 <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
@@ -316,56 +297,25 @@
                 </div>
 
                 <div class="form-row mt-3">
-                    <?php
-                        include('Conexion.php');
-                        $instruccion = "SELECT idlocalidades, nombre FROM localidades";
-                        if(! $resultado = $conexion -> query($instruccion)){
-                            echo "Ha sucedido un problema";
-                            exit();
-                        }
-                    ?>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <p style="font-size:20px;color: rgba(144, 12, 52);">Localidad: </p>
-                        <script>
-                                    $(document).ready(function(){
-                                    $("#localidad").val("<?php echo $localidad; ?>");
-                                    });
-                        </script>
-                        <select id="localidad" class="form-control" name="localidad" required>
-                            <option selected>Selecciona ... </option>
-                            <?php 
-                                    while ($act = $resultado -> fetch_assoc()){
-                                ?>
-                            <option value="<?php echo $act['idlocalidades'];?>"><?php echo $act['nombre'];?></option>
-                                <?php
-                                }
-                                ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-sm-6 col-md-4">
+                    
+                    <div class="form-group col-sm-6 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Fraccionamiento: </p>
                         <input type="text" class="form-control" id="colonia" name="colonia" required value="<?php echo $colonia;?>">
                     </div>
 
-                    <div class="form-group col-sm-12 col-md-4">
+                    <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Calle: </p>
                         <input type="text" class="form-control" id="calle" name="calle" required value="<?php echo $calle;?>">
                     </div>
                 </div>
 
                 <div class="form-row mt-3">
-                    <div class="form-group col-sm-12 col-md-4">
+                    <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">No. ext: </p>
                         <input type="text" class="form-control" id="no_ext" name="no_ext" required value="<?php echo $no_ext;?>">
                     </div>
 
-                    <div class="form-group col-sm-12 col-md-4">
-                        <p style="font-size:20px;color: rgba(144, 12, 52);">No. int: </p>
-                        <input type="text" class="form-control" id="no_int" name="no_int" value="<?php echo $no_int;?>">
-                    </div>
-
-                    <div class="form-group col-sm-12 col-md-4">
+                    <div class="form-group col-sm-12 col-md-6">
                         <p style="font-size:20px;color: rgba(144, 12, 52);">Cp: </p>
                         <input type="number" class="form-control" id="cp" name="cp" required value="<?php echo $cp;?>">
                     </div>
@@ -381,6 +331,7 @@
         </div>
         </div>
         </div>
+        <?php } ?>
     <script src="js/jquery.slim.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -388,4 +339,3 @@
 </body>
 </html>
 <?php include("footer.php"); ?>
-

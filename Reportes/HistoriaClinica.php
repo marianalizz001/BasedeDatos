@@ -3,18 +3,18 @@
     require '../Conexion.php';
 
     $id = $_REQUEST['idUsuario'];
-    
-    $query = "SELECT u.nombre, u.apPat, u.apMat, u.f_nac, u.genero, u.calle, u.no_ext, u.no_int, u.colonia, u.cp, u.correo,
-     u.telefono, d.referido, d.mot_consulta, d.ult_consulta, d.contacto_emergencia_nombre, d.contacto_emergencia_apPat,
-     d.contacto_emergencia_apMat, d.contacto_emergencia_num, d.ant_fam, d.ant_per_no_pat, d.ant_per_pat, d.exp_fisica, d.ex_compl, d.con_diag FROM Usuario u, Detalle_paciente d WHERE u.idUsuario = $id and u.idUsuario=d.Usuario_idUsuario";
-	
-    $resultado = mysqli_query($conexion, $query);
+
+    $query = $bd->Usuario->find(
+        [
+            '_id' => new \MongoDB\BSON\ObjectID($id)
+        ]
+    );
 	
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
     $pdf->AddPage();
-    
-    while($row = $resultado->fetch_assoc()){
+
+    foreach ($query as $row){
 
         $pdf->SetFillColor(232,232,232);
         $pdf->SetTextColor(21,70,97);
@@ -48,23 +48,42 @@
 
         $pdf->Cell(50,6,'Domicilio ',1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(140,6,utf8_decode($row['calle']. " ". $row['no_ext']. "". $row['no_int']." ". $row['colonia']. " " . $row['cp']),1,1,'L');
+
+        $domicilio = $row['direccion'];
+        $calle = $domicilio->calle;
+        $no_ext = $domicilio->no_ext;
+        $colonia = $domicilio->colonia;
+        $cp = $domicilio->cp;
+
+        $pdf->Cell(140,6,utf8_decode($calle. " ". $no_ext. " ". $colonia. " " . $cp),1,1,'L');
 
         $pdf->Cell(50,6,utf8_decode('Referido por '),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(140,6,utf8_decode($row['referido']),1,1,'L');
+
+        $detalle = $row['detalle_paciente'];
+        $referido = $detalle->referido;
+        $mot_consulta = $detalle->mot_consulta;
+        $ult_consulta = $detalle->ult_consulta;
+        $contacto = $detalle->contacto_emergencia;
+        
+        $cont_nombre = $contacto->nombre;
+        $cont_apPat = $contacto->apPat;
+        $cont_apMat = $contacto->apMat;
+        $cont_tel = $contacto->telefono;
+
+        $pdf->Cell(140,6,utf8_decode($referido),1,1,'L');
 
         $pdf->Cell(50,6,utf8_decode('Motivo de consulta '),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(140,6,utf8_decode($row['mot_consulta']),1,1,'L');
+        $pdf->Cell(140,6,utf8_decode($mot_consulta),1,1,'L');
 
         $pdf->Cell(50,6,utf8_decode('Última consulta dental'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(140,6,utf8_decode($row['ult_consulta']),1,1,'L');
+        $pdf->Cell(140,6,utf8_decode($ult_consulta),1,1,'L');
 
         $pdf->Cell(50,6,utf8_decode('Contacto emergencia'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(140,6,utf8_decode($row['contacto_emergencia_nombre']. " ". $row['contacto_emergencia_apPat']. " ". $row['contacto_emergencia_apMat'] ." - ". $row['contacto_emergencia_num']),1,1,'L');
+        $pdf->Cell(140,6,utf8_decode($cont_nombre. " ". $cont_apPat. " ". $cont_apMat ." - ". $cont_tel),1,1,'L');
         
         $pdf->Ln();
         $pdf->SetFillColor(232,232,232);
@@ -76,7 +95,7 @@
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
 
-        $obj = json_decode($row['ant_fam']);
+        $obj = json_decode($row['AntecedentesHeredoFamiliares']);
 
         $pdf->Cell(50,6,utf8_decode('Alergias'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
@@ -128,7 +147,7 @@
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
 
-        $obj = json_decode($row['ant_per_no_pat']);
+        $obj = json_decode($row['AntecedentesPersonalesNoPatológicos']);
 
         $pdf->Cell(135,6,utf8_decode('¿Cuanta su hogar con todos los servicios básicos de urbanidad?'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
@@ -241,7 +260,7 @@
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
 
-        $obj = json_decode($row['ant_per_pat']);
+        $obj = json_decode($row['AntecedentesPersonalesPatológicos']);
         
         $pdf->Cell(135,6,utf8_decode('¿Ha sido hospitalizado o intervenido quirúrgicamente?'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
@@ -367,7 +386,7 @@
 
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
-        $obj = json_decode($row['exp_fisica']);
+        $obj = json_decode($row['ExploraciónFisica']);
 
         $pdf->Cell(50,6,utf8_decode('Tipo de dentición:'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
@@ -385,7 +404,7 @@
 
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
-        $obj = json_decode($row['ex_compl']);
+        $obj = json_decode($row['ExamenesComplementarios']);
 
         $pdf->Cell(50,6,utf8_decode('Laboratorio:'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);
@@ -407,7 +426,7 @@
 
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
-        $obj = json_decode($row['con_diag']);
+        $obj = json_decode($row['ConclusionDiagnóstica']);
 
         $pdf->Cell(50,6,utf8_decode('Estado de salud'),1,0,'L',1);
         $pdf->SetFillColor(232,232,232);

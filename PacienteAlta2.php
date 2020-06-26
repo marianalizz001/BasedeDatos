@@ -23,17 +23,14 @@
 <body>
     <br><br>
     <?php
-        $usuario = $_REQUEST['usuario'];
-        $instruccion = ("SELECT idUsuario FROM Usuario WHERE usuario=?");
-        $consulta = $conexion->prepare($instruccion);
-        $consulta->bind_param("s", $usuario);
-    
-        if($consulta->execute()){
-            $consulta->bind_result($idUsuario);
-            $consulta->fetch();
-           // echo $idUsuario;
-        }else{
-            echo $conexion -> error;
+        $user = $_REQUEST['usuario'];
+
+        $cursor = $bd->Usuario->find();
+
+        foreach ($cursor as $usuario) {
+            if ($usuario['usuario'] ==  $user){
+                $idUsuario = $usuario['_id'];
+            }
         }
     ?>
 
@@ -51,7 +48,7 @@
 
             <div class="form-group col-sm-6 col-md-4">
                 <label for="usuario" style="font-size:20px;color: rgba(144, 12, 52);"> Última consulta dental: </label>
-                <input type="date" class="form-control" id="ultima_consulta" name="ultima_consulta" min="1930-01-01" max="2019-12-05"required>
+                <input type="date" class="form-control" id="ultima_consulta" name="ultima_consulta" min="1930-01-01" max="2020-07-03"required>
             </div>
 
             <div class="form-group col-sm-6 col-md-12">

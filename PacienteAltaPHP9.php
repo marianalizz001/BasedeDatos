@@ -14,9 +14,12 @@
     unset($_POST['idUsuario']);
     $var_json = json_encode($_POST);
 
-    $sql = "UPDATE cita SET odontograma = '$var_json' WHERE id = $idCita";
+    $consulta = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => ['ConclusionDiagnóstica' => $var_json]]
+    );
 
-    if (mysqli_query($conexion, $sql)) {
+    if ($consulta->getModifiedCount() > 0) {
         ?>
             <script>
             jQuery(function() {

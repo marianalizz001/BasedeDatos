@@ -87,48 +87,22 @@
         </div>
 
         <div class="form-row mt-3">
-        <?php
-                include('Conexion.php');
-                $instruccion = "SELECT idlocalidades, nombre FROM localidades";
-                if(! $resultado = $conexion -> query($instruccion)){
-                    echo "Ha sucedido un problema";
-                    exit();
-                }
-            ?>
-            <div class="form-group col-sm-12 col-md-3">
-                <label for="f_nac" style="font-size:20px;color: rgba(144, 12, 52);"> Localidad: </label>
-                <select id="localidad" class="form-control" name="localidad" required>
-                    <option selected>Selecciona ... </option>
-                    <?php 
-                            while ($act = $resultado -> fetch_assoc()){
-                        ?>
-                    <option value="<?php echo $act['idlocalidades'];?>"><?php echo $act['nombre'];?></option>
-                        <?php
-                        }
-                        ?>
-                </select>
-            </div>
-            <div class="form-group col-sm-6 col-md-3">
+            <div class="form-group col-sm-6 col-md-4">
                 <label for="fraccionamiento" style="font-size:20px;color: rgba(144, 12, 52);"> Fraccionamiento: </label>
                 <input type="text" class="form-control" id="colonia" name="colonia" required>
             </div>
 
-            <div class="form-group col-sm-12 col-md-3">
+            <div class="form-group col-sm-12 col-md-4">
                 <label for="calle" style="font-size:20px;color: rgba(144, 12, 52);"> Calle: </label>
                 <input type="text" class="form-control" id="calle" name="calle" required>
             </div>
 
-            <div class="form-group col-sm-12 col-md-1">
+            <div class="form-group col-sm-12 col-md-2">
                 <label for="calle" style="font-size:20px;color: rgba(144, 12, 52);"> No.Ext: </label>
                 <input type="text" class="form-control" id="no_ext" name="no_ext" required>
             </div>
 
-            <div class="form-group col-sm-12 col-md-1">
-                <label for="no_int" style="font-size:20px;color: rgba(144, 12, 52);"> No.Int: </label>
-                <input type="text" class="form-control" id="no_int" name="no_int">
-            </div>
-
-            <div class="form-group col-sm-12 col-md-1">
+            <div class="form-group col-sm-12 col-md-2">
                 <label for="no_int" style="font-size:20px;color: rgba(144, 12, 52);"> Cp: </label>
                 <input type="number" class="form-control" id="cp" name="cp" required>
             </div>

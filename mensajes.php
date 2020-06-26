@@ -57,7 +57,6 @@ $(document).ready(function () {
         <thead class="thead-light">
             <tr>
                 <th scope="col"><span><i class="fas fa-eye fa-lg"></i></span></th>
-                <th scope="col">No.</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Datos de Contacto</th>
                 <th scope="col">Mensaje</th>
@@ -68,17 +67,15 @@ $(document).ready(function () {
 
         <?php
             include ('Conexion.php');
-            //Llamada al stored procedure que selecciona todo de la tabla mensaje si aun no ha sido leido                
-            $instruccion = "call p2()";
 
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema ... ";
-                
-                exit();
-            }
+            $cursor = $bd->Mensaje->find(
+                [
+                    'visto' => '0',
+                ],
+            ); 
 
-            while ($act = $resultado -> fetch_assoc()){
-                $id_mensaje = $act['id_mensaje'];
+            foreach ($cursor as $act) {
+                $id_mensaje = $act['_id'];
                 $nombre = $act['nombre'];
                 $apPat = $act['apPat'];
                 $apMat = $act['apMat'];
@@ -86,12 +83,10 @@ $(document).ready(function () {
                 $telefono = $act['telefono'];
                 $mensaje = $act['mensaje'];
                 $f_enviado = $act['f_enviado'];
-
                 
                     echo'
                     <tr>    
-                        <td><a href="MensajeOk.php?id_mensaje='.$act['id_mensaje'].';?>"><img src="img/cerrar.png" width="25" height="25"></a></td>
-                        <td>' .$id_mensaje.'</td>
+                        <td><a href="MensajeOk.php?id_mensaje='.$id_mensaje.'"><img src="img/cerrar.png" width="25" height="25"></a></td>
                         <td>' .$nombre. " " .$apPat. " " .$apMat.'</td>
                         <td>' .$correo. " " .$telefono. '</td>
                         <td>' .$mensaje.'</td>
@@ -99,8 +94,6 @@ $(document).ready(function () {
                     </tr>';
                 
             }
-            $resultado -> free();  
-
         ?>            
         </tbody>
     </table>

@@ -127,19 +127,6 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Atributos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="AtributoAgregar.php">Agregar</a>
-          <a class="dropdown-item" href="AtributoEditar.php" >Editar</a>
-          <a class="dropdown-item" href="AtributoEliminar.php">Eliminar</a>         
-        </div>
-      </li>
-
-      
-
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>

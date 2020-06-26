@@ -2,7 +2,6 @@
     include("Conexion.php");
     
     $idUsuario = $_REQUEST['idUsuario'];
-    //echo $idUsuario;
 
     $referido = $_REQUEST['referido'];
     $ultima_consulta = $_REQUEST['ultima_consulta'];
@@ -12,16 +11,26 @@
     $apMat = $_REQUEST['apMat'];
     $telefono = $_REQUEST['telefono'];
 
-    $instruccion2 = ("Insert into Detalle_paciente (referido, mot_consulta, ult_consulta, contacto_emergencia_nombre,
-    contacto_emergencia_apPat, 	contacto_emergencia_apMat, 	contacto_emergencia_num, Usuario_idUsuario) values (?,?,?,?,?,?,?,?)");
-    $consulta2= $conexion->prepare($instruccion2);
+    $consulta = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => [
+            'detalle_paciente' => [
+                'referido' => $referido,
+                'mot_consulta' => $mot_consulta,
+                'ult_consulta' => $ultima_consulta,
+                'contacto_emergencia' => [
+                    'nombre' => $nombre,
+                    'apPat' => $apPat,
+                    'apMat' => $apMat,
+                    'telefono' => $telefono
+                ]
+            ]
+        ]],
+    );
 
-    $consulta2->bind_param('sssssssi',$referido, $mot_consulta, $ultima_consulta, $nombre, $apPat, $apMat,$telefono, $idUsuario);
-        
-    if($consulta2->execute()){
+    if($consulta->getModifiedCount() > 0){
         header('location: PacienteAlta3.php?idUsuario='.$idUsuario.'');
     }else{
-        echo $conexion -> error;
         echo "<script language=JavaScript>alert('Hubo un error');</script>";
     } 
    

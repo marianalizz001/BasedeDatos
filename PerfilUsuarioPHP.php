@@ -10,10 +10,8 @@
     $tipo = $_REQUEST['tipo'];
     $correo = $_REQUEST['correo'];
     $telefono = $_REQUEST['telefono'];
-    $localidad = $_REQUEST['localidad'];
     $calle = $_REQUEST['calle'];
     $no_ext = $_REQUEST['no_ext'];
-    $no_int = $_REQUEST['no_int'];
     $cp = $_REQUEST['cp'];
     $colonia = $_REQUEST['colonia'];
 
@@ -27,12 +25,13 @@
     if ($nombre_foto != ""){
         if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
             if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto)){
-                //echo "Se ha grabado correctamente el archivo"; 
-                $consulta= $conexion->prepare("UPDATE vista_usuario SET foto=? WHERE idUsuario=?");
-                $consulta->bind_param('si', $nombre_foto, $idUsuario);
-                if($consulta->execute()){
-                        echo "si";
-                }else{
+
+                $consulta = $bd->Usuario->updateOne(
+                    ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+                    ['$set' => ['foto' => $nombre_foto]],
+                );
+
+                if($consulta->getModifiedCount() == 0){
                 ?>
                     <script>
                     jQuery(function() {
@@ -58,10 +57,19 @@
         }
     }
 
- 	$consulta= $conexion->prepare("UPDATE vista_usuario SET correo=?, telefono=?, calle=?, no_ext=?, no_int=?, colonia=?, cp=?, localidades_idlocalidades=? WHERE idUsuario=?");
-    $consulta->bind_param('ssssssssi', $correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $localidad, $idUsuario);
+    $consulta2 = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => [
+            'correo' => $correo,
+            'telefono' => $telefono,
+            'direccion.calle' => $calle,
+            'direccion.no_ext' => $no_ext,
+            'direccion.colonia' => $colonia,
+            'direccion.cp' => $cp,
+        ]],
+    );
 
- 	if($consulta->execute()){
+ 	if($consulta2->getModifiedCount() > 0){
         ?>
             <script>
             jQuery(function() {

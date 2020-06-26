@@ -32,35 +32,46 @@
     $telefono = $_REQUEST['telefono'];
     $calle = $_REQUEST['calle'];
     $no_ext = $_REQUEST['no_ext'];
-    $no_int = $_REQUEST['no_int'];
     $cp = $_REQUEST['cp'];
     $colonia = $_REQUEST['colonia'];
     $rfc = $_REQUEST['rfc'];
     $salario = $_REQUEST['salario'];
-    $localidad = $_REQUEST['localidad'];
-
-   // echo $localidad;
 
     if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
-        if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto))
-            echo "Se ha grabado correctamente el archivo"; 
-        else
+        if (!move_uploaded_file($tmp,$folder.'/'.$nombre_foto))
             $nombre_foto = "";
     }
 
     if ($tipoFile_cv == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || $tipoFile_cv == "application/pdf"){
-        if(move_uploaded_file($tmp_cv,$folder_cv.'/'.$nombre_cv))
-            echo "Se ha grabado correctamente el archivo"; 
-        else
+        if(!move_uploaded_file($tmp_cv,$folder_cv.'/'.$nombre_cv))
             $nombre_cv = "";
     }
           
-    $consulta= $conexion->prepare("Insert into vista_usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
-        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, salario,curriculum, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $consulta->bind_param('sssssssssssssssssssi',$tipo_usuario ,$usuario, $passwd, $nombre, $apPat, $apMat,$genero, $f_nac
-        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $salario, $nombre_cv, $localidad);
+    $consulta = $bd->Usuario->insertOne(
+        [
+            'tipo_usuario' => $tipo_usuario,
+            'usuario' => $usuario,
+            'passwd' => $passwd,
+            'nombre' => $nombre,
+            'apPat' => $apPat,
+            'apMat' => $apMat,
+            'genero' => $genero,
+            'f_nac' => $f_nac,
+            'correo' => $correo,
+            'telefono' => $telefono,
+            'direccion' => [
+                'calle' => $calle,
+                'no_ext' => $no_ext,
+                'colonia' => $colonia,
+                'cp' => $cp],
+            'foto' => $nombre_foto,
+            'rfc' => $rfc,
+            'salario' => $salario,
+            'curriculum' => $nombre_cv
+        ]
+    );
     
-    if($consulta->execute()){
+    if($consulta->getInsertedCount() > 0){
         ?>
             <script>
             jQuery(function() {

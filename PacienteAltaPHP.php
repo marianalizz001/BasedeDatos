@@ -18,11 +18,9 @@
     $telefono = $_REQUEST['telefono'];
     $calle = $_REQUEST['calle'];
     $no_ext = $_REQUEST['no_ext'];
-    $no_int = $_REQUEST['no_int'];
     $cp = $_REQUEST['cp'];
     $colonia = $_REQUEST['colonia'];
     $rfc = $_REQUEST['rfc'];
-    $localidad = $_REQUEST['localidad'];
 
     if(($tipoFile == "image/jpg" || $tipoFile == "image/png" || $tipoFile == "image/gif" || $tipoFile == "image/jpeg")){ 
         if(move_uploaded_file($tmp,$folder.'/'.$nombre_foto))
@@ -30,17 +28,33 @@
         else
             $nombre_foto = "";
     }
-          
-    $consulta= $conexion->prepare("Insert into vista_usuario (tipo_usuario, usuario, passwd, nombre, apPat, apMat, genero,
-        f_nac, correo, telefono, calle, no_ext, no_int, colonia, cp, foto, rfc, localidades_idlocalidades) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $consulta->bind_param('sssssssssssssssssi',$tipo_usuario ,$usuario, md5($passwd), $nombre, $apPat, $apMat,$genero, $f_nac
-        ,$correo, $telefono, $calle, $no_ext, $no_int, $colonia, $cp, $nombre_foto, $rfc, $localidad);
     
-    if($consulta->execute()){
+    $consulta = $bd->Usuario->insertOne(
+        [
+            'tipo_usuario' => $tipo_usuario,
+            'usuario' => $usuario,
+            'passwd' => md5($passwd),
+            'nombre' => $nombre,
+            'apPat' => $apPat,
+            'apMat' => $apMat,
+            'genero' => $genero,
+            'f_nac' => $f_nac,
+            'correo' => $correo,
+            'telefono' => $telefono,
+            'direccion' => [
+                'calle' => $calle,
+                'no_ext' => $no_ext,
+                'colonia' => $colonia,
+                'cp' => $cp],
+            'foto' => $nombre_foto,
+            'rfc' => $rfc
+        ]
+    );
+    
+    if($consulta->getInsertedCount() > 0){
         header('location: PacienteAlta2.php?usuario='.$usuario.'');
     }else{
         echo $conexion -> error;
         echo "<script language=JavaScript>alert('Hubo un error');</script>";
     } 
-    
 ?>
