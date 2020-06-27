@@ -1,9 +1,9 @@
 
 <?php
-/*Hace la conexion a la base de datos*/
+/*Hace la conexion a la base de datos
     header('Content-Type: application/json');
     $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
-    $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
+    $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';*/
 
     switch($accion){
         case 'agregar':
