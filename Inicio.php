@@ -24,18 +24,15 @@
 <body>
 <br><br><br>
 <?php
-$temp = $_SESSION['id'];
-$instruccion = "SELECT  idUsuario, correo, telefono, foto  FROM Usuario WHERE idUsuario = '$temp'";
-if(! $resultado = $conexion -> query($instruccion)){
-    echo "Ha sucedido un problema";
-    exit();
-}
-while ($act = $resultado -> fetch_assoc()){
-    $idUsuario = $act['idUsuario'];
-    $correo = $act['correo'];
-    $telefono = $act['telefono'];
-    $foto = $act['foto'];
-    $foto = "Usuarios/Fotos/".$act['foto'];
+  $temp = $_SESSION['id'];
+  $cursor = $bd->Usuario->find(['_id' => $temp]);
+  foreach ($cursor as $usuario) {
+    $idUsuario = $usuario['_id'];
+    $correo = $usuario['correo'];
+    $telefono = $usuario['telefono'];
+    $foto = $usuario['foto'];
+    $foto = "Usuarios/Fotos/".$usuario['foto'];
+
 ?>
 <section id="login" class="mb-3 mt-3">
     <div class="container-fluid">

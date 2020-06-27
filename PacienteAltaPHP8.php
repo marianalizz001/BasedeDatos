@@ -13,9 +13,12 @@
     unset($_POST['idUsuario']);
     $var_json = json_encode($_POST);
 
-    $sql = "UPDATE Detalle_paciente SET con_diag = '$var_json' WHERE Usuario_idUsuario = $idUsuario";
+    $consulta = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => ['ConclusionDiagnóstica' => $var_json]]
+    );
 
-    if (mysqli_query($conexion, $sql)) {
+    if ($consulta->getModifiedCount() > 0) {
         ?>
             <script>
             jQuery(function() {
@@ -56,6 +59,4 @@
         </script>
      <?php
     }
-
-    mysqli_close($conexion);
 ?>

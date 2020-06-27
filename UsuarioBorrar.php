@@ -7,13 +7,14 @@
 <?php
     $idUsuario = $_GET['idUsuario'];
     include('Conexion.php');
-
     $fecha = date("Y-m-d");
 
-    $consulta= $conexion->prepare("UPDATE Usuario SET f_baja=? WHERE idUsuario=?");
-    $consulta->bind_param('ss', $fecha, $idUsuario);
+    $consulta = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => ['f_baja' => $fecha]]
+    );
 
- 	if(!$consulta->execute()){
+ 	if($consulta->getModifiedCount() == 0){
         ?>
         <script>
         jQuery(function() {

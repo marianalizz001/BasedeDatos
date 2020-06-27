@@ -62,7 +62,7 @@
                                 <label for="fecha" style="font-size:20px;color: rgba(144, 12, 52);"> Fecha de la cita: </label>
                             </div>
                             <div class="col-6">
-                                <input type="date" class="form-control" name="fecha_cita" id="fecha_cita" min="2019-12-01" >
+                                <input type="date" class="form-control" name="fecha_cita" id="fecha_cita" min="2019-12-01" required >
                             </div>
                         </div>
                         <div class="form-group row">
@@ -70,7 +70,7 @@
                                 <label for="hora" style="font-size:20px;color: rgba(144, 12, 52);"> Hora de la cita: </label>
                             </div>
                             <div class="col-6">
-                            <select class="form-control" name="txtHora" id="txtHora">
+                            <select class="form-control" name="txtHora" id="txtHora" required>
                                 <option>10:00:00</option>
                                 <option>11:00:00</option>
                                 <option>16:00:00</option>
@@ -86,7 +86,7 @@
                                 <label for="titulo" style="font-size:20px;color: rgba(144, 12, 52);"> Servicios: </label>
                             </div>
                             <div class="col-6">
-                            <select class="form-control" name="txtTitulo" id="txtHora">
+                            <select class="form-control" name="txtTitulo" id="txtHora" required >
                             <option>Ortodoncia</option>
                             <option>Protesis</option>
                             <option>Estetica dental</option>
@@ -111,95 +111,6 @@
                         <img src="img/calendario.jpg" alt="Calendario" width="250px">
                     </div>
             </div>
-
-            <script>
-        /*Recolecta los datos manda llamar a la funcion Recolectar datos y envia la instruccion de lo que se desea hacer*/
-        var NuevoEvento;
-        $('#btnEnviar').click(function() {
-            RecolectarDatos();
-            EnviarInformacion('agregar', NuevoEvento);
-        });
-
-
-        function RecolectarDatos() {
-            /*Recolecta los datos de los inputs para luego hacer las consultas*/
-            if ( $('#txtTitulo').val() == "Ortodoncia"){
-               $color="#0080ff";
-            }
-            if ( $('#txtTitulo').val() == "Protesis"){
-               $color="#ff8000";
-            }
-            if ( $('#txtTitulo').val() == "Estetica dental"){
-               $color="#ce00ce";
-            }
-            if ( $('#txtTitulo').val() == "Higiene"){
-               $color="#00df52";
-            }
-            if ( $('#txtTitulo').val() == "Prevencion"){
-               $color="#004080";
-            }
-            if ( $('#txtTitulo').val() == "Odontopediatria"){
-               $color="#d5006b";
-            }
-            if ( $('#txtTitulo').val() == "Endodoncia"){
-               $color="#ff0606";
-            }
-            if ( $('#txtTitulo').val() == "Peridoncia"){
-               $color="#1B743A";
-            }
-            if ( $('#txtTitulo').val() == "Cirugia dental"){
-               $color="#a80b0b";
-            }
-            if ( $('#txtTitulo').val() == "Otros"){
-               $color="#000000";
-            }
-             
-            
-                     
-            NuevoEvento = {
-  
-                id: $('#idUsuario').val(),
-                title: $('#txtTitulo').val(),
-                nombre: $('#txtNombre').val(),
-                start: $('#txtFecha').val() + " " + $('#txtHora').val(),
-                color: $color,
-                textColor: "#FFFFFF",
-                end: $('#txtFecha').val() + " " + $('#txtHora').val()
-            };
-            
-        }
-
-        function EnviarInformacion(accion, objEvento) {
-            /*Envia la info usando ajax*/
-            $.ajax({
-                type: 'POST',
-                url: 'eventosPac.php?accion=' + accion,
-                data: objEvento,
-                success: function(msj) {
-                    if (msj) {
-                        $('#Calendario').fullCalendar('refetchEvents');
-                        if (!modal) {
-                            $("#ModalEventos").modal('toggle');
-                        }
-                    }
-                },
-                error: function() {
-                    alert: ('Hay un error...');
-                }
-
-            });
-        }
-
-        function limpiarFormulario() {
-            /*Limpia el formulario */
-            $('#txtID').val('');
-            $('#txtTitulo').val('');
-            $('#txtNombre').val('');
-            $('#txtColor').val('');
-            $('#txtHora').val('');
-        }
-
-    </script>
 
             <br><br><br>
             <br>

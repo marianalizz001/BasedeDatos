@@ -9,11 +9,15 @@
     session_start();
     $idUsuario = $_REQUEST['idUsuario'];
     $passwd = $_REQUEST['passwd'];
-    $passwd = md5($passwd);
+    $nueva = md5($passwd);
 
-    $sql = "UPDATE vista_usuario SET  passwd = '$passwd' WHERE idUsuario = $idUsuario";
 
-    if (mysqli_query($conexion, $sql)) {
+    $updateResult = $bd->Usuario->updateOne(
+        [ '_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        [ '$set' => [ 'passwd' => $nueva ]]
+    );
+
+    if ($updateResult->getModifiedCount() > 0){
         if ($idUsuario == $_SESSION['id']){
             ?>
             <script>

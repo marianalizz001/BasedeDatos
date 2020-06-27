@@ -68,24 +68,23 @@ $(document).ready(function () {
 
         <?php
             include ('Conexion.php');
-            $temp = "P";
-            $instruccion = "SELECT idUsuario, usuario, nombre, apPat, apMat, correo, f_baja, foto FROM Usuario WHERE tipo_usuario = '$temp'";
 
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema ... ";
-                exit();
-            }
-            while ($act = $resultado -> fetch_assoc()){
-                $idUsuario = $act['idUsuario'];
+            $consulta = $bd->Usuario->find(
+                [
+                    'tipo_usuario' => 'P',
+                    'f_baja' => array('$exists' => false)
+                ]
+            );
+
+            foreach ($consulta as $act){
+                $idUsuario = $act['_id'];
                 $usuario = $act['usuario'];
                 $nombre = $act['nombre'];
                 $apPat = $act['apPat'];
                 $apMat = $act['apMat'];
                 $correo = $act['correo'];
-                $f_baja = $act['f_baja'];
                 $foto = "Usuarios/Fotos/".$act['foto'];
-
-                if($f_baja == NULL){
+    
                     echo'
                     <td>    
                       <a href="PacienteEditar.php?idUsuario='.$idUsuario.'"><img src="img/editar.webp" width="25" height="25"></a>
@@ -101,10 +100,8 @@ $(document).ready(function () {
                         <td>' .$usuario.'</td>
                         <td>' .$nombre. " " .$apPat. " " .$apMat.'</td>
                         <td>' .$correo. '</td>
-                    </tr>';
-                }
+                    </tr>';                
             }
-            $resultado -> free();  
         ?>            
         </tbody>
     </table>

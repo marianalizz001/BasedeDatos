@@ -7,10 +7,21 @@
 <?php
 	include("Conexion.php");
 
- 	$consulta= $conexion->prepare("Insert into mensaje (nombre, apPat, apMat, correo, telefono, mensaje) values (?,?,?,?,?,?)");
- 	$consulta->bind_param('ssssis',$_REQUEST['nombre'], $_REQUEST['apPat'],$_REQUEST['apMat'],$_REQUEST['correo'],$_REQUEST['telefono'],$_REQUEST['mensaje']);
+	$fecha = date("Y-m-d");
+
+	$resultado = $bd->Mensaje->insertOne([
+		"nombre" => $_REQUEST['nombre'],
+		"apPat" => $_REQUEST['apPat'],
+		"apMat" => $_REQUEST['apMat'],
+		"correo" => $_REQUEST['correo'],
+		"telefono" => $_REQUEST['telefono'],
+		"mensaje" => $_REQUEST['mensaje'],
+		"f_enviado" => $fecha,
+		"visto" => "0",
+	]);
+
 		
- 	if($consulta->execute()){
+	 if($resultado == TRUE){
 		?>
 		<script>
 		jQuery(function() {
@@ -49,5 +60,6 @@
         });
         </script>
         <?php
- 	}
+	 }
+	 
 ?>

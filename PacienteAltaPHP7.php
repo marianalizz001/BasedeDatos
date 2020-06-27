@@ -7,14 +7,14 @@
     unset($_POST['idUsuario']);
     $var_json = json_encode($_POST);
 
-    $sql = "UPDATE Detalle_paciente SET ex_compl = '$var_json' WHERE Usuario_idUsuario = $idUsuario";
+    $consulta = $bd->Usuario->updateOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+        ['$set' => ['ExamenesComplementarios' => $var_json]]
+    );
 
-    if (mysqli_query($conexion, $sql)) {
-        echo "Bien";
+    if ($consulta->getModifiedCount() > 0) {
         header('location: PacienteAlta8.php?idUsuario='.$idUsuario.'');
     } else {
-        echo "Error: " . "<br>" . mysqli_error($conexion);
+        echo "<script language=JavaScript>alert('Hubo un error');</script>";
     }
-
-    mysqli_close($conexion);
 ?>
