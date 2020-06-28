@@ -6,10 +6,12 @@
 <?php
     include('Conexion.php');
     $idProducto = $_REQUEST['idProducto'];
-    $consulta= $conexion->prepare("UPDATE producto SET activo='0' WHERE idProducto=?");
-    $consulta->bind_param('s', $idProducto);
+    $consulta= $bd->Producto->updateOne(
+        ['_idProducto'=> new \MongoDB\BSON\ObjectID($idProducto)],
+        ['$set' => ['activo'=> '0']]
+    );
 
-    if($consulta->execute()){
+    if($consulta->getModifiedCount() != 0){
 		?>
             <script>
             jQuery(function() {

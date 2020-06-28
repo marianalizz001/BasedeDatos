@@ -8,12 +8,25 @@
     session_start();
     include('Conexion.php');
 
-    $idUsuario= $_SESSION['id'];
- 	$consulta= $conexion->prepare("insert into vista_inventario(nombre,precio,existencia,Usuario_idUsuario,fecha,activo) values (?,?,?,?,now(),'1')");
-    
- 	$consulta->bind_param('sdii',$_REQUEST['nombre-producto'], $_REQUEST['precio'],$_REQUEST['existencia'],$idUsuario);
+    $nombre = $_REQUEST['nombre-producto'];
+    $precio = $_REQUEST['precio'];
+    $existencia = $_REQUEST['existencia'];
+    $idUsuario = $_SESSION['id'];  
+    $activo = '1';
+     
+    $consulta = $bd->Producto->insertOne(
+        [
+            'nombre' => $nombre,
+            'precio' => $precio,
+            'existencia' => $existencia,
+            'Usuario_idUsuario' => $idUsuario,
+            'fecha' => date('c'),
+            'activo' => $activo
 
- 	if($consulta->execute()){
+        ]
+    );
+    
+ 	if($consulta->getInsertedCount()>0){
 		?>
             <script>
             jQuery(function() {

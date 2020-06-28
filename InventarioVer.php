@@ -12,6 +12,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/sweetalert.css" rel="stylesheet">
 
     <title>Dra.YazminNajera | Inventario</title>
 
@@ -19,9 +20,29 @@
     <br>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
 
+    $(document).ready(function () {
+
+    (function ($) {
+
+        $('#filtrar').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.buscar tr').hide();
+            $('.buscar tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+    });
+
+    </script>
 </head>
 <body>
+
 <div class="container" id="registro">
     <div class="row">
         <div class="col-12" id="barra_servicio" width=100%>
@@ -47,15 +68,13 @@
                 <?php
                     include ('Conexion.php');
                                     
-                    $instruccion = "SELECT * FROM producto";
+                    $consulta = $bd->Producto->find([
+                        'activo' => '1'
+                    ]);
 
-                    if(! $resultado = $conexion -> query($instruccion)){
-                        echo "Ha sucedido un problema ... ";
-                        exit();
-                    }
-                    while ($act = $resultado -> fetch_assoc()){
-                        if( $act['activo']=='1'){
-                            $id_producto = $act['idProducto'];
+                    foreach($consulta as $act){
+                        {
+                            $id_producto = $act['_id'];
                             $nombre = $act['nombre'];
                             $precio = $act['precio'];
                             $existencia = $act['existencia'];
@@ -89,8 +108,7 @@
                             </tr>';
                         }
                         
-                    }
-                    $resultado -> free();  
+                    }  
 
                 ?>
                 

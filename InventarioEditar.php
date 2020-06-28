@@ -45,21 +45,18 @@
 
         <?php
             include ('Conexion.php');
-                            
-            $instruccion = "SELECT a.idProducto,a.nombre,a.precio,a.existencia,a.fecha,a.activo,b.nombre as nombreUsuario FROM producto a, usuario b where a.Usuario_idUsuario=b.idUsuario";
+                                    
+            $consulta = $bd->Producto->find([
+                'activo' => '1'
+            ]);
 
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema ... ";
-                exit();
-            }
-            while ($act = $resultado -> fetch_assoc()){
-                if( $act['activo']=='1'){
-                    $id_producto = $act['idProducto'];
+            foreach($consulta as $act){
+                {
+                    $id_producto = $act['_id'];
                     $nombre = $act['nombre'];
                     $precio = $act['precio'];
                     $existencia = $act['existencia'];
                     $fecha = $act['fecha'];
-                    $nombreUsuario=$act['nombreUsuario'];
                     if($id_producto==$_POST['idProducto']){
                         echo'
                         <div class="form-row">
@@ -112,7 +109,6 @@
                 }
                 
             }
-            $resultado -> free();  
 
         ?>
         
