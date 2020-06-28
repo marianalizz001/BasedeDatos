@@ -4,33 +4,48 @@
 <script src="js/functions.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <?php
+    session_start();
     include('Conexion.php');
+
+    $idUsuario= $_SESSION['id'];
     $idProducto = $_REQUEST['idProducto'];
     $consulta= $bd->Producto->updateOne(
-        ['_idProducto'=> new \MongoDB\BSON\ObjectID($idProducto)],
+        ['_id'=> new \MongoDB\BSON\ObjectID($idProducto)],
         ['$set' => ['activo'=> '0']]
     );
 
     if($consulta->getModifiedCount() != 0){
-		?>
-            <script>
-            jQuery(function() {
-                swal({   
-                    title: "¡Bien!",   
-                    text: "Se han borrado el producto",   
-                    type: "success",    
-                    confirmButtonColor: "#696565",   
-                    confirmButtonText: "Ok",   
-                    closeOnConfirm: false}, 
+        $consulta2 = $bd->Historial_inventario->insertOne(
+            [
+                'tipo' => 'B',
+                'Usuario_idUsuario' => $idUsuario,
+                'fecha_modificacion' => date('c'),
+                'producto_idProducto' => new \MongoDB\BSON\ObjectID($idProducto)
+            ]
+        );
+        if($consulta2->getInsertedCount()>0){
+            ?>
+                <script>
+                jQuery(function() {
+                    swal({   
+                        title: "¡Bien!",   
+                        text: "Se han guardado los datos",   
+                        type: "success",    
+                        confirmButtonColor: "#696565",   
+                        confirmButtonText: "Ok",   
+                        closeOnConfirm: false}, 
 
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            window.location.href = "InventarioVer.php";
-                        }
-                    });
-            });
-            </script>
-        <?php 
+                        function(isConfirm){   
+                            if (isConfirm) {     
+                                window.location.href = "InventarioVer.php";
+                            }
+                        });
+                });
+                </script>
+            <?php 
+        }else{
+            echo "No se inserto en el historial";
+        }
  	}else{	
         ?>
                 <script>

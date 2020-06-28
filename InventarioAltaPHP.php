@@ -11,7 +11,8 @@
     $nombre = $_REQUEST['nombre-producto'];
     $precio = $_REQUEST['precio'];
     $existencia = $_REQUEST['existencia'];
-    $idUsuario = $_SESSION['id'];  
+    $idUsuario = $_SESSION['id']; 
+    $fecha = date('c'); 
     $activo = '1';
      
     $consulta = $bd->Producto->insertOne(
@@ -20,32 +21,56 @@
             'precio' => $precio,
             'existencia' => $existencia,
             'Usuario_idUsuario' => $idUsuario,
-            'fecha' => date('c'),
+            'fecha' => $fecha,
             'activo' => $activo
 
         ]
     );
     
  	if($consulta->getInsertedCount()>0){
-		?>
-            <script>
-            jQuery(function() {
-                swal({   
-                    title: "¡Bien!",   
-                    text: "Se han guardado los datos",   
-                    type: "success",    
-                    confirmButtonColor: "#696565",   
-                    confirmButtonText: "Ok",   
-                    closeOnConfirm: false}, 
+        $cons = $bd->Producto->find([
+            'nombre' => $nombre,
+            'fecha' => $fecha
+        ]);
 
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            window.location.href = "InventarioVer.php";
-                        }
-                    });
-            });
-            </script>
-        <?php 
+        foreach($cons as $act){
+            {
+                $id_producto = $act['_id'];
+            }
+        }
+        $consulta2 = $bd->Historial_inventario->insertOne(
+            [
+                'tipo' => 'A',
+                'Usuario_idUsuario' => $idUsuario,
+                'fecha_modificacion' => $fecha,
+                'producto_idProducto' => $id_producto,
+                'existencia_nueva'=>$existencia,
+                'precio_nuevo' => $precio
+            ]
+        );
+        if($consulta2->getInsertedCount()>0){
+            ?>
+                <script>
+                jQuery(function() {
+                    swal({   
+                        title: "¡Bien!",   
+                        text: "Se han guardado los datos",   
+                        type: "success",    
+                        confirmButtonColor: "#696565",   
+                        confirmButtonText: "Ok",   
+                        closeOnConfirm: false}, 
+
+                        function(isConfirm){   
+                            if (isConfirm) {     
+                                window.location.href = "InventarioVer.php";
+                            }
+                        });
+                });
+                </script>
+            <?php 
+        }else{
+            echo "No se inserto en el historial";
+        }
  	}else{	
         ?>
                 <script>

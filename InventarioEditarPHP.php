@@ -37,25 +37,43 @@
     );
 
     if($consulta->getModifiedCount() != 0){
+        $consulta2 = $bd->Historial_inventario->insertOne(
+            [
+                'tipo' => 'E',
+                'Usuario_idUsuario' => $idUsuario,
+                'fecha_modificacion' => date('c'),
+                'producto_idProducto' => $id_producto,
+                'nombre_actual' => $nombre,
+                'nombre_nuevo' =>$_REQUEST['nombre-producto'],
+                'existencia_actual' => $existencia,
+                'existencia_nueva'=>$_REQUEST['existencia'],
+                'precio_actual' => $precio,
+                'precio_nuevo' => $_REQUEST['precio']
+            ]
+        );
+        if($consulta2->getInsertedCount()>0){
             ?>
-            <script>
-            jQuery(function() {
-                swal({   
-                    title: "¡Bien!",   
-                    text: "Se ha modificado el producto",   
-                    type: "success",    
-                    confirmButtonColor: "#696565",   
-                    confirmButtonText: "Ok",   
-                    closeOnConfirm: false}, 
+                <script>
+                jQuery(function() {
+                    swal({   
+                        title: "¡Bien!",   
+                        text: "Se han guardado los datos",   
+                        type: "success",    
+                        confirmButtonColor: "#696565",   
+                        confirmButtonText: "Ok",   
+                        closeOnConfirm: false}, 
 
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            window.location.href = "InventarioVer.php";
-                        }
-                    });
-            });
-            </script>
-        <?php 
+                        function(isConfirm){   
+                            if (isConfirm) {     
+                                window.location.href = "InventarioVer.php";
+                            }
+                        });
+                });
+                </script>
+            <?php 
+        }else{
+            echo "No se inserto en el historial";
+        } 
     }else{
         ?>
             <script>

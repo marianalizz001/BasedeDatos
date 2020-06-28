@@ -62,7 +62,7 @@
                         <div class="form-row">
                         <form id="miFormulario3" action="InventarioEditarPHP.php" method="post">
                             <tr id ="ieditar">    
-                                <td><input type="text" class="form-control" id="nombre-producto" name="nombre-producto" value="'.$nombre.'"></td>
+                                <td>'.$nombre.'</td>
                                 <td><input type="number" step="any" class="form-control" id="existencia" name="existencia" value="'.$existencia.'"></td>
                                 <td><input type="number" step="any" class="form-control" id="precio" name="precio" value="'.$precio.'"></td>
                                 <td>'
