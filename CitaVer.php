@@ -23,6 +23,9 @@
 </head>
 
 <body>
+<?php
+    include ('Conexion.php');
+?>
     <div class="container" id="registro">
         <div class="row">
             <div class="col-12" id="barra_servicio">
@@ -31,17 +34,17 @@
         </div>
         <br><br>
         <?php
-          $instruccion = ("SELECT idUsuario FROM Usuario WHERE usuario=?");
-          $consulta = $conexion->prepare($instruccion);
-          $consulta->bind_param("s", $usuario);
-      
-          if($consulta->execute()){
-              $consulta->bind_result($idUsuario);
-              $consulta->fetch();
+        //  $instruccion = ("SELECT idUsuario FROM Usuario WHERE usuario=?");
+          //$consulta = $conexion->prepare($instruccion);
+        //  $consulta->bind_param("s", $usuario);
+      //
+        //  if($consulta->execute()){
+          //    $consulta->bind_result($idUsuario);
+        //      $consulta->fetch();
              // echo $idUsuario;
-          }else{
-              echo $conexion -> error;
-          }           
+      //    }else{
+    //          echo $conexion -> error;
+  //        }           
 ?>
         <div class="container">
             <br><br>
