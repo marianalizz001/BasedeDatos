@@ -241,14 +241,12 @@
                 },
                 dayClick: function(date, jsEvent, view) {
                     /*Activa el boton de agregar, para solo poder modificar o eliminar el evento, limpia el formulario y manda llamar al modal*/
-                    limpiarFormulario();
+                   // limpiarFormulario();
                     $('#btnAgregar').prop("disabled", false);
                     $('#btnModificar').prop("disabled", true);
                     $('#btnEliminar').prop("disabled", true);
                     $('#txtNombre').prop("disabled", false);
-                    
                     $('#txtHora2').prop("disabled", true);
-
                     $('#txtFecha').val(date.format());
                     $("#ModalEventos").modal();
                 },
@@ -328,8 +326,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="txtID" name="textID">
-                    <input type="hidden" id="txtFecha" name="txtFecha" />
+                    <input type="text" id="txtID" name="textID">
+                    <input type="text" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Nombre:</label>
@@ -338,21 +336,27 @@
                             <?php
                             //Recupera el nombre de los pacientes
                             include ('Conexion.php');
-                            $temp = "P";
-                            $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM Usuario WHERE tipo_usuario = '$temp'";
-
-                            if(! $resultado = $conexion -> query($instruccion)){
+                            //$temp = "P";
+                           // $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM Usuario WHERE tipo_usuario = '$temp'";
+                           $consulta = $bd->Usuario->find(
+                            [
+                                'tipo_usuario' => 'P'
+              
+                            ]
+                        );
+                           /* if(! $resultado = $conexion -> query($consulta)){
                               echo "Ha sucedido un problema ... ";
                               exit();
-                              }
-                              while ($act = $resultado -> fetch_assoc()){
+                              }*/
+                             // while ($act = $resultado -> fetch_assoc()){
+                              foreach ($consulta as $act){
                                 $idUsuario = $act['idUsuario'];
                                 $nombre = $act['nombre'];
                                 $apPat = $act['apPat'];
                                 $apMat = $act['apMat'];
                                 echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
                               }
-                              $resultado -> free();  
+                              //$resultado -> free();  
 
                             ?>           
                             </select>
@@ -468,8 +472,6 @@
             if ($('#txtHora').val() == "19:00:00"){
               $horafin="20:00:00";
             }
-            
-            
                      
             NuevoEvento = {
   
