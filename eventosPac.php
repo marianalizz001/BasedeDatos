@@ -10,7 +10,7 @@
 
 	$idUsuario= $_SESSION['id'];
 	//echo $idUsuario;
-	$Nombre = $_SESSION['nombre'];
+	$Nombre = $_SESSION['nombre']." ".$_SESSION['apPat'];
 	//echo $Nombre;
 	$Fecha=$_REQUEST['fecha_cita'];
 	//echo $Fecha;
@@ -61,7 +61,7 @@
 		$BD = $act['start'];
 		$fechacompleta =explode(" ", $act['start']); 
 		$fecha=$fechacompleta[0];
-		$hora=$fechacompleta[1];
+		//$hora=$fechacompleta[1];
 		$diaSemana = date('w', strtotime($Fecha));
 		$hoy=date('Y-m-d');
 		if($BD==$Fecha_Inicial){
@@ -83,10 +83,11 @@
 			'textColoe' => $TextColor,
 			'start' => $Fecha_Inicial,
 			'end' => $Fecha_Final,
-			'estatus' => "true"
+			'estatus' => NULL,
+			'odontograma' => NULL,
+			'Usuario_idUsuario' => $idUsuario
 	   ]);
 		if($consulta->getInsertedCount() > 0){
-			header('location: CitaVer.php');
 			?>
             <script>
             jQuery(function() {
@@ -100,7 +101,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "CitaVer.php";
+                            window.location.href = "javascript:window.history.back()";
                         }
                     });
             });

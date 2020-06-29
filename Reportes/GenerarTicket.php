@@ -22,11 +22,28 @@
 			$this->Cell(0,10, 'Pagina '.$this->PageNo().'/{nb}',0,0,'C' );
 		}		
     }
-    $idUsuario = $_POST['idUsuario'];
-   $idCita = $_POST['idCita'];
-  
-    $query="select a.idPago,a.fecha,a.monto,b.nombre as nombrePac,b.title,c.nombre as nombreEmp from pagos a, cita b,usuario c where b.id=$idCita and a.cita_idCita=b.id and c.idUsuario=$idUsuario";
-    $resultado = mysqli_query($conexion, $query);
+    //$idUsuario = $_POST['idUsuario'];
+    $idUsuario = $_SESSION['id'];
+    $idCita = $_POST['idCita'];
+
+    
+    $cita =(string)$idCita;
+
+    $consulta = $bd->Cita->find([
+        '_id' => new \MongoDB\BSON\ObjectID($idCita)
+    ]);
+
+    $consulta2 = $bd->Pagos->find([
+        'Cita_idCita' => $cita
+    ]);
+
+    $consulta3 = $bd->Usuario->find([
+        '_id' => new \MongoDB\BSON\ObjectID($idUsuario)
+    ]);
+
+
+    //$query="select a.idPago,a.fecha,a.monto,b.nombre as nombrePac,b.title,c.nombre as nombreEmp from pagos a, cita b,usuario c where b.id=$idCita and a.cita_idCita=b.id and c.idUsuario=$idUsuario";
+    //$resultado = mysqli_query($conexion, $query);
 
     $pdf = new PDF();
 	$pdf->AliasNbPages();
@@ -45,30 +62,29 @@
 
     $pdf->Cell(90,6,utf8_decode('-------------------------------------------------------------'),0,0,'C');
     $pdf->Ln();
-    while($row = $resultado->fetch_assoc()){
+    foreach($consulta as $act){
+        foreach($consulta2 as $act2){
+            foreach($consulta3 as $act3){
+
+
 		$pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
 
-        $pdf->Cell(40,7,'Folio: ',0,0,'C',1);
-        $pdf->SetFillColor(232,232,232);
-		$pdf->Cell(50,7,utf8_decode($row['idPago']),0,0,'C',1);
-        $pdf->Ln();
-
 		$pdf->Cell(40,7,'Fecha y Hora: ',0,0,'C',1);
         $pdf->SetFillColor(232,232,232);
-		$pdf->Cell(50,7,utf8_decode($row['fecha']),0,0,'C',1);
+		$pdf->Cell(50,7,utf8_decode($act2['fecha']),0,0,'C',1);
 
         $pdf->Ln();
         $pdf->Cell(40,7,utf8_decode('Le atendió: '),0,0,'C',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(50,7,utf8_decode($row['nombreEmp']),0,0,'C',1);
+        $pdf->Cell(50,7,utf8_decode($act3['nombre']." ".$act3['apPat']),0,0,'C',1);
         $pdf->Ln();
         $pdf->Cell(90,6,utf8_decode('-------------------------------------------------------------'),0,0,'C');
 
         $pdf->Ln();
         $pdf->Cell(40,7,utf8_decode('Paciente: '),0,0,'C',1);
         $pdf->SetFillColor(232,232,232);
-        $pdf->Cell(50,7,utf8_decode($row['nombrePac']),0,0,'C',1);
+        $pdf->Cell(50,7,utf8_decode($act['nombre']),0,0,'C',1);
         $pdf->Ln();
         $pdf->Cell(90,6,utf8_decode('-------------------------------------------------------------'),0,0,'C');
 
@@ -80,14 +96,16 @@
         $pdf->Ln();
         $pdf->Cell(90,6,utf8_decode('-------------------------------------------------------------'),0,0,'C');
         $pdf->Ln();
-        $pdf->Cell(50,7,utf8_decode($row['title']),0,0,'L');
+        $pdf->Cell(50,7,utf8_decode($act['title']),0,0,'L');
         $pdf->SetFillColor(232,232,232);
         $pdf->Cell(1,7,utf8_decode("|"),0,0,'C');
-		$pdf->Cell(40,7,utf8_decode("$".$row['monto'].".00"),0,0,'R');
+		$pdf->Cell(40,7,utf8_decode("$".$act2['monto'].".00"),0,0,'R');
         
         $pdf->Ln();
         $pdf->Cell(90,6,utf8_decode('-------------------------------------------------------------'),0,0,'C');
         $pdf->Ln();
+            }
+        }
 
     }
 

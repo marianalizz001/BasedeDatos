@@ -261,13 +261,20 @@
                                 <?php
                                     include ('Conexion.php');
                                     $idUsuario=$_GET['idUsuario'];
-                                    $instruccion = "SELECT * FROM cita WHERE usuario_idUsuario=$idUsuario ";
+                                    $consulta = $bd->Cita->find([
+                                      'Usuario_idUsuario' => new \MongoDB\BSON\ObjectID($idUsuario)
+                                    ]);
+                                    
+                                    /*$instruccion = "SELECT * FROM cita WHERE usuario_idUsuario=$idUsuario ";
                                     if(! $resultado = $conexion -> query($instruccion)){
                                         echo "Ha sucedido un problema ... ";
                                         exit();
-                                    }
-                                    while ($act = $resultado -> fetch_assoc()){
-                                        $idCita = $act['id'];
+                                    }*/
+                                    foreach ($consulta as $act){
+                                      ?>
+                                    <script>console.log("si entra");</script>
+                                    <?php
+                                        $idCita = (string)$act['_id'];
                                         $nombre = $act['nombre'];
                                         $fecha = $act['start'];
                                         $proc = $act['title'];
@@ -307,7 +314,7 @@
                                             
                                             
                                             <?php
-                                            }elseif($estatus=='1'){
+                                            }elseif($estatus=="1"){
                                                 echo "<strong style='color: green;'>Asistió</strong>";
 
                                             }else{
@@ -342,24 +349,25 @@
                                             </td>
                                             <td>';
                                             if($estatus!='0'){
-                                                $instruccion2="SELECT * from pagos where cita_idcita=$idCita";
+                                              $a=0;
+                                              $consulta2 = $bd->Pagos->find([
+                                                'Cita_idCita' => $idCita
+                                              ]);
+                                                /*$consuta2= "SELECT * from pagos where cita_idcita=$idCita";
                                                 if(! $resultado2 = $conexion -> query($instruccion2)){
                                                     echo "Ha sucedido un problema ... ";
                                                     exit();
                                                 }
-                                                $act2 = $resultado2 -> fetch_assoc();
+                                                $act2 = $resultado2 -> fetch_assoc();*/
+                                            // print_r($consulta2);
+                                                foreach ($consulta2 as $act2){
+                                                  ?>
+                                                <script>console.log("tambieeeeeen si entra");</script>
+                                                <?php
                                                 $monto= $act2['monto'];
-                                                if($monto==null){
-                                                    ?>
-                                                        <form id="miFormulario4" action="Pagos.php" method="post">
-                                                        <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
-                                                        <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
-                                                    '?>
-                                                        <button onclick=submit title="Agregar monto"><i class="fas fa-money-bill-wave" style="color:#136303;"></i></button>
-                                                    </form>
-                                                    <?php
-                                                }else{
-                                                    echo "$",$monto,".00";
+                                                $a=1;
+                                                if($monto>0){
+                                                  echo "$",$monto,".00";
                                                     ?>
                                                         <form id="miFormulario4" action="Reportes/GenerarTicket.php" method="post">
                                                         <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
@@ -367,9 +375,28 @@
                                                     '?>
                                                         <button onclick=submit title="Generar Reporte"><i class="fas fa-money-check-alt" style="color:orange;"></i></button>
                                                     </form>
-                                                    <?php
+                                                    <?php 
+                                                }else{
+                                                  ?>
+                                                  <form id="miFormulario4" action="Pagos.php" method="post">
+                                                  <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
+                                                  <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
+                                              '?>
+                                                  <button onclick=submit title="Agregar monto"><i class="fas fa-money-bill-wave" style="color:#136303;"></i></button>
+                                              </form>
+                                              <?php
                                                 }
-                                                
+                                              }
+                                              if($a==0 && $estatus==1){
+                                                ?>
+                                                  <form id="miFormulario4" action="Pagos.php" method="post">
+                                                  <?php echo '<input type="hidden" name="idCita" id="idCita" value="'.$idCita.'"> 
+                                                  <input type="hidden" name="idUsuario" id="idUsuario" value="'.$idUsuario.'">
+                                              '?>
+                                                  <button onclick=submit title="Agregar monto"><i class="fas fa-money-bill-wave" style="color:#136303;"></i></button>
+                                              </form>
+                                              <?php
+                                              }
                                             }else{
                                                 echo '$ 0.00';
                                             }
@@ -377,9 +404,9 @@
                                             echo'
                                             </td>
                                         </tr>';
-                                        
+                                          
                                     }
-                                    $resultado -> free();  
+                                    //$resultado -> free();  
 
                                 ?>
                                 

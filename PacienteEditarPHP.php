@@ -8,10 +8,17 @@
     $opc=$_POST['opc'];
     $idCita=$_POST['idCita'];
     $idUsuario=$_POST['idUsuario'];
+    $monto=0;
+    $fecha=date('d-m-Y H:i:s');
+
     
     if($opc=='1'){
-        $instruccion1=$conexion->prepare("UPDATE cita SET estatus='1' where id=$idCita");
-        if($instruccion1->execute()){
+        $consulta = $bd->Cita->updateOne([
+            '_id' => new \MongoDB\BSON\ObjectID($idCita)],
+            ['$set' => ['estatus' => '1']
+        ],);
+       // $instruccion1=$conexion->prepare("UPDATE cita SET estatus='1' where id=$idCita");
+        if($consulta->getModifiedCount() > 0){
             ?>
             <script>
                 
@@ -54,10 +61,23 @@
             <?php
         }
     }elseif($opc=='0'){
-        $instruccion2=$conexion->prepare("UPDATE cita SET estatus='0' where id=$idCita");
-        if($instruccion2->execute()){
-            $instruccion3=$conexion->prepare("INSERT into pagos (cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),0)");
-            if($instruccion3->execute()){
+        //$instruccion2=$conexion->prepare("UPDATE cita SET estatus='0' where id=$idCita");
+        $consulta2 = $bd->Cita->update([
+            '_id' => new \MongoDB\BSON\ObjectID($iCita)],
+            ['$set' => ['estatus' => "0"]
+            ]);
+            if($consulta2->getModifiedCount() == 0){
+            //$instruccion3=$conexion->prepare("INSERT into pagos (cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),0)");
+            
+            $consulta3 = $bd->Pagos->insertOne(
+                [
+                    'Cita_idCita' => $idCita,
+                    'Usuario_idUsuario' => $idUsuario,
+                    'fecha' => $fecha,
+                    'monto' => $monto
+                ]
+            );
+            if($consulta3->getInsertedCount() > 0){
                 ?>
                     <script>
                     jQuery(function() {

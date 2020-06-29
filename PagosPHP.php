@@ -9,10 +9,18 @@
     $idCita=$_POST['idCita'];
     $idUsuario=$_POST['idUsuario'];
     $monto=$_REQUEST['monto'];
+    $fecha=date('d-m-Y H:i:s');
 
- 	$consulta= $conexion->prepare("insert into pagos(cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),$monto)");
-
- 	if($consulta->execute()){
+ 	//$consulta= $conexion->prepare("insert into pagos(cita_idCita,usuario_idUsuario,fecha,monto) values ($idCita,$idUsuario,now(),$monto)");
+     $consulta = $bd->Pagos->insertOne(
+        [
+            'Cita_idCita' => $idCita,
+            'Usuario_idUsuario' => $idUsuario,
+            'fecha' => $fecha,
+            'monto' => $monto
+        ]
+    );
+ 	if($consulta->getInsertedCount() > 0){
 		?>
             <script>
             jQuery(function() {
