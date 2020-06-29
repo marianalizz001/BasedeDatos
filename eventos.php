@@ -96,10 +96,7 @@
                 });
                 </script>
             <?php 
-            } else{
-                echo $conexion->error;
-            }
-        }else{	
+            } else{	
             ?>
                     <script>
                     jQuery(function() {
@@ -219,11 +216,16 @@
             
         default:
             //seleccionar los eventos del calendario para mostrarlos siempre
-            $sentenciaSQL= $pdo->prepare("SELECT * FROM cita");
-            $sentenciaSQL->execute();
+            ?>
+                <script>console.log("si entra a eventos");</script>
+                <?php
+            $consulta = $bd->Cita->find();
 
-            $resultado= $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-            echo json_encode($resultado);
+            foreach($consulta as $act){
+                echo json_encode($act);
+            }
+           
+
             break;
     }
     
