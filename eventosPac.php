@@ -80,7 +80,7 @@
 			'title' => $Titulo,
 			'nombre' => $Nombre,
 			'color' => $color,
-			'textColoe' => $TextColor,
+			'textColor' => $TextColor,
 			'start' => $Fecha_Inicial,
 			'end' => $Fecha_Final,
 			'estatus' => NULL,
