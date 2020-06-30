@@ -1,5 +1,6 @@
 <?php 
   include("compruebo.php");
+  include("Conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -271,10 +272,6 @@
                },
 
                 //slotDuration: '01:00:00',
-
-                
-                                    
-
                 eventClick: function(calEvent, jsEvent, view) {
                     /*Activa los botones de modificar y eliminar para que solo se puedan agregar*/
                     $('#btnAgregar').prop("disabled", true);
@@ -290,7 +287,6 @@
                     $('#txtTitulo').val(calEvent.title);
                     $('#txtNombre').val(calEvent.nombre);
                     $('#txtColor').val(calEvent.color);
-
                     FechaHora = calEvent.start._i.split(" ");
                     $('#txtFecha').val(FechaHora[0]);
                     $('#txtHora').val(FechaHora[1]);
@@ -336,21 +332,13 @@
                             <?php
                             //Recupera el nombre de los pacientes
                             include ('Conexion.php');
-                            //$temp = "P";
-                           // $instruccion = "SELECT idUsuario, nombre, apPat, apMat FROM Usuario WHERE tipo_usuario = '$temp'";
-                           $consulta = $bd->Usuario->find(
-                            [
+                           $consulta = $bd->Usuario->find( [
                                 'tipo_usuario' => 'P'
               
                             ]
                         );
-                           /* if(! $resultado = $conexion -> query($consulta)){
-                              echo "Ha sucedido un problema ... ";
-                              exit();
-                              }*/
-                             // while ($act = $resultado -> fetch_assoc()){
                               foreach ($consulta as $act){
-                                $idUsuario = $act['idUsuario'];
+                                $id = $act['_id'];
                                 $nombre = $act['nombre'];
                                 $apPat = $act['apPat'];
                                 $apMat = $act['apMat'];
@@ -408,8 +396,11 @@
         /*Recolecta los datos manda llamar a la funcion Recolectar datos y envia la instruccion de lo que se desea hacer*/
         var NuevoEvento;
         $('#btnAgregar').click(function() {
+          console.log("Esto es un mensaje en la consola");
             RecolectarDatos();
             EnviarInformacion('agregar', NuevoEvento);
+          console.log(NuevoEvento);
+            
         });
         $('#btnEliminar').click(function() {
             RecolectarDatos();
@@ -453,7 +444,6 @@
             if ( $('#txtTitulo').val() == "Otros"){
                $color="#000000";
             }
-
             if ($('#txtHora').val() == "10:00:00"){
               $horafin="11:00:00";
             } 
@@ -472,18 +462,16 @@
             if ($('#txtHora').val() == "19:00:00"){
               $horafin="20:00:00";
             }
-                     
             NuevoEvento = {
-  
                 id: $('#txtID').val(),
                 title: $('#txtTitulo').val(),
                 nombre: $('#txtNombre').val(),
                 start: $('#txtFecha').val() + " " + $('#txtHora').val(),
                 color: $color,
                 textColor: "#FFFFFF",
-                end: $('#txtFecha').val() + " " + $horafin
+                end: $('#txtFecha').val() + " " + $horafin,
+
             };
-            
         }
 
         function EnviarInformacion(accion, objEvento, modal) {
