@@ -2,38 +2,25 @@
 <?php
  include ('Conexion.php');
 /*Hace la conexion a la base de datos
+    $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");*/
     header('Content-Type: application/json');
-    $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");
-    $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';*/
-    ?>
-    <script>console.log("eventos");</script>
-    <?php
+    $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
     switch($accion){
         case 'agregar':
-            ?>
-            <script>console.log("agregar");</script>
-            <?php
             /*Agrega los valores a la BD*/
-           /* $conexion = new mysqli ('localhost','root','','Consultorio');
-            $instruccion="select * from cita";
-            if(! $resultado = $conexion -> query($instruccion)){
-                echo "Ha sucedido un problema ... ";
-                exit();
-            }*/
-            $consulta = $bd->Cita->find([]);
             $b=0;
+            $consulta = $bd->Cita->find([]);
             //while ($act = $resultado -> fetch_assoc()){
              foreach ($consulta as $act){
-                ?>
-                <script>console.log("si entra");</script>
-                <?php
-                $id = $act['id'];
-
+                $id = $act['_id'];
                 $fechacompleta =explode(" ", $act['start']); 
                 $fecha=$fechacompleta[0];
                 $hora=$fechacompleta[1];
 
                 $fechacompletaN =explode(" ", $_POST['start']); 
+                ?>
+                <script>console.log($fechacompletaN);</script>
+                <?php
                 print_r($fechacompletaN);
                 $fechaN=$fechacompletaN[0];
                 $horaN=$fechacompletaN[1];
@@ -69,7 +56,7 @@
                     'title' => $Titulo,
                     'nombre' => $Nombre,
                     'color' => $color,
-                    'textColoe' => $TextColor,
+                    'textColor' => $TextColor,
                     'start' => $Fecha_Inicial,
                     'end' => $Fecha_Final,
                     'estatus' => NULL,
@@ -134,7 +121,7 @@
                 
             
             }
-            header('Location: Citas.php');     
+            //header('Location: Citas.php');     
             break;
             
         case 'eliminar':
@@ -215,18 +202,26 @@
             break;
             
         default:
-            //seleccionar los eventos del calendario para mostrarlos siempre
-            ?>
-                <script>console.log("si entra a eventos");</script>
-                <?php
-            $consulta = $bd->Cita->find();
-
-            foreach($consulta as $act){
-                echo json_encode($act);
+        include("Conexion.php");
+        header('Content-Type: application/json');
+        $cont="";
+        $consulta = $bd->Cita->find();
+        $consulta2 = $bd->Cita->count();
+        $ini="[";
+        $contador=1;
+        foreach($consulta as $act){
+            if($contador==$consulta2){
+                $cont=$cont.json_encode($act);
+            }else{
+                $cont=$cont.json_encode($act).",";
             }
-           
-
-            break;
+            $contador++;
+         }
+         $fin="]";
+         $todo=$ini.$cont.$fin;
+         echo $todo;
+    
+        break;
     }
     
 ?>
