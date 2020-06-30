@@ -20,7 +20,7 @@
      
     <title>Dra.YazminNajera | Paciente</title>
     <br>
-    <script src='js/jquery.min.js'></script>
+  <script src='js/jquery.min.js'></script>
 <script src='js/moment.min.js'></script>
 <!--Full Calendar-->
 <link rel='stylesheet' type='text/css' href='css/fullcalendar.min.css' />
@@ -470,10 +470,9 @@
                 color: $color,
                 textColor: "#FFFFFF",
                 end: $('#txtFecha').val() + " " + $horafin,
-
             };
         }
-
+        
         function EnviarInformacion(accion, objEvento, modal) {
             /*Envia la info usando ajax*/
             $.ajax({
@@ -493,6 +492,7 @@
                 }
 
             });
+            
         }
 
         function limpiarFormulario() {

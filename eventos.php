@@ -1,30 +1,41 @@
-
 <?php
  include ('Conexion.php');
-/*Hace la conexion a la base de datos
-    $pdo=new PDO("mysql:dbname=consultorio;host:127.0.0.1","root","");*/
+ session_start();
+ $idUsuario = $_SESSION['_id'];
+ $Titulo= $_POST['title'];
+ $Nombre = $_POST['nombre'];
+ $color=$_POST['color'];
+ $TextColor= $_POST['textColor'];
+ $start= $_POST['start'];
+ $end= $_POST['end'];
+
+/*Hace la conexion a la base de datos*/
     header('Content-Type: application/json');
     $accion = (isset($_GET['accion']))?$_GET['accion']:'leer';
+
     switch($accion){
         case 'agregar':
+           
             /*Agrega los valores a la BD*/
-            $b=0;
+           
             $consulta = $bd->Cita->find([]);
-            //while ($act = $resultado -> fetch_assoc()){
+           
+            $b=0;
              foreach ($consulta as $act){
                 $id = $act['_id'];
+                $start = $act['start'];
+                //echo $start;
                 $fechacompleta =explode(" ", $act['start']); 
                 $fecha=$fechacompleta[0];
                 $hora=$fechacompleta[1];
-
+                echo $fecha . "\n";
+                
                 $fechacompletaN =explode(" ", $_POST['start']); 
-                ?>
-                <script>console.log($fechacompletaN);</script>
-                <?php
-                print_r($fechacompletaN);
+                        
                 $fechaN=$fechacompletaN[0];
                 $horaN=$fechacompletaN[1];
-
+                echo $fechaN . "\n";
+                echo $horaN;
                 $diaSemana = date('w', strtotime($fechaN));
 
                 $hoy=date('Y-m-d');
@@ -33,15 +44,10 @@
                 }
                 if(($fecha==$fechaN && $hora==$horaN)){
                    $b=1;
-                   ?>
-                   <script>console.log("b=1");</script>
-                   <?php
+                   
                 }
                 if($diaSemana ==6 && ($horaN!="10:00:00" || $horaN!="11:00:00" )){
                     $b=1;
-                    ?>
-                    <script>console.log("b=1");</script>
-                    <?php
                 }
             }   
             
@@ -49,16 +55,14 @@
               /*  $sentenciaSQL = $pdo->prepare("INSERT INTO
                 cita(title,nombre,color,textColor,start,end)
                 VALUES(:title,:nombre,:color,:textColor,:start,:end)");*/
-                ?>
-                <script>console.log("si entra al insert");</script>
-                <?php
+
                 $consulta = $bd->Cita->insertOne([
                     'title' => $Titulo,
                     'nombre' => $Nombre,
                     'color' => $color,
                     'textColor' => $TextColor,
-                    'start' => $Fecha_Inicial,
-                    'end' => $Fecha_Final,
+                    'start' => $start,
+                    'end' => $end,
                     'estatus' => NULL,
                     'odontograma' => NULL,
                     'Usuario_idUsuario' => $idUsuario
@@ -121,7 +125,7 @@
                 
             
             }
-            //header('Location: Citas.php');     
+            header('Location: Citas.php');     
             break;
             
         case 'eliminar':
