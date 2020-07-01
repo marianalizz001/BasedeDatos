@@ -34,30 +34,27 @@
         </div>
         <br><br>
         <?php
-        //  $instruccion = ("SELECT idUsuario FROM Usuario WHERE usuario=?");
-          //$consulta = $conexion->prepare($instruccion);
-        //  $consulta->bind_param("s", $usuario);
-      //
-        //  if($consulta->execute()){
-          //    $consulta->bind_result($idUsuario);
-        //      $consulta->fetch();
-             // echo $idUsuario;
-      //    }else{
-    //          echo $conexion -> error;
-  //        }           
 ?>
         <div class="container">
             <br><br>
             <div class="row">
                 <div class="col-6">
-                    <form action="eventosPac.php"  method="POST  enctype="multipart/form-data">
+                    <form action="EventosAgregar.php"  method="POST  enctype="multipart/form-data">
                         <div class="form-group row">
                             <div class="col-6">
-                            <input type="hidden" value="<?php echo $_SESSION['id'];?>" name="idUsuario" id="idUsuario" >
-                                <label for="nombre-paciente" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre del Usuario: </label>
+                            <input type="hidden" name="idUsuario" id="idUsuario" >
+                                <label for="nombre-paciente" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre del cliente: </label>
                             </div>
                             <div class="col-6">
-                                <input type="text" class="form-control" readonly="readonly"  name="nom_paciente" id="nom_paciente"  value="<?php echo $_SESSION['nombre']; ?>">
+                                <input type="text" class="form-control"   name="nom_paciente" id="nom_paciente"  value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="nombre-paciente" style="font-size:20px;color: rgba(144, 12, 52);"> Apellido del cliente: </label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control"  name="aP_paciente" id="aP_paciente"  value="">
                             </div>
                         </div>
                         <div class="form-group row">

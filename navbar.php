@@ -64,10 +64,19 @@
         <a class="nav-link" href="mensajes.php"><h5>Mensajes</h5><span class="sr-only">(current)</span></a>
     </li>
     
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+    <!--  <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="Citas.php" role="button" style="font-size:18px;color:white;">
           Citas
         </a>
+      </li>-->
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Citas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="AgregarCita.php">Agendar</a> 
+        </div>
       </li>
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -102,7 +111,7 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+    <!--  <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Estadísticas
         </a>
@@ -112,7 +121,7 @@
           <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
           <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
         </div>
-      </li>
+      </li>-->
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
@@ -135,7 +144,8 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="CitaVer.php">Agendar</a> 
         </div>
       </li>
 

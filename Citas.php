@@ -112,10 +112,19 @@
         <a class="nav-link" href="mensajes.php"><h5>Mensajes</h5><span class="sr-only">(current)</span></a>
     </li>
     
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+     <!-- <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="Citas.php" role="button" style="font-size:18px;color:white;">
           Citas
         </a>
+      </li>-->
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
+          Citas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="AgregarCita.php">Agendar</a> 
+        </div>
       </li>
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -149,19 +158,6 @@
           <a class="dropdown-item" href="InventarioAlta.php">Agregar</a>
         </div>
       </li>
-
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Estadísticas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
-          <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
-          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
-          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
-        </div>
-      </li>
-
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Reportes
@@ -174,30 +170,18 @@
           <a class="dropdown-item" href="Reportes/PacientesBaja.php" target="_blank">Pacientes Baja</a>          
         </div>
       </li>
-
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Atributos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="AtributoAgregar.php">Agregar</a>
-          <a class="dropdown-item" href="AtributoEditar.php" >Editar</a>
-          <a class="dropdown-item" href="AtributoEliminar.php">Eliminar</a>         
-        </div>
-      </li>
-
       
-
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
-        <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
+]
+      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
-          <a class="dropdown-item" href="#">Historial</a>
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="CitaVer.php">Agendar</a> 
         </div>
       </li>
 
@@ -246,8 +230,9 @@
                     $('#btnAgregar').prop("disabled", false);
                     $('#btnModificar').prop("disabled", true);
                     $('#btnEliminar').prop("disabled", true);
-                    $('#txtNombre').prop("disabled", false);
+                    $('#txtNombre').prop("disabled", true);
                     $('#txtHora2').prop("disabled", true);
+                    $('#txtHora').prop("disabled", true);
                     $('#txtFecha').val(date.format());
                     $("#ModalEventos").modal();
                 },
@@ -278,6 +263,8 @@
                     $('#btnModificar').prop("disabled", false);
                     $('#btnEliminar').prop("disabled", false);
                     $('#txtNombre').prop("disabled", true);
+                    $('#txtHora').prop("disabled", true);
+                    $('#txtTitulo').prop("disabled", true);
 
 
 
@@ -322,27 +309,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="txtID" name="textID">
-                    <input type="text" id="txtFecha" name="txtFecha" />
+                    <input type="hidden" id="txtID" name="textID">
+                    <input type="hidden" id="txtFecha" name="txtFecha" />
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Nombre:</label>
                             <select class="form-control" name="txtNombre" id="txtNombre">
-                            <option value="Nuevo paciente">Nuevo Paciente</option>
+                            <option value="Nuevo paciente">Cita disponible</option>
                             <?php
                             //Recupera el nombre de los pacientes
                             include ('Conexion.php');
-                           $consulta = $bd->Usuario->find( [
-                                'tipo_usuario' => 'P'
-              
-                            ]
-                        );
+                           $consulta = $bd->Usuario->find();
                               foreach ($consulta as $act){
                                 $id = $act['_id'];
                                 $nombre = $act['nombre'];
                                 $apPat = $act['apPat'];
                                 $apMat = $act['apMat'];
                                 echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
+
                               }
                               //$resultado -> free();  
 
@@ -354,6 +338,7 @@
                         <div class="form-group col-md-4">
                             <label>Hora de la cita:</label>
                             <select class="form-control" name="txtHora" id="txtHora">
+                                <option select></option>
                                 <option>10:00:00</option>
                                 <option>11:00:00</option>
                                 <option>16:00:00</option>
@@ -382,12 +367,12 @@
                     </div>
                     <br>
                 </div>
-                <div class="modal-footer">
+              <!--  <div class="modal-footer">
                     <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
                     <button type="button" id="btnModificar" class="btn btn-success">Modificar</button>
                     <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
