@@ -14,6 +14,12 @@
         ['$set' => ['f_baja' => $fecha]]
     );
 
+    /*$consulta = $bd->Usuario->deleteOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idUsuario)],
+    );
+    */
+
+    //if($consulta->getDeletedCount() == 0){
  	if($consulta->getModifiedCount() == 0){
         ?>
         <script>
