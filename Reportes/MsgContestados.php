@@ -22,21 +22,21 @@
 			$this->Cell(0,10, 'Pagina '.$this->PageNo().'/{nb}',0,0,'C' );
 		}		
     }
-    
-
-    $query = "SELECT a.id_mensaje, a.nombre, a.apPat, a.apMat, a.correo, a.telefono, a.mensaje, a.f_enviado, a.f_respuesta, a.visto,
-     a.usuario_id_usuario, b.idUsuario, b.nombre as n, b.apPat as ap, b.apMat as am FROM mensaje a, usuario b WHERE a.usuario_id_usuario = b.idUsuario";
-	
-    $resultado = mysqli_query($conexion, $query);
+        
+    $query = $bd->Mensaje->find(
+        [
+            'visto' => '1'
+        ]
+    );
 	
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
     $pdf->AddPage();
     
-    while($row = $resultado->fetch_assoc()){
+    foreach ($query as $row){
         $pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
-        $pdf->Cell(20,5,utf8_decode("Id: " .$row['id_mensaje']),1,1,'L');
+        $pdf->Cell(70,5,utf8_decode("Id: " .$row['_id']),1,1,'L');
 
         $pdf->SetFillColor(232,232,232);
         $pdf->Cell(95,6,'Autor ',1,0,'C',1);
@@ -48,7 +48,18 @@
         $pdf->Cell(110,6,utf8_decode('Respondió'),1,0,'C',1);
         $pdf->Cell(40,6,'Recibido',1,0,'C',1);
         $pdf->Cell(40,6,'Respuesta ',1,1,'C',1);
-        $pdf->Cell(110,6,utf8_decode($row['n']." ".$row['ap']." ".$row['am']),1,0,'L');
+        
+        $idUsuario = $row['usuario_id_usuario'];
+
+        $query2 = $bd->Usuario->find(
+            [
+                '_id' => new \MongoDB\BSON\ObjectID($idUsuario)
+            ]
+        );
+
+        foreach ($query2 as $row2){
+            $pdf->Cell(110,6,utf8_decode($row2['nombre']." ".$row2['apPat']." ".$row2['apMat']),1,0,'L');
+        }
         $pdf->Cell(40,6,utf8_decode($row['f_enviado']),1,0,'C');
         $pdf->Cell(40,6,utf8_decode($row['f_respuesta']),1,0,'C');
 

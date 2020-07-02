@@ -161,9 +161,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
           <a class="dropdown-item" href="Reportes/MsgContestados.php" target="_blank">Msg Contestados</a>
           <a class="dropdown-item" href="Reportes/MsgPendientes.php" target="_blank">Msg Pendientes</a>
-          <a class="dropdown-item" href="Reportes/ListadoEmpleados.php" target="_blank">Empleados</a>
-          <a class="dropdown-item" href="Reportes/HistorialProductos.php" target="_blank">Inventario</a> 
-          <a class="dropdown-item" href="Reportes/PacientesBaja.php" target="_blank">Pacientes Baja</a>          
+          <a class="dropdown-item" href="Reportes/ListadoEmpleados.php" target="_blank">Empleados</a>        
         </div>
       </li>
 
@@ -188,11 +186,11 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="CitaVer.php">Agendar</a> 
         </div>
       </li>
 
-   
       <?php } ?>
 
       <li class="nav-item">
