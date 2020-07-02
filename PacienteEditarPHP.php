@@ -63,7 +63,7 @@
     }elseif($opc=='0'){
         //$instruccion2=$conexion->prepare("UPDATE cita SET estatus='0' where id=$idCita");
         $consulta2 = $bd->Cita->update([
-            '_id' => new \MongoDB\BSON\ObjectID($idCita)],
+            '_id' => new \MongoDB\BSON\ObjectID($iCita)],
             ['$set' => ['estatus' => "0"]
             ]);
             if($consulta2->getModifiedCount() == 0){

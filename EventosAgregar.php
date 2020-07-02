@@ -10,7 +10,7 @@
 
 	$idUsuario= $_SESSION['id'];
 	//echo $idUsuario;
-    $Nombre = $_REQUEST['nom_paciente'];
+    $Nombre = $_REQUEST['nom_paciente']." ".$_REQUEST['aP_paciente'];
 	//echo $Nombre;
 	$Fecha=$_REQUEST['fecha_cita'];
 	//echo $Fecha;
@@ -61,6 +61,7 @@
 		$BD = $act['start'];
 		$fechacompleta =explode(" ", $act['start']); 
 		$fecha=$fechacompleta[0];
+		//$hora=$fechacompleta[1];
 		$diaSemana = date('w', strtotime($Fecha));
 		$hoy=date('Y-m-d');
 		if($BD==$Fecha_Inicial){
@@ -123,7 +124,7 @@
     
                         function(isConfirm){   
                             if (isConfirm) {     
-                                window.location.href = "AgregarCita.php";
+                                window.location.href = "CitaVer.php";
                             }
                         });
                 });

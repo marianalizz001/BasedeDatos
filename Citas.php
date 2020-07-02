@@ -124,7 +124,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
         <a class="dropdown-item" href="Citas.php">Ver</a>
         <a class="dropdown-item" href="AgregarCita.php">Agendar</a> 
-        <a class="dropdown-item" href="EditarCita.php">Editar/Eliminar</a> 
         </div>
       </li>
 
