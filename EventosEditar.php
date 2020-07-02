@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +25,11 @@
 <?php
     include ('Conexion.php');
 ?>
+<?php $id = $_REQUEST['id']; ?>
     <div class="container" id="registro">
         <div class="row">
             <div class="col-12" id="barra_servicio">
-                <A class="h2 align-middle text-center" name="servicios" id="servicio">Agendar Cita</A>
+                <A class="h2 align-middle text-center" name="servicios" id="servicio">Editar Cita</A>
             </div>
         </div>
         <br><br>
@@ -39,32 +39,28 @@
             <br><br>
             <div class="row">
                 <div class="col-6">
-                    <form action="EventosAgregar.php"  method="POST  enctype="multipart/form-data">
+                    <form action="EventosEditarPHP.php"  method="POST  enctype="multipart/form-data">
                     <div class="form-group row">
                             <div class="col-6">
-                            <input type="hidden" value="" name="idUsuario" id="idUsuario" >
-                                <label for="nombre-paciente" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre del Cliente: </label>
+                            <input type="hidden" value="<?php echo $_SESSION['id'];?>" name="idUsuario" id="idUsuario" >
+                                <label for="nombre-paciente" style="font-size:20px;color: rgba(144, 12, 52);"> Nombre del Usuario: </label>
                             </div>
                             <div class="col-6">
-                               <select class="form-control" name="nom_paciente" id="txtNombre">
-                            <option value="Nuevo paciente"></option>
                             <?php
                             //Recupera el nombre de los pacientes
                             include ('Conexion.php');
-                           $consulta = $bd->Usuario->find([
-                            'tipo_usuario' => 'P'
+                           $consulta = $bd->Cita->find([
+                            '_id' => new \MongoDB\BSON\ObjectID($id)
                            ]);
                               foreach ($consulta as $act){
                                 $id = $act['_id'];
                                 $nombre = $act['nombre'];
-                                $apPat = $act['apPat'];
-                                $apMat = $act['apMat'];
-                                echo '<option value="'.$nombre. " " .$apPat. " " .$apMat.'">'.$nombre. " " .$apPat. " " .$apMat.'</option>';
+                               // echo '<textarea  class="form-control" readonly="readonly" name="nombre" id="nombre" value="'.$nombre.'</textarea>';
 
                               }
 
-                            ?>           
-                            </select>
+                            ?>     
+                            <input type="text" class="form-control" readonly="readonly"  name="nom_paciente" id="nom_paciente"  value="<?php echo $nombre ?>">      
                             </div>
                         </div>
                         <div class="form-group row">
@@ -112,13 +108,13 @@
                             </div>
                         </div>
                         <br><br>
-                        <input class="btn btn-success btn-lg btn-block" type="submit" value="Agendar Cita" name="btnEnviar">
+                        <input class="btn btn-success btn-lg btn-block" type="submit" value="Editar Cita" name="btnEnviar">
                      
                     </form>
                     
                 </div>
                 <div class="col-6">
-                        <img src="img/Diente.png" alt="Calendario" width="250px">
+                        <img src="img/dental.png" alt="Calendario" width="250px">
                     </div>
             </div>
 

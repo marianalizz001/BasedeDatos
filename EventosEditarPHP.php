@@ -8,9 +8,9 @@
     session_start();
     include ('Conexion.php');
 
-	$idUsuario= $_SESSION['id'];
+	$idCita= $_REQUEST['idCita'];
 	//echo $idUsuario;
-    $Nombre = $_REQUEST['nom_paciente'];
+	$Nombre = $_REQUEST['nombre'];
 	//echo $Nombre;
 	$Fecha=$_REQUEST['fecha_cita'];
 	//echo $Fecha;
@@ -61,6 +61,7 @@
 		$BD = $act['start'];
 		$fechacompleta =explode(" ", $act['start']); 
 		$fecha=$fechacompleta[0];
+		//$hora=$fechacompleta[1];
 		$diaSemana = date('w', strtotime($Fecha));
 		$hoy=date('Y-m-d');
 		if($BD==$Fecha_Inicial){
@@ -72,21 +73,12 @@
 		if($diaSemana==0){
 			$b=1;
 		}
-
 	}
 	if($b==0){
-		$consulta = $bd->Cita->insertOne([
-			'title' => $Titulo,
-			'nombre' => $Nombre,
-			'color' => $color,
-			'textColor' => $TextColor,
-			'start' => $Fecha_Inicial,
-			'end' => $Fecha_Final,
-			'estatus' => NULL,
-			'odontograma' => NULL,
-			'Usuario_idUsuario' => $idUsuario
-	   ]);
-		if($consulta->getInsertedCount() > 0){
+        $consulta = $bd->Cita->updateOne([
+            '_id' => new \MongoDB\BSON\ObjectID($idCita)],
+            ['$set' => ['start' => $Fecha_Inicial,'end' => $Fecha_Final, 'title' => $Titulo, 'color' => $color]],);
+		if($consulta->getModifiedCount() > 0){
 			?>
             <script>
             jQuery(function() {
@@ -100,7 +92,7 @@
 
                     function(isConfirm){   
                         if (isConfirm) {     
-                            window.location.href = "javascript:window.history.back()";
+                            window.location.href = "EditarCita.php";
                         }
                     });
             });
@@ -123,7 +115,7 @@
     
                         function(isConfirm){   
                             if (isConfirm) {     
-                                window.location.href = "AgregarCita.php";
+                                window.location.href = "EditarCita.php";
                             }
                         });
                 });
@@ -131,6 +123,7 @@
             <?php
 	 }
 	
+
 ?>
 
  	

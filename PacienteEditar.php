@@ -26,7 +26,6 @@
 ?>
 
 <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
-
 <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: rgba(85, 219, 183, 0.83);">
   <i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true" onclick="history.back()" style="color: darkcyan; padding-right: 10px;"></i>
   <a class="float-right" class="navbar-brand" href="index.php"><img src="img/logo.png" width="180" height="50" alt=""></a>
@@ -57,10 +56,6 @@
         <a class="nav-link" href="contacto.php"><h5>Contacto</h5><span class="sr-only">(current)</span></a>
       </li>
     
-      <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="AgendarCitaGeneral.php"><h5>Agendar Cita</h5><span class="sr-only">(current)</span></a>
-      </li>-->
-
       <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="ayuda.php"><i class="fa fa-question-circle fa-2x" style="color: darkcyan;" aria-hidden="true"></i></a>
       </li>
@@ -85,11 +80,15 @@
       <li class="nav-item active" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link" href="mensajes.php"><h5>Mensajes</h5><span class="sr-only">(current)</span></a>
     </li>
-    
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link" href="Citas.php" role="button" style="font-size:18px;color:white;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Citas
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
+        <a class="dropdown-item" href="Citas.php">Ver</a>
+        <a class="dropdown-item" href="AgregarCita.php">Agendar</a>
+        <a class="dropdown-item" href="EditarCita.php">Editar/Eliminar</a>  
+        </div>
       </li>
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
@@ -126,18 +125,6 @@
 
       <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Estadísticas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="estadisticaGenero.php">Genero</a>
-          <a class="dropdown-item" href="estadisticaEdad.php">Edad</a>
-          <a class="dropdown-item" href="estadisticaCitas.php">Citas Semanales</a>
-          <a class="dropdown-item" href="estadisticaPago.php">Pagos Semanales</a>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
           Reportes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
@@ -149,19 +136,6 @@
         </div>
       </li>
 
-      <li class="nav-item dropdown" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:18px;color:white;">
-          Atributos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="AtributoAgregar.php">Agregar</a>
-          <a class="dropdown-item" href="AtributoEditar.php" >Editar</a>
-          <a class="dropdown-item" href="AtributoEliminar.php">Eliminar</a>         
-        </div>
-      </li>
-
-      
-
       <?php } ?>
 
       <?php if ($_SESSION['tipo'] == 'P'){ ?>
@@ -170,8 +144,7 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="submenu">
-          <a class="dropdown-item" href="CitaVer.php">Agendar</a>
-          
+        <a class="dropdown-item" href="CitaVer.php">Agendar</a> 
         </div>
       </li>
 
@@ -186,8 +159,7 @@
    </div>
 </nav>
 
-
-<br><br>
+<br>
 <?php $idUsuario = $_REQUEST['idUsuario']; ?>
 
 <div class="accordion" id="accordionExample">
@@ -265,11 +237,6 @@
                                       'Usuario_idUsuario' => new \MongoDB\BSON\ObjectID($idUsuario)
                                     ]);
                                     
-                                    /*$instruccion = "SELECT * FROM cita WHERE usuario_idUsuario=$idUsuario ";
-                                    if(! $resultado = $conexion -> query($instruccion)){
-                                        echo "Ha sucedido un problema ... ";
-                                        exit();
-                                    }*/
                                     foreach ($consulta as $act){
                                       ?>
                                     <script>console.log("si entra");</script>
