@@ -18,7 +18,7 @@
            
             /*Agrega los valores a la BD*/
            
-            $consulta = $bd->Cita->find([]);
+            $consulta = $bd->Cita->find();
            
             $b=0;
              foreach ($consulta as $act){
@@ -159,7 +159,6 @@
          $fin="]";
          $todo=$ini.$cont.$fin;
          echo $todo;
-    
         break;
     }
     
