@@ -25,9 +25,9 @@
     }
     
 
-
-    $query = $bd->Mensaje->find();
+    $query = "SELECT id_mensaje, nombre, apPat, apMat, correo, telefono, mensaje, f_enviado, visto FROM mensaje";
 	
+    $resultado = mysqli_query($conexion, $query);
 	
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
@@ -39,11 +39,11 @@
     $pdf->SetFillColor(232,232,232);
 
 
-    foreach($query as $row){
+    while($row = $resultado->fetch_assoc()){
         if ($row['visto'] == '0'){
             $pdf->SetTextColor(0,0,0);
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(70,5,utf8_decode("Id: " .$row['_id']),1,1,'L');
+            $pdf->Cell(20,5,utf8_decode("Id: " .$row['id_mensaje']),1,1,'L');
 
             $pdf->SetFillColor(232,232,232);
             $pdf->Cell(95,6,'Autor ',1,0,'C',1);
@@ -51,9 +51,7 @@
             $pdf->Cell(95,6,utf8_decode($row['nombre']." ".$row['apPat']." ".$row['apMat']),1,0,'C');
             $pdf->Cell(95,6,utf8_decode($row['correo']."  " . $row['telefono']),1,1,'C');
             $pdf->Cell(190,6,'Mensaje ',1,1,'L',1);
-            $pdf->SetFont('Arial','B',9);
-            $pdf->Cell(190,10,utf8_decode($row['mensaje']),1,1,'L');
-            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(190,6,utf8_decode($row['mensaje']),1,1,'L');
             $pdf->Cell(95,6,utf8_decode('Fecha en que se envió'),1,0,'C',1);
             $pdf->Cell(95,6,utf8_decode($row['f_enviado']),1,0,'C');
 

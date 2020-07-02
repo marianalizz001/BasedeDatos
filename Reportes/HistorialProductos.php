@@ -23,7 +23,9 @@
 		}		
     }
 
-    $query = $bd->Historial_inventario.find();
+  
+    $query="select a.Usuario_idUsuario, a.fecha_modificacion as fecha, a.producto_idProducto, a.existencia_actual as ea, a.existencia_nueva as en, a.precio_actual as pa, a.precio_nuevo as pn, b.idProducto, b.nombre as producto, c.idUsuario, CONCAT(c.nombre, ' ',c.apPat, ' ',c.apMat) as nombre from historial_inventario a, producto b, usuario c where a.Usuario_idUsuario=c.idUsuario and a.producto_idProducto=b.idProducto ORDER by a.fecha_modificacion DESC";
+    $resultado = mysqli_query($conexion, $query);
 
     $pdf = new PDF();
 	$pdf->AliasNbPages();
@@ -34,7 +36,7 @@
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFillColor(232,232,232);
 
-    foreach($query as $row){
+    while($row = $resultado->fetch_assoc()){
 		$pdf->SetTextColor(0,0,0);
         $pdf->SetFont('Arial','B',12);
         $pdf->SetFillColor(232,232,232);

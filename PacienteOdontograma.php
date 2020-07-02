@@ -30,11 +30,10 @@
             $idCita=$_POST['idCita'];
 
             $query = "SELECT odontograma FROM cita WHERE id = $idCita";
-            $query = $bd->Cita->find(
-                ['_id' => new \MongoDB\BSON\ObjectID($idCita)]
-            );
 
-            foreach($query as $row){
+            $resultado = mysqli_query($conexion, $query);
+
+            while($row = $resultado->fetch_assoc()){
             $obj = json_decode($row['odontograma']);
             $once= $obj->{'11'};
             $doce= $obj->{'12'};
