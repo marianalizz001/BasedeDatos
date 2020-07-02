@@ -30,7 +30,6 @@
     $consulta= $bd->Producto->updateOne(
         ['_id'=> new \MongoDB\BSON\ObjectID($idProducto)],
         ['$set' => [
-            'nombre' =>  $_REQUEST['nombre-producto'],
             'precio' => $_REQUEST['precio'],
             'existencia' => $_REQUEST['existencia']
         ]]
@@ -43,8 +42,6 @@
                 'Usuario_idUsuario' => $idUsuario,
                 'fecha_modificacion' => date('c'),
                 'producto_idProducto' => $id_producto,
-                'nombre_actual' => $nombre,
-                'nombre_nuevo' =>$_REQUEST['nombre-producto'],
                 'existencia_actual' => $existencia,
                 'existencia_nueva'=>$_REQUEST['existencia'],
                 'precio_actual' => $precio,

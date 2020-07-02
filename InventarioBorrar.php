@@ -13,8 +13,13 @@
         ['_id'=> new \MongoDB\BSON\ObjectID($idProducto)],
         ['$set' => ['activo'=> '0']]
     );
+    /*$consulta = $bd->Producto->deleteOne(
+        ['_id' => new \MongoDB\BSON\ObjectID($idProducto)]
+    );
+    */
 
     if($consulta->getModifiedCount() != 0){
+    //if($consulta->getDeletedCount() != 0){
         $consulta2 = $bd->Historial_inventario->insertOne(
             [
                 'tipo' => 'B',
